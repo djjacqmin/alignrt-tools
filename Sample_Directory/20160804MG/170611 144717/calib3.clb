@@ -1,0 +1,28 @@
+VRT Camera model file: Version 1
+
+CAMERA POSITION:
+
+Camera axes:
+-0.963030040	0.111651368	0.245167375
+-0.260958195	-0.612592757	-0.746077061
+0.0668872297	-0.782473087	0.619081557
+Focal point:
+-449.985901
+1531.23181
+-1243.12842
+
+
+INTERNAL CAMERA PARAMETERS:
+
+26.0001240 - Focal length
+1280.00000 - Num sensor elems in X direction
+1280.00000 - Num pixels in frame grabber's X direction
+0.00549999997 - Pixel size X
+0.00549999997 - Pixel size Y
+0.000139893469 - Radial distortion (1st order)
+0.000000000 - Radial distortion (2nd order)
+1.00000000 - Uncertainty factor for scale of horizontal scanline
+973.613525 - Principal point X
+602.801575 - Principal point Y
+2048 - Num Pixels (X dim)
+1024 - Num Pixels (Y dim)

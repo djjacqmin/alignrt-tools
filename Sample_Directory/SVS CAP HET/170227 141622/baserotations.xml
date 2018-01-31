@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rotations version="1.0" coordinate_system="IEC60601">
+<rotation>
+<surfacerotation>0.0</surfacerotation></rotation>
+<rotation>
+<surfacerotation>355.0</surfacerotation></rotation></rotations>

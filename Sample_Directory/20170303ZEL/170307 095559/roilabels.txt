@@ -1,0 +1,2 @@
+Monitoring,selection.roi,SHIFT_ISOCENTRE
+Chin,selection1.roi,SHIFT_CENTROID

@@ -1,0 +1,1 @@
+Right Breast,selection.roi,SHIFT_ISOCENTRE

@@ -1,0 +1,3000 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ReportStructure xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://tempuri.org/ReportStructure.xsd">
+	<FontSize>8</FontSize>
+	<Unit>mm</Unit>
+	<RealTimeDeltaUnit>mm</RealTimeDeltaUnit>
+	<DecimalPlaces>1</DecimalPlaces>
+	<DegressFreedom>Degree4s</DegressFreedom>
+	<UseColorLabels>true</UseColorLabels>
+	<FileFormat>PDF</FileFormat>
+	<PaperSize>Letter</PaperSize>
+	<PrintOrientation>Portrait</PrintOrientation>
+	<CaptureSize>70</CaptureSize>
+	<Section Label="Header" Structure="Header" MarginValues="0,10,0,0">
+		<Index>1</Index>
+		<Visibility>true</Visibility>
+		<Child xsi:type="XmlTextItem" Label="Title" Structure="Paragraph" MarginValues="0,10,0,0">
+			<Index>1</Index>
+			<Visibility>true</Visibility>
+			<Style FontSize="11" Bold="true" UnderLine="false" Italics="false" Category="Title" />
+			<Text>OSMS</Text>
+			<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+		</Child>
+		<Child xsi:type="XmlTextItem" Label="Address" Structure="Paragraph" MarginValues="0,10,0,0">
+			<Index>2</Index>
+			<Visibility>true</Visibility>
+			<Style FontSize="7" Bold="false" UnderLine="false" Italics="false" Category="Small" />
+			<Text>3100 Hansen Way Palo Alto, CA 94304-1038</Text>
+			<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+		</Child>
+		<Child xsi:type="XmlImageItem" Label="Icon" Structure="UIGraphContainer" MarginValues="0,10,0,0">
+			<Index>3</Index>
+			<Visibility>true</Visibility>
+			<Style FontSize="7" Bold="false" UnderLine="false" Italics="false" Category="Small" />
+			<Text>3100 Hansen Way Palo Alto, CA 94304-1038</Text>
+			<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+			<Path>F:\Vision RT\AlignRT\GUI_Resources\Edge\Varian_Logo_Edge_BonW.jpg</Path>
+			<ImageAlignment>Left</ImageAlignment>
+			<TextVerticalAlignment>Top</TextVerticalAlignment>
+			<Scale>70</Scale>
+		</Child>
+		<Child xsi:type="XmlFormattedTextItem" Label="Date" Structure="Date" MarginValues="0,10,0,0">
+			<Index>4</Index>
+			<Visibility>true</Visibility>
+			<Style FontSize="11" Bold="true" UnderLine="false" Italics="false" Category="Title" />
+			<Text>15-Nov-2017</Text>
+			<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+			<Format>dd/MMM/yyyy</Format>
+		</Child>
+		<Child xsi:type="XmlTextItem" Label="UserName" Structure="Paragraph" MarginValues="0,10,0,0">
+			<Index>5</Index>
+			<Visibility>true</Visibility>
+			<Style FontSize="11" Bold="true" UnderLine="false" Italics="false" Category="Title" />
+			<Text>User: Therapist (Therapist) - Advanced_Therapist</Text>
+			<TextHorizontalAlignment>Right</TextHorizontalAlignment>
+		</Child>
+	</Section>
+	<Section Label="HospitalInformation" Structure="Header" MarginValues="0,10,0,0">
+		<Index>2</Index>
+		<Visibility>true</Visibility>
+		<Child xsi:type="XmlTextItem" Label="Title" Structure="Paragraph" MarginValues="0,10,0,0">
+			<Index>1</Index>
+			<Visibility>true</Visibility>
+			<Style FontSize="8" Bold="true" UnderLine="false" Italics="false" Category="Title" />
+			<Text>Hospital Name</Text>
+			<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+		</Child>
+		<Child xsi:type="XmlTextItem" Label="Address" Structure="Paragraph" MarginValues="0,10,0,0">
+			<Index>2</Index>
+			<Visibility>true</Visibility>
+			<Style FontSize="8" Bold="true" UnderLine="false" Italics="false" Category="Title" />
+			<Text>Hospital Address</Text>
+			<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+		</Child>
+		<Child xsi:type="XmlImageItem" Label="Icon" Structure="UIGraphContainer" MarginValues="0,10,0,0">
+			<Index>3</Index>
+			<Visibility>true</Visibility>
+			<Style FontSize="11" Bold="true" UnderLine="false" Italics="false" Category="Title" />
+			<Text />
+			<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+			<Path>C:\Users\Public\Pictures\Sample Pictures\Chrysanthemum.jpg</Path>
+			<ImageAlignment>Centre</ImageAlignment>
+			<TextVerticalAlignment>Top</TextVerticalAlignment>
+			<Scale>70</Scale>
+		</Child>
+	</Section>
+	<Section xsi:type="XmlTextItem" Label="PatientInformation" Structure="Section" MarginValues="0,10,0,0">
+		<Index>3</Index>
+		<Visibility>true</Visibility>
+		<Child Label="PatientID" Structure="ValuePair" MarginValues="25,2,0,0">
+			<Index>1</Index>
+			<Visibility>true</Visibility>
+			<Child xsi:type="XmlTextItem" Label="Label" Structure="Paragraph" MarginValues="0,0,0,0">
+				<Index>1</Index>
+				<Visibility>true</Visibility>
+				<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+				<Text>Patient ID</Text>
+				<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+			</Child>
+			<Child xsi:type="XmlTextItem" Label="Value" Structure="Paragraph" MarginValues="0,0,0,0">
+				<Index>2</Index>
+				<Visibility>true</Visibility>
+				<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+				<Text>20170308</Text>
+				<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+			</Child>
+		</Child>
+		<Child Label="PatientName" Structure="ValuePair" MarginValues="25,2,0,0">
+			<Index>2</Index>
+			<Visibility>true</Visibility>
+			<Child xsi:type="XmlTextItem" Label="Label" Structure="Paragraph" MarginValues="0,0,0,0">
+				<Index>1</Index>
+				<Visibility>true</Visibility>
+				<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+				<Text>Patient Name</Text>
+				<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+			</Child>
+			<Child xsi:type="XmlFormattedTextItem" Label="Value" Structure="SingleLineSection" MarginValues="0,0,0,0">
+				<Index>2</Index>
+				<Visibility>true</Visibility>
+				<Child xsi:type="XmlTextItem" Label="Prefixes" Structure="Paragraph" MarginValues="0,0,0,0">
+					<Index>1</Index>
+					<Visibility>false</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text />
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+				</Child>
+				<Child xsi:type="XmlTextItem" Label="PatientFirstName" Structure="Paragraph" MarginValues="0,0,0,0">
+					<Index>2</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text>TB2871</Text>
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+				</Child>
+				<Child xsi:type="XmlTextItem" Label="PatientMiddleName" Structure="Paragraph" MarginValues="0,0,0,0">
+					<Index>3</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text />
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+				</Child>
+				<Child xsi:type="XmlTextItem" Label="PatientSurname" Structure="Paragraph" MarginValues="0,0,0,0">
+					<Index>4</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text>ZZUWQA_Daily</Text>
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+				</Child>
+				<Child xsi:type="XmlTextItem" Label="PatientGender" Structure="Paragraph" MarginValues="0,0,0,0">
+					<Index>5</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text>Other</Text>
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+				</Child>
+				<Child xsi:type="XmlFormattedTextItem" Label="PatientDateOfBirth" Structure="Date" MarginValues="0,0,0,0">
+					<Index>6</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text>08-Mar-2017</Text>
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+					<Format>dd/MMM/yyyy</Format>
+				</Child>
+				<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+				<Text> () </Text>
+				<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+				<Format> {PatientSurname} {PatientFirstName} {PatientMiddleName}, ({PatientGender}) DOB {PatientDateOfBirth}</Format>
+			</Child>
+		</Child>
+		<Child xsi:type="XmlTextItem" Label="PatientNoteSection" Structure="Section" MarginValues="25,2,0,0">
+			<Index>3</Index>
+			<Visibility>false</Visibility>
+			<Child xsi:type="XmlTextItem" Label="PatientNotes" Structure="Paragraph" MarginValues="25,2,0,0">
+				<Index>1</Index>
+				<Visibility>true</Visibility>
+				<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+				<Text />
+				<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+			</Child>
+			<Style FontSize="9" Bold="true" UnderLine="false" Italics="false" Category="SubTitle" />
+			<Text>Notes:</Text>
+			<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+		</Child>
+		<Child Label="PatientOrientation" Structure="ValuePair" MarginValues="25,2,0,0">
+			<Index>4</Index>
+			<Visibility>false</Visibility>
+			<Child xsi:type="XmlTextItem" Label="Label" Structure="Paragraph" MarginValues="0,0,0,0">
+				<Index>3</Index>
+				<Visibility>true</Visibility>
+				<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+				<Text>Patient Orientation</Text>
+				<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+			</Child>
+			<Child xsi:type="XmlTextItem" Label="Value" Structure="Paragraph" MarginValues="0,0,0,0">
+				<Index>3</Index>
+				<Visibility>true</Visibility>
+				<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+				<Text />
+				<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+			</Child>
+		</Child>
+		<Style FontSize="11" Bold="true" UnderLine="false" Italics="false" Category="Title" />
+		<Text>Patient Information</Text>
+		<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+	</Section>
+	<Section xsi:type="XmlTextItem" Label="SessionInformation" Structure="Section" MarginValues="0,10,0,0">
+		<Index>4</Index>
+		<Visibility>false</Visibility>
+		<Child Label="StartTime" Structure="ValuePair" MarginValues="25,2,0,0">
+			<Index>1</Index>
+			<Visibility>false</Visibility>
+			<Child xsi:type="XmlTextItem" Label="Label" Structure="Paragraph" MarginValues="0,0,0,0">
+				<Index>1</Index>
+				<Visibility>true</Visibility>
+				<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+				<Text>Start Time</Text>
+				<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+			</Child>
+			<Child xsi:type="XmlFormattedTextItem" Label="Value" Structure="Date" MarginValues="0,0,0,0">
+				<Index>2</Index>
+				<Visibility>true</Visibility>
+				<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+				<Text>15-Nov-2017 05:50:16</Text>
+				<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+				<Format>dd/MMM/yyyy HH:mm:ss</Format>
+			</Child>
+		</Child>
+		<Child Label="EndTime" Structure="ValuePair" MarginValues="25,2,0,0">
+			<Index>2</Index>
+			<Visibility>false</Visibility>
+			<Child xsi:type="XmlTextItem" Label="Label" Structure="Paragraph" MarginValues="0,0,0,0">
+				<Index>1</Index>
+				<Visibility>true</Visibility>
+				<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+				<Text>Finish Time</Text>
+				<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+			</Child>
+			<Child xsi:type="XmlFormattedTextItem" Label="Value" Structure="Date" MarginValues="0,0,0,0">
+				<Index>2</Index>
+				<Visibility>true</Visibility>
+				<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+				<Text>15-Nov-2017 06:02:14</Text>
+				<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+				<Format>dd/MMM/yyyy HH:mm:ss</Format>
+			</Child>
+		</Child>
+		<Child xsi:type="XmlTextItem" Label="CaptureSummary" Structure="MonitoringSection" MarginValues="0,10,0,0">
+			<Index>3</Index>
+			<Visibility>false</Visibility>
+			<Child xsi:type="XmlTextItem" Label="SiteCaptureSummary {0}" Structure="MonitoringSection" MarginValues="0,10,0,0">
+				<Index>1</Index>
+				<Visibility>true</Visibility>
+				<Child xsi:type="XmlTextItem" Label="PhaseCaptureSummary {0}" Structure="Section" MarginValues="0,10,0,0">
+					<Index>1</Index>
+					<Visibility>true</Visibility>
+					<Child xsi:type="XmlTextItem" Label="ReferenceSurfaces" Structure="Section" MarginValues="25,5,0,0">
+						<Index>1</Index>
+						<Visibility>true</Visibility>
+						<Child Label="Static" Structure="ValuePair" MarginValues="25,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Child xsi:type="XmlTextItem" Label="Label" Structure="Paragraph" MarginValues="0,0,0,0">
+								<Index>1</Index>
+								<Visibility>true</Visibility>
+								<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+								<Text>Static</Text>
+								<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							</Child>
+							<Child xsi:type="XmlTextItem" Label="Value" Structure="Paragraph" MarginValues="0,0,0,0">
+								<Index>2</Index>
+								<Visibility>true</Visibility>
+								<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+								<Text />
+								<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							</Child>
+						</Child>
+						<Child Label="Gated" Structure="ValuePair" MarginValues="25,2,0,0">
+							<Index>2</Index>
+							<Visibility>true</Visibility>
+							<Child xsi:type="XmlTextItem" Label="Label" Structure="Paragraph" MarginValues="0,0,0,0">
+								<Index>1</Index>
+								<Visibility>true</Visibility>
+								<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+								<Text>Gated</Text>
+								<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							</Child>
+							<Child xsi:type="XmlTextItem" Label="Value" Structure="Paragraph" MarginValues="0,0,0,0">
+								<Index>2</Index>
+								<Visibility>true</Visibility>
+								<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+								<Text />
+								<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							</Child>
+						</Child>
+						<Style FontSize="9" Bold="false" UnderLine="false" Italics="false" Category="SubTitle" />
+						<Text>Session Reference Surfaces</Text>
+						<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+					</Child>
+					<Child xsi:type="XmlTextItem" Label="TreatmentSurfaces" Structure="Section" MarginValues="25,5,0,0">
+						<Index>2</Index>
+						<Visibility>true</Visibility>
+						<Child Label="Static" Structure="ValuePair" MarginValues="25,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Child xsi:type="XmlTextItem" Label="Label" Structure="Paragraph" MarginValues="0,0,0,0">
+								<Index>1</Index>
+								<Visibility>true</Visibility>
+								<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+								<Text>Static</Text>
+								<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							</Child>
+							<Child xsi:type="XmlTextItem" Label="Value" Structure="Paragraph" MarginValues="0,0,0,0">
+								<Index>2</Index>
+								<Visibility>true</Visibility>
+								<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+								<Text />
+								<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							</Child>
+						</Child>
+						<Child Label="Gated" Structure="ValuePair" MarginValues="25,2,0,0">
+							<Index>2</Index>
+							<Visibility>true</Visibility>
+							<Child xsi:type="XmlTextItem" Label="Label" Structure="Paragraph" MarginValues="0,0,0,0">
+								<Index>1</Index>
+								<Visibility>true</Visibility>
+								<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+								<Text>Gated</Text>
+								<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							</Child>
+							<Child xsi:type="XmlTextItem" Label="Value" Structure="Paragraph" MarginValues="0,0,0,0">
+								<Index>2</Index>
+								<Visibility>true</Visibility>
+								<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+								<Text />
+								<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							</Child>
+						</Child>
+						<Style FontSize="9" Bold="false" UnderLine="false" Italics="false" Category="SubTitle" />
+						<Text>Session Treatment Surfaces</Text>
+						<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+					</Child>
+					<Style FontSize="9" Bold="false" UnderLine="false" Italics="false" Category="SubTitle" />
+					<Text />
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+				</Child>
+				<Style FontSize="9" Bold="true" UnderLine="false" Italics="false" Category="SubTitle" />
+				<Text />
+				<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+			</Child>
+			<Style FontSize="9" Bold="true" UnderLine="false" Italics="false" Category="SubTitle" />
+			<Text>Site Capture Summary</Text>
+			<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+		</Child>
+		<Child xsi:type="XmlTextItem" Label="SessionMonitoring" Structure="Section" MarginValues="25,5,0,0">
+			<Index>4</Index>
+			<Visibility>false</Visibility>
+			<Child Label="TotalTimeMonitoring" Structure="ValuePair" MarginValues="25,2,0,0">
+				<Index>1</Index>
+				<Visibility>true</Visibility>
+				<Child xsi:type="XmlTextItem" Label="Label" Structure="Paragraph" MarginValues="0,0,0,0">
+					<Index>1</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text>Total Time Monitoring</Text>
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+				</Child>
+				<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="0,0,0,0">
+					<Index>2</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text> 712.461</Text>
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+					<Unit>sec</Unit>
+				</Child>
+			</Child>
+			<Style FontSize="9" Bold="true" UnderLine="false" Italics="false" Category="SubTitle" />
+			<Text>Session Monitoring</Text>
+			<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+		</Child>
+		<Child Label="RealTimeDeltas" Structure="ValuePair" MarginValues="25,2,0,0">
+			<Index>5</Index>
+			<Visibility>false</Visibility>
+			<Child xsi:type="XmlTextItem" Label="Label" Structure="Unit" MarginValues="0,0,0,0">
+				<Index>1</Index>
+				<Visibility>true</Visibility>
+				<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+				<Text>Real Time Deltas</Text>
+				<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+			</Child>
+			<Child xsi:type="XmlTextItem" Label="Value" Structure="Paragraph" MarginValues="0,0,0,0">
+				<Index>2</Index>
+				<Visibility>true</Visibility>
+				<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+				<Text />
+				<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+			</Child>
+		</Child>
+		<Style FontSize="11" Bold="true" UnderLine="false" Italics="false" Category="Title" />
+		<Text>Treatment Session Information</Text>
+		<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+	</Section>
+	<Section xsi:type="XmlTextItem" Label="Statement" Structure="Section" MarginValues="0,10,0,0">
+		<Index>5</Index>
+		<Visibility>true</Visibility>
+		<Child xsi:type="XmlTextItem" Label="Content" Structure="Paragraph" MarginValues="25,2,0,0">
+			<Index>1</Index>
+			<Visibility>true</Visibility>
+			<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+			<Text>
+        The OSMS system was used to position the patient immediately prior to treatment and to track the patient during treatment in 3D mode. The patient was monitored for 712.46 Seconds.
+
+        The following parameters are the couch shifts which were computed by OSMS in the treatment position, in order to assess the accuracy of patient set-up and to prevent geographical miss with the radiation beam, in standard couch coordinates.
+      </Text>
+			<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+		</Child>
+		<Style FontSize="11" Bold="true" UnderLine="false" Italics="false" Category="Title" />
+		<Text>OSMS Positioning Report Prior to the Delivery of Treatment</Text>
+		<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+	</Section>
+	<Section xsi:type="XmlTextItem" Label="InitialSetupScreenCapture" Structure="SectionImage" MarginValues="0,10,0,0">
+		<Index>6</Index>
+		<Visibility>false</Visibility>
+		<Child xsi:type="XmlImageItem" Label="ImagePath" Structure="UIContainer" MarginValues="0,2,0,0">
+			<Index>1</Index>
+			<Visibility>true</Visibility>
+			<Style FontSize="11" Bold="true" UnderLine="false" Italics="false" Category="Title" />
+			<Text>Initial Patient Setup Position Screen Capture</Text>
+			<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+			<Path />
+			<ImageAlignment>Centre</ImageAlignment>
+			<TextVerticalAlignment>Top</TextVerticalAlignment>
+			<Scale>100</Scale>
+		</Child>
+		<Style FontSize="11" Bold="true" UnderLine="false" Italics="false" Category="Title" />
+		<Text />
+		<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+	</Section>
+	<Section xsi:type="XmlTextItem" Label="InitialPatientPosition" Structure="SectionDelta" MarginValues="0,10,0,0">
+		<Index>7</Index>
+		<Visibility>false</Visibility>
+		<Child xsi:type="XmlRowItem" Label="TreatmentSite" Structure="DeltaRow" MarginValues="25,2,0,0">
+			<Index>1</Index>
+			<Visibility>false</Visibility>
+			<Child Label="Column1" Structure="TableCell" MarginValues="0,0,0,0">
+				<Index>1</Index>
+				<Visibility>true</Visibility>
+				<Child xsi:type="XmlTextItem" Label="Unit" Structure="Paragraph" MarginValues="25,2,0,0">
+					<Index>1</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text>Treatment Site</Text>
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+				</Child>
+			</Child>
+			<Child Label="Column2" Structure="TableCell" MarginValues="0,0,0,0">
+				<Index>2</Index>
+				<Visibility>true</Visibility>
+				<Child xsi:type="XmlTextItem" Label="Value" Structure="Paragraph" MarginValues="25,2,0,0">
+					<Index>1</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text />
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+				</Child>
+			</Child>
+			<NumberOfColumns>2</NumberOfColumns>
+			<IsHeader>false</IsHeader>
+		</Child>
+		<Child xsi:type="XmlRowItem" Label="TreatmentPhase" Structure="DeltaRow" MarginValues="25,2,0,0">
+			<Index>2</Index>
+			<Visibility>false</Visibility>
+			<Child Label="Column1" Structure="TableCell" MarginValues="0,0,0,0">
+				<Index>1</Index>
+				<Visibility>true</Visibility>
+				<Child xsi:type="XmlTextItem" Label="Unit" Structure="Paragraph" MarginValues="25,2,0,0">
+					<Index>1</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text>Treatment Phase</Text>
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+				</Child>
+			</Child>
+			<Child Label="Column2" Structure="TableCell" MarginValues="0,0,0,0">
+				<Index>2</Index>
+				<Visibility>true</Visibility>
+				<Child xsi:type="XmlTextItem" Label="Value" Structure="Paragraph" MarginValues="25,2,0,0">
+					<Index>1</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text />
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+				</Child>
+			</Child>
+			<NumberOfColumns>2</NumberOfColumns>
+			<IsHeader>false</IsHeader>
+		</Child>
+		<Child xsi:type="XmlRowItem" Label="CouchAngle" Structure="DeltaRow" MarginValues="25,2,0,0">
+			<Index>3</Index>
+			<Visibility>false</Visibility>
+			<Child Label="Column1" Structure="TableCell" MarginValues="0,0,0,0">
+				<Index>1</Index>
+				<Visibility>true</Visibility>
+				<Child xsi:type="XmlTextItem" Label="Unit" Structure="Paragraph" MarginValues="25,2,0,0">
+					<Index>1</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text>Planned Couch Angle</Text>
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+				</Child>
+			</Child>
+			<Child Label="Column2" Structure="TableCell" MarginValues="0,0,0,0">
+				<Index>2</Index>
+				<Visibility>true</Visibility>
+				<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="25,2,0,0">
+					<Index>1</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text />
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+					<Unit />
+				</Child>
+			</Child>
+			<NumberOfColumns>2</NumberOfColumns>
+			<IsHeader>false</IsHeader>
+		</Child>
+		<Child xsi:type="XmlRowItem" Label="Time" Structure="DeltaRow" MarginValues="25,2,0,0">
+			<Index>4</Index>
+			<Visibility>false</Visibility>
+			<Child Label="Column1" Structure="TableCell" MarginValues="0,0,0,0">
+				<Index>1</Index>
+				<Visibility>true</Visibility>
+				<Child xsi:type="XmlTextItem" Label="Unit" Structure="Paragraph" MarginValues="25,2,0,0">
+					<Index>1</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text>Created Time</Text>
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+				</Child>
+			</Child>
+			<Child Label="Column2" Structure="TableCell" MarginValues="0,0,0,0">
+				<Index>2</Index>
+				<Visibility>true</Visibility>
+				<Child xsi:type="XmlFormattedTextItem" Label="Value" Structure="Date" MarginValues="25,2,0,0">
+					<Index>1</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text>22/Oct/2015 08:59:43</Text>
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+					<Format>dd/MMM/yyyy HH:mm:ss</Format>
+				</Child>
+			</Child>
+			<NumberOfColumns>2</NumberOfColumns>
+			<IsHeader>false</IsHeader>
+		</Child>
+		<Child xsi:type="XmlRowItem" Label="VRT" Structure="DeltaRow" MarginValues="25,2,0,0">
+			<Index>5</Index>
+			<Visibility>false</Visibility>
+			<Child Label="Column1" Structure="TableCell" MarginValues="0,0,0,0">
+				<Index>1</Index>
+				<Visibility>true</Visibility>
+				<Child xsi:type="XmlTextItem" Label="Unit" Structure="DeltaParagraph" MarginValues="25,2,0,0">
+					<Index>1</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text>D_VRT_applied</Text>
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+				</Child>
+			</Child>
+			<Child Label="Column2" Structure="TableCell" MarginValues="0,0,0,0">
+				<Index>2</Index>
+				<Visibility>true</Visibility>
+				<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="25,2,0,0">
+					<Index>1</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text />
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+					<Unit />
+				</Child>
+			</Child>
+			<NumberOfColumns>2</NumberOfColumns>
+			<IsHeader>false</IsHeader>
+		</Child>
+		<Child xsi:type="XmlRowItem" Label="LNG" Structure="DeltaRow" MarginValues="25,2,0,0">
+			<Index>6</Index>
+			<Visibility>false</Visibility>
+			<Child Label="Column1" Structure="TableCell" MarginValues="0,0,0,0">
+				<Index>1</Index>
+				<Visibility>true</Visibility>
+				<Child xsi:type="XmlTextItem" Label="Unit" Structure="DeltaParagraph" MarginValues="25,2,0,0">
+					<Index>1</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text>D_LNG_applied</Text>
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+				</Child>
+			</Child>
+			<Child Label="Column2" Structure="TableCell" MarginValues="0,0,0,0">
+				<Index>2</Index>
+				<Visibility>true</Visibility>
+				<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="25,2,0,0">
+					<Index>1</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text />
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+					<Unit />
+				</Child>
+			</Child>
+			<NumberOfColumns>2</NumberOfColumns>
+			<IsHeader>false</IsHeader>
+		</Child>
+		<Child xsi:type="XmlRowItem" Label="LAT" Structure="DeltaRow" MarginValues="25,2,0,0">
+			<Index>7</Index>
+			<Visibility>false</Visibility>
+			<Child Label="Column1" Structure="TableCell" MarginValues="0,0,0,0">
+				<Index>1</Index>
+				<Visibility>true</Visibility>
+				<Child xsi:type="XmlTextItem" Label="Unit" Structure="DeltaParagraph" MarginValues="25,2,0,0">
+					<Index>1</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text>D_LAT_applied</Text>
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+				</Child>
+			</Child>
+			<Child Label="Column2" Structure="TableCell" MarginValues="0,0,0,0">
+				<Index>2</Index>
+				<Visibility>true</Visibility>
+				<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="25,2,0,0">
+					<Index>1</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text />
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+					<Unit />
+				</Child>
+			</Child>
+			<NumberOfColumns>2</NumberOfColumns>
+			<IsHeader>false</IsHeader>
+		</Child>
+		<Child xsi:type="XmlRowItem" Label="YAW" Structure="DeltaRow" MarginValues="25,2,0,0">
+			<Index>8</Index>
+			<Visibility>false</Visibility>
+			<Child Label="Column1" Structure="TableCell" MarginValues="0,0,0,0">
+				<Index>1</Index>
+				<Visibility>true</Visibility>
+				<Child xsi:type="XmlTextItem" Label="Unit" Structure="DeltaParagraph" MarginValues="25,2,0,0">
+					<Index>1</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text>D_YAW_applied</Text>
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+				</Child>
+			</Child>
+			<Child Label="Column2" Structure="TableCell" MarginValues="0,0,0,0">
+				<Index>2</Index>
+				<Visibility>true</Visibility>
+				<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="25,2,0,0">
+					<Index>1</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text />
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+					<Unit />
+				</Child>
+			</Child>
+			<NumberOfColumns>2</NumberOfColumns>
+			<IsHeader>false</IsHeader>
+		</Child>
+		<Child xsi:type="XmlRowItem" Label="ROLL" Structure="DeltaRow" MarginValues="25,2,0,0">
+			<Index>9</Index>
+			<Visibility>false</Visibility>
+			<Child Label="Column1" Structure="TableCell" MarginValues="0,0,0,0">
+				<Index>1</Index>
+				<Visibility>true</Visibility>
+				<Child xsi:type="XmlTextItem" Label="Unit" Structure="DeltaParagraph" MarginValues="25,2,0,0">
+					<Index>1</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text>D_ROLL_applied</Text>
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+				</Child>
+			</Child>
+			<Child Label="Column2" Structure="TableCell" MarginValues="0,0,0,0">
+				<Index>2</Index>
+				<Visibility>true</Visibility>
+				<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="25,2,0,0">
+					<Index>1</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text />
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+					<Unit />
+				</Child>
+			</Child>
+			<NumberOfColumns>2</NumberOfColumns>
+			<IsHeader>false</IsHeader>
+		</Child>
+		<Child xsi:type="XmlRowItem" Label="PITCH" Structure="DeltaRow" MarginValues="25,2,0,0">
+			<Index>10</Index>
+			<Visibility>false</Visibility>
+			<Child Label="Column1" Structure="TableCell" MarginValues="0,0,0,0">
+				<Index>1</Index>
+				<Visibility>true</Visibility>
+				<Child xsi:type="XmlTextItem" Label="Unit" Structure="DeltaParagraph" MarginValues="25,2,0,0">
+					<Index>1</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text>D_Pitch_applied</Text>
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+				</Child>
+			</Child>
+			<Child Label="Column2" Structure="TableCell" MarginValues="0,0,0,0">
+				<Index>2</Index>
+				<Visibility>true</Visibility>
+				<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="25,2,0,0">
+					<Index>1</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text />
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+					<Unit />
+				</Child>
+			</Child>
+			<NumberOfColumns>2</NumberOfColumns>
+			<IsHeader>false</IsHeader>
+		</Child>
+		<Child xsi:type="XmlRowItem" Label="Default" Structure="TableSingleRow" MarginValues="25,2,0,0">
+			<Index>11</Index>
+			<Visibility>true</Visibility>
+			<Child xsi:type="XmlTextItem" Label="Label" Structure="Paragraph" MarginValues="0,0,0,0">
+				<Index>1</Index>
+				<Visibility>true</Visibility>
+				<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+				<Text>The patient position was not verified using the treatment mode.</Text>
+				<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+			</Child>
+			<NumberOfColumns>2</NumberOfColumns>
+			<IsHeader>false</IsHeader>
+		</Child>
+		<Style FontSize="11" Bold="true" UnderLine="false" Italics="false" Category="Title" />
+		<Text>Initial Patient Setup Position</Text>
+		<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+	</Section>
+	<Section xsi:type="XmlTextItem" Label="FinalSetupScreenCapture" Structure="SectionImage" MarginValues="0,10,0,0">
+		<Index>8</Index>
+		<Visibility>false</Visibility>
+		<Child xsi:type="XmlImageItem" Label="ImagePath" Structure="UIContainer" MarginValues="0,2,0,0">
+			<Index>1</Index>
+			<Visibility>true</Visibility>
+			<Style FontSize="11" Bold="true" UnderLine="false" Italics="false" Category="Title" />
+			<Text>Final Patient Setup Position Screen Capture</Text>
+			<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+			<Path />
+			<ImageAlignment>Centre</ImageAlignment>
+			<TextVerticalAlignment>Top</TextVerticalAlignment>
+			<Scale>100</Scale>
+		</Child>
+		<Style FontSize="11" Bold="true" UnderLine="false" Italics="false" Category="Title" />
+		<Text />
+		<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+	</Section>
+	<Section xsi:type="XmlTextItem" Label="FinalPatientPosition" Structure="SectionDelta" MarginValues="0,10,0,0">
+		<Index>9</Index>
+		<Visibility>false</Visibility>
+		<Child xsi:type="XmlRowItem" Label="TreatmentSite" Structure="DeltaRow" MarginValues="25,2,0,0">
+			<Index>1</Index>
+			<Visibility>false</Visibility>
+			<Child Label="Column1" Structure="TableCell" MarginValues="0,0,0,0">
+				<Index>1</Index>
+				<Visibility>true</Visibility>
+				<Child xsi:type="XmlTextItem" Label="Unit" Structure="Paragraph" MarginValues="25,2,0,0">
+					<Index>1</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text>Treatment Site</Text>
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+				</Child>
+			</Child>
+			<Child Label="Column2" Structure="TableCell" MarginValues="0,0,0,0">
+				<Index>2</Index>
+				<Visibility>true</Visibility>
+				<Child xsi:type="XmlTextItem" Label="Value" Structure="Paragraph" MarginValues="25,2,0,0">
+					<Index>1</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text />
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+				</Child>
+			</Child>
+			<NumberOfColumns>2</NumberOfColumns>
+			<IsHeader>false</IsHeader>
+		</Child>
+		<Child xsi:type="XmlRowItem" Label="TreatmentPhase" Structure="DeltaRow" MarginValues="25,2,0,0">
+			<Index>2</Index>
+			<Visibility>false</Visibility>
+			<Child Label="Column1" Structure="TableCell" MarginValues="0,0,0,0">
+				<Index>1</Index>
+				<Visibility>true</Visibility>
+				<Child xsi:type="XmlTextItem" Label="Unit" Structure="Paragraph" MarginValues="25,2,0,0">
+					<Index>1</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text>Treatment Phase</Text>
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+				</Child>
+			</Child>
+			<Child Label="Column2" Structure="TableCell" MarginValues="0,0,0,0">
+				<Index>2</Index>
+				<Visibility>true</Visibility>
+				<Child xsi:type="XmlTextItem" Label="Value" Structure="Paragraph" MarginValues="25,2,0,0">
+					<Index>1</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text />
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+				</Child>
+			</Child>
+			<NumberOfColumns>2</NumberOfColumns>
+			<IsHeader>false</IsHeader>
+		</Child>
+		<Child xsi:type="XmlRowItem" Label="CouchAngle" Structure="DeltaRow" MarginValues="25,2,0,0">
+			<Index>3</Index>
+			<Visibility>false</Visibility>
+			<Child Label="Column1" Structure="TableCell" MarginValues="0,0,0,0">
+				<Index>1</Index>
+				<Visibility>true</Visibility>
+				<Child xsi:type="XmlTextItem" Label="Unit" Structure="Paragraph" MarginValues="25,2,0,0">
+					<Index>1</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text>Planned Couch Angle</Text>
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+				</Child>
+			</Child>
+			<Child Label="Column2" Structure="TableCell" MarginValues="0,0,0,0">
+				<Index>2</Index>
+				<Visibility>true</Visibility>
+				<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="25,2,0,0">
+					<Index>1</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text />
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+					<Unit />
+				</Child>
+			</Child>
+			<NumberOfColumns>2</NumberOfColumns>
+			<IsHeader>false</IsHeader>
+		</Child>
+		<Child xsi:type="XmlRowItem" Label="Time" Structure="DeltaRow" MarginValues="25,2,0,0">
+			<Index>4</Index>
+			<Visibility>false</Visibility>
+			<Child Label="Column1" Structure="TableCell" MarginValues="0,0,0,0">
+				<Index>1</Index>
+				<Visibility>true</Visibility>
+				<Child xsi:type="XmlTextItem" Label="Unit" Structure="Paragraph" MarginValues="25,2,0,0">
+					<Index>1</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text>Created Time</Text>
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+				</Child>
+			</Child>
+			<Child Label="Column2" Structure="TableCell" MarginValues="0,0,0,0">
+				<Index>2</Index>
+				<Visibility>true</Visibility>
+				<Child xsi:type="XmlFormattedTextItem" Label="Value" Structure="Date" MarginValues="25,2,0,0">
+					<Index>1</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text>22/Oct/2015 08:59:43</Text>
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+					<Format>dd/MMM/yyyy HH:mm:ss</Format>
+				</Child>
+			</Child>
+			<NumberOfColumns>2</NumberOfColumns>
+			<IsHeader>false</IsHeader>
+		</Child>
+		<Child xsi:type="XmlRowItem" Label="VRT" Structure="DeltaRow" MarginValues="25,2,0,0">
+			<Index>5</Index>
+			<Visibility>false</Visibility>
+			<Child Label="Column1" Structure="TableCell" MarginValues="0,0,0,0">
+				<Index>1</Index>
+				<Visibility>true</Visibility>
+				<Child xsi:type="XmlTextItem" Label="Unit" Structure="DeltaParagraph" MarginValues="25,2,0,0">
+					<Index>1</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text>D_VRT_applied</Text>
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+				</Child>
+			</Child>
+			<Child Label="Column2" Structure="TableCell" MarginValues="0,0,0,0">
+				<Index>2</Index>
+				<Visibility>true</Visibility>
+				<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="25,2,0,0">
+					<Index>1</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text />
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+					<Unit />
+				</Child>
+			</Child>
+			<NumberOfColumns>2</NumberOfColumns>
+			<IsHeader>false</IsHeader>
+		</Child>
+		<Child xsi:type="XmlRowItem" Label="LNG" Structure="DeltaRow" MarginValues="25,2,0,0">
+			<Index>6</Index>
+			<Visibility>false</Visibility>
+			<Child Label="Column1" Structure="TableCell" MarginValues="0,0,0,0">
+				<Index>1</Index>
+				<Visibility>true</Visibility>
+				<Child xsi:type="XmlTextItem" Label="Unit" Structure="DeltaParagraph" MarginValues="25,2,0,0">
+					<Index>1</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text>D_LNG_applied</Text>
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+				</Child>
+			</Child>
+			<Child Label="Column2" Structure="TableCell" MarginValues="0,0,0,0">
+				<Index>2</Index>
+				<Visibility>true</Visibility>
+				<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="25,2,0,0">
+					<Index>1</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text />
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+					<Unit />
+				</Child>
+			</Child>
+			<NumberOfColumns>2</NumberOfColumns>
+			<IsHeader>false</IsHeader>
+		</Child>
+		<Child xsi:type="XmlRowItem" Label="LAT" Structure="DeltaRow" MarginValues="25,2,0,0">
+			<Index>7</Index>
+			<Visibility>false</Visibility>
+			<Child Label="Column1" Structure="TableCell" MarginValues="0,0,0,0">
+				<Index>1</Index>
+				<Visibility>true</Visibility>
+				<Child xsi:type="XmlTextItem" Label="Unit" Structure="DeltaParagraph" MarginValues="25,2,0,0">
+					<Index>1</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text>D_LAT_applied</Text>
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+				</Child>
+			</Child>
+			<Child Label="Column2" Structure="TableCell" MarginValues="0,0,0,0">
+				<Index>2</Index>
+				<Visibility>true</Visibility>
+				<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="25,2,0,0">
+					<Index>1</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text />
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+					<Unit />
+				</Child>
+			</Child>
+			<NumberOfColumns>2</NumberOfColumns>
+			<IsHeader>false</IsHeader>
+		</Child>
+		<Child xsi:type="XmlRowItem" Label="YAW" Structure="DeltaRow" MarginValues="25,2,0,0">
+			<Index>8</Index>
+			<Visibility>false</Visibility>
+			<Child Label="Column1" Structure="TableCell" MarginValues="0,0,0,0">
+				<Index>1</Index>
+				<Visibility>true</Visibility>
+				<Child xsi:type="XmlTextItem" Label="Unit" Structure="DeltaParagraph" MarginValues="25,2,0,0">
+					<Index>1</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text>D_YAW_applied</Text>
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+				</Child>
+			</Child>
+			<Child Label="Column2" Structure="TableCell" MarginValues="0,0,0,0">
+				<Index>2</Index>
+				<Visibility>true</Visibility>
+				<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="25,2,0,0">
+					<Index>1</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text />
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+					<Unit />
+				</Child>
+			</Child>
+			<NumberOfColumns>2</NumberOfColumns>
+			<IsHeader>false</IsHeader>
+		</Child>
+		<Child xsi:type="XmlRowItem" Label="ROLL" Structure="DeltaRow" MarginValues="25,2,0,0">
+			<Index>9</Index>
+			<Visibility>false</Visibility>
+			<Child Label="Column1" Structure="TableCell" MarginValues="0,0,0,0">
+				<Index>1</Index>
+				<Visibility>true</Visibility>
+				<Child xsi:type="XmlTextItem" Label="Unit" Structure="DeltaParagraph" MarginValues="25,2,0,0">
+					<Index>1</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text>D_ROLL_applied</Text>
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+				</Child>
+			</Child>
+			<Child Label="Column2" Structure="TableCell" MarginValues="0,0,0,0">
+				<Index>2</Index>
+				<Visibility>true</Visibility>
+				<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="25,2,0,0">
+					<Index>1</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text />
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+					<Unit />
+				</Child>
+			</Child>
+			<NumberOfColumns>2</NumberOfColumns>
+			<IsHeader>false</IsHeader>
+		</Child>
+		<Child xsi:type="XmlRowItem" Label="PITCH" Structure="DeltaRow" MarginValues="25,2,0,0">
+			<Index>10</Index>
+			<Visibility>false</Visibility>
+			<Child Label="Column1" Structure="TableCell" MarginValues="0,0,0,0">
+				<Index>1</Index>
+				<Visibility>true</Visibility>
+				<Child xsi:type="XmlTextItem" Label="Unit" Structure="DeltaParagraph" MarginValues="25,2,0,0">
+					<Index>1</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text>D_Pitch_applied</Text>
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+				</Child>
+			</Child>
+			<Child Label="Column2" Structure="TableCell" MarginValues="0,0,0,0">
+				<Index>2</Index>
+				<Visibility>true</Visibility>
+				<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="25,2,0,0">
+					<Index>1</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text />
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+					<Unit />
+				</Child>
+			</Child>
+			<NumberOfColumns>2</NumberOfColumns>
+			<IsHeader>false</IsHeader>
+		</Child>
+		<Child xsi:type="XmlRowItem" Label="Default" Structure="TableSingleRow" MarginValues="25,2,0,0">
+			<Index>11</Index>
+			<Visibility>true</Visibility>
+			<Child xsi:type="XmlTextItem" Label="Label" Structure="Paragraph" MarginValues="0,0,0,0">
+				<Index>1</Index>
+				<Visibility>true</Visibility>
+				<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+				<Text>The patient position was not verified using the treatment mode.</Text>
+				<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+			</Child>
+			<NumberOfColumns>2</NumberOfColumns>
+			<IsHeader>false</IsHeader>
+		</Child>
+		<Style FontSize="11" Bold="true" UnderLine="false" Italics="false" Category="Title" />
+		<Text>Final Patient Setup Position</Text>
+		<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+	</Section>
+	<Section xsi:type="XmlTextItem" Label="SavedFSDs" Structure="FSDSection" MarginValues="0,10,0,0">
+		<Index>10</Index>
+		<Visibility>false</Visibility>
+		<Child xsi:type="XmlTextItem" Label="Saved FSD {0}" Structure="Section" MarginValues="0,10,0,0">
+			<Index>1</Index>
+			<Visibility>false</Visibility>
+			<Child Label="GantryAngle" Structure="SectionDelta" MarginValues="25,2,0,0">
+				<Index>1</Index>
+				<Visibility>true</Visibility>
+				<Child xsi:type="XmlRowItem" Label="GantryAngle" Structure="DeltaRow" MarginValues="0,0,0,0">
+					<Index>1</Index>
+					<Visibility>true</Visibility>
+					<Child Label="Column1" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>1</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlTextItem" Label="Unit" Structure="Paragraph" MarginValues="25,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="true" UnderLine="false" Italics="false" Category="Normal" />
+							<Text>Gantry Angle</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+						</Child>
+					</Child>
+					<Child Label="Column2" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>2</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="25,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="true" UnderLine="false" Italics="false" Category="Normal" />
+							<Text />
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							<Unit />
+						</Child>
+					</Child>
+					<NumberOfColumns>2</NumberOfColumns>
+					<IsHeader>false</IsHeader>
+				</Child>
+			</Child>
+			<Child Label="CollimatorRotation" Structure="SectionDelta" MarginValues="25,2,0,0">
+				<Index>2</Index>
+				<Visibility>true</Visibility>
+				<Child xsi:type="XmlRowItem" Label="CollimatorRotation" Structure="DeltaRow" MarginValues="0,0,0,0">
+					<Index>4</Index>
+					<Visibility>true</Visibility>
+					<Child Label="Column1" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>1</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlTextItem" Label="Unit" Structure="Paragraph" MarginValues="25,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text>Collimator Rotation</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+						</Child>
+					</Child>
+					<Child Label="Column2" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>2</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="25,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text />
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							<Unit />
+						</Child>
+					</Child>
+					<NumberOfColumns>2</NumberOfColumns>
+					<IsHeader>false</IsHeader>
+				</Child>
+			</Child>
+			<Child xsi:type="XmlTextItem" Label="OffSet" Structure="SectionDelta" MarginValues="25,2,0,0">
+				<Index>3</Index>
+				<Visibility>true</Visibility>
+				<Child xsi:type="XmlRowItem" Label="FieldCenterOffsetLat" Structure="DeltaRow" MarginValues="0,0,0,0">
+					<Index>1</Index>
+					<Visibility>true</Visibility>
+					<Child Label="Column1" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>1</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlTextItem" Label="Unit" Structure="Paragraph" MarginValues="50,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text>Lateral</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+						</Child>
+					</Child>
+					<Child Label="Column2" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>2</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="25,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text />
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							<Unit />
+						</Child>
+					</Child>
+					<NumberOfColumns>2</NumberOfColumns>
+					<IsHeader>false</IsHeader>
+				</Child>
+				<Child xsi:type="XmlRowItem" Label="FieldCenterOffsetLng" Structure="DeltaRow" MarginValues="0,0,0,0">
+					<Index>2</Index>
+					<Visibility>true</Visibility>
+					<Child Label="Column1" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>1</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlTextItem" Label="Unit" Structure="Paragraph" MarginValues="50,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text>Longitudinal</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+						</Child>
+					</Child>
+					<Child Label="Column2" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>2</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="25,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text />
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							<Unit />
+						</Child>
+					</Child>
+					<NumberOfColumns>2</NumberOfColumns>
+					<IsHeader>false</IsHeader>
+				</Child>
+				<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+				<Text>Field Center Offset:</Text>
+				<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+			</Child>
+			<Child xsi:type="XmlTextItem" Label="FsdValues" Structure="SectionDelta" MarginValues="25,2,0,0">
+				<Index>4</Index>
+				<Visibility>true</Visibility>
+				<Child xsi:type="XmlRowItem" Label="RecordFSD" Structure="DeltaRow" MarginValues="0,0,0,0">
+					<Index>1</Index>
+					<Visibility>true</Visibility>
+					<Child Label="Column1" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>1</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlTextItem" Label="Unit" Structure="Paragraph" MarginValues="50,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="true" UnderLine="false" Italics="false" Category="Normal" />
+							<Text>Record</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+						</Child>
+					</Child>
+					<Child Label="Column2" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>2</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="25,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="true" UnderLine="false" Italics="false" Category="Normal" />
+							<Text />
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							<Unit />
+						</Child>
+					</Child>
+					<NumberOfColumns>2</NumberOfColumns>
+					<IsHeader>false</IsHeader>
+				</Child>
+				<Child xsi:type="XmlRowItem" Label="VerifyFSD" Structure="DeltaRow" MarginValues="0,0,0,0">
+					<Index>2</Index>
+					<Visibility>true</Visibility>
+					<Child Label="Column1" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>1</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlTextItem" Label="Unit" Structure="Paragraph" MarginValues="50,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="true" UnderLine="false" Italics="false" Category="Normal" />
+							<Text>Verify</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+						</Child>
+					</Child>
+					<Child Label="Column2" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>2</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="25,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="true" UnderLine="false" Italics="false" Category="Normal" />
+							<Text />
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							<Unit />
+						</Child>
+					</Child>
+					<NumberOfColumns>2</NumberOfColumns>
+					<IsHeader>false</IsHeader>
+				</Child>
+				<Style FontSize="8" Bold="true" UnderLine="false" Italics="false" Category="Normal" />
+				<Text>Saved SSD Values:</Text>
+				<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+			</Child>
+			<Style FontSize="9" Bold="false" UnderLine="false" Italics="false" Category="SubTitle" />
+			<Text />
+			<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+		</Child>
+		<Style FontSize="11" Bold="true" UnderLine="false" Italics="false" Category="Title" />
+		<Text>Saved SSD(s)</Text>
+		<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+	</Section>
+	<Section xsi:type="XmlTextItem" Label="MonitoringSessions" Structure="MonitoringSection" MarginValues="0,10,0,0">
+		<Index>11</Index>
+		<Visibility>false</Visibility>
+		<Child xsi:type="XmlFormattedTextItem" Label="MonitoringSessions {0}" Structure="Section" MarginValues="0,10,0,0">
+			<Index>1</Index>
+			<Visibility>true</Visibility>
+			<Child Label="StartTime" Structure="ValuePair" MarginValues="25,2,0,0">
+				<Index>1</Index>
+				<Visibility>true</Visibility>
+				<Child xsi:type="XmlTextItem" Label="Label" Structure="Paragraph" MarginValues="0,0,0,0">
+					<Index>1</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text>Start Time</Text>
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+				</Child>
+				<Child xsi:type="XmlFormattedTextItem" Label="Value" Structure="Date" MarginValues="0,0,0,0">
+					<Index>2</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text>22/Oct/2015 08:59:43</Text>
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+					<Format>dd/MMM/yyyy HH:mm:ss</Format>
+				</Child>
+			</Child>
+			<Child Label="EndTime" Structure="ValuePair" MarginValues="25,2,0,0">
+				<Index>2</Index>
+				<Visibility>true</Visibility>
+				<Child xsi:type="XmlTextItem" Label="Label" Structure="Paragraph" MarginValues="0,0,0,0">
+					<Index>1</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text>Finish Time</Text>
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+				</Child>
+				<Child xsi:type="XmlFormattedTextItem" Label="Value" Structure="Date" MarginValues="0,0,0,0">
+					<Index>2</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text>22/Oct/2015 08:59:43</Text>
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+					<Format>dd/MMM/yyyy HH:mm:ss</Format>
+				</Child>
+			</Child>
+			<Child xsi:type="XmlTextItem" Label="FinalMonitoringScreenCapture" Structure="SectionImage" MarginValues="0,10,0,0">
+				<Index>3</Index>
+				<Visibility>false</Visibility>
+				<Child xsi:type="XmlImageItem" Label="FinalMonitoringScreenCaptureImage" Structure="UIContainer" MarginValues="0,2,0,0">
+					<Index>1</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="11" Bold="true" UnderLine="false" Italics="false" Category="Title" />
+					<Text>Final Patient Monitoring Position Screen Capture</Text>
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+					<Path />
+					<ImageAlignment>Centre</ImageAlignment>
+					<TextVerticalAlignment>Top</TextVerticalAlignment>
+					<Scale>100</Scale>
+				</Child>
+				<Style FontSize="9" Bold="true" UnderLine="false" Italics="false" Category="SubTitle" />
+				<Text />
+				<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+			</Child>
+			<Child xsi:type="XmlTextItem" Label="FinalPatientMonitoringPosition" Structure="SectionDelta" MarginValues="0,10,0,0">
+				<Index>4</Index>
+				<Visibility>false</Visibility>
+				<Child xsi:type="XmlRowItem" Label="TreatmentSite" Structure="DeltaRow" MarginValues="25,2,0,0">
+					<Index>1</Index>
+					<Visibility>false</Visibility>
+					<Child Label="Column1" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>1</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlTextItem" Label="Unit" Structure="Paragraph" MarginValues="25,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text>Treatment Site</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+						</Child>
+					</Child>
+					<Child Label="Column2" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>2</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlTextItem" Label="Value" Structure="Paragraph" MarginValues="25,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text />
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+						</Child>
+					</Child>
+					<NumberOfColumns>2</NumberOfColumns>
+					<IsHeader>false</IsHeader>
+				</Child>
+				<Child xsi:type="XmlRowItem" Label="TreatmentPhase" Structure="DeltaRow" MarginValues="25,2,0,0">
+					<Index>2</Index>
+					<Visibility>false</Visibility>
+					<Child Label="Column1" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>1</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlTextItem" Label="Unit" Structure="Paragraph" MarginValues="25,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text>Treatment Phase</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+						</Child>
+					</Child>
+					<Child Label="Column2" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>2</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlTextItem" Label="Value" Structure="Paragraph" MarginValues="25,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text />
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+						</Child>
+					</Child>
+					<NumberOfColumns>2</NumberOfColumns>
+					<IsHeader>false</IsHeader>
+				</Child>
+				<Child xsi:type="XmlRowItem" Label="CouchAngle" Structure="DeltaRow" MarginValues="25,2,0,0">
+					<Index>3</Index>
+					<Visibility>false</Visibility>
+					<Child Label="Column1" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>1</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlTextItem" Label="Unit" Structure="Paragraph" MarginValues="25,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text>Planned Couch Angle</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+						</Child>
+					</Child>
+					<Child Label="Column2" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>2</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="25,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text />
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							<Unit />
+						</Child>
+					</Child>
+					<NumberOfColumns>2</NumberOfColumns>
+					<IsHeader>false</IsHeader>
+				</Child>
+				<Child xsi:type="XmlRowItem" Label="Time" Structure="DeltaRow" MarginValues="25,2,0,0">
+					<Index>4</Index>
+					<Visibility>false</Visibility>
+					<Child Label="Column1" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>1</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlTextItem" Label="Unit" Structure="Paragraph" MarginValues="25,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text>Created Time</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+						</Child>
+					</Child>
+					<Child Label="Column2" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>2</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlFormattedTextItem" Label="Value" Structure="Date" MarginValues="25,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text>22/Oct/2015 08:59:43</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							<Format>dd/MMM/yyyy HH:mm:ss</Format>
+						</Child>
+					</Child>
+					<NumberOfColumns>2</NumberOfColumns>
+					<IsHeader>false</IsHeader>
+				</Child>
+				<Child xsi:type="XmlRowItem" Label="VRT" Structure="DeltaRow" MarginValues="25,2,0,0">
+					<Index>5</Index>
+					<Visibility>false</Visibility>
+					<Child Label="Column1" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>1</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlTextItem" Label="Unit" Structure="DeltaParagraph" MarginValues="25,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text>D_VRT_applied</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+						</Child>
+					</Child>
+					<Child Label="Column2" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>2</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="25,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text />
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							<Unit />
+						</Child>
+					</Child>
+					<NumberOfColumns>2</NumberOfColumns>
+					<IsHeader>false</IsHeader>
+				</Child>
+				<Child xsi:type="XmlRowItem" Label="LNG" Structure="DeltaRow" MarginValues="25,2,0,0">
+					<Index>6</Index>
+					<Visibility>false</Visibility>
+					<Child Label="Column1" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>1</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlTextItem" Label="Unit" Structure="DeltaParagraph" MarginValues="25,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text>D_LNG_applied</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+						</Child>
+					</Child>
+					<Child Label="Column2" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>2</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="25,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text />
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							<Unit />
+						</Child>
+					</Child>
+					<NumberOfColumns>2</NumberOfColumns>
+					<IsHeader>false</IsHeader>
+				</Child>
+				<Child xsi:type="XmlRowItem" Label="LAT" Structure="DeltaRow" MarginValues="25,2,0,0">
+					<Index>7</Index>
+					<Visibility>false</Visibility>
+					<Child Label="Column1" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>1</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlTextItem" Label="Unit" Structure="DeltaParagraph" MarginValues="25,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text>D_LAT_applied</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+						</Child>
+					</Child>
+					<Child Label="Column2" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>2</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="25,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text />
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							<Unit />
+						</Child>
+					</Child>
+					<NumberOfColumns>2</NumberOfColumns>
+					<IsHeader>false</IsHeader>
+				</Child>
+				<Child xsi:type="XmlRowItem" Label="YAW" Structure="DeltaRow" MarginValues="25,2,0,0">
+					<Index>8</Index>
+					<Visibility>false</Visibility>
+					<Child Label="Column1" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>1</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlTextItem" Label="Unit" Structure="DeltaParagraph" MarginValues="25,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text>D_YAW_applied</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+						</Child>
+					</Child>
+					<Child Label="Column2" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>2</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="25,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text />
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							<Unit />
+						</Child>
+					</Child>
+					<NumberOfColumns>2</NumberOfColumns>
+					<IsHeader>false</IsHeader>
+				</Child>
+				<Child xsi:type="XmlRowItem" Label="ROLL" Structure="DeltaRow" MarginValues="25,2,0,0">
+					<Index>9</Index>
+					<Visibility>false</Visibility>
+					<Child Label="Column1" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>1</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlTextItem" Label="Unit" Structure="DeltaParagraph" MarginValues="25,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text>D_ROLL_applied</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+						</Child>
+					</Child>
+					<Child Label="Column2" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>2</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="25,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text />
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							<Unit />
+						</Child>
+					</Child>
+					<NumberOfColumns>2</NumberOfColumns>
+					<IsHeader>false</IsHeader>
+				</Child>
+				<Child xsi:type="XmlRowItem" Label="PITCH" Structure="DeltaRow" MarginValues="25,2,0,0">
+					<Index>10</Index>
+					<Visibility>false</Visibility>
+					<Child Label="Column1" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>1</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlTextItem" Label="Unit" Structure="DeltaParagraph" MarginValues="25,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text>D_Pitch_applied</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+						</Child>
+					</Child>
+					<Child Label="Column2" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>2</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="25,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text />
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							<Unit />
+						</Child>
+					</Child>
+					<NumberOfColumns>2</NumberOfColumns>
+					<IsHeader>false</IsHeader>
+				</Child>
+				<Child xsi:type="XmlRowItem" Label="Default" Structure="TableSingleRow" MarginValues="25,2,0,0">
+					<Index>11</Index>
+					<Visibility>true</Visibility>
+					<Child xsi:type="XmlTextItem" Label="Label" Structure="Paragraph" MarginValues="0,0,0,0">
+						<Index>1</Index>
+						<Visibility>true</Visibility>
+						<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+						<Text>The patient position was not verified using the treatment mode.</Text>
+						<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+					</Child>
+					<NumberOfColumns>2</NumberOfColumns>
+					<IsHeader>false</IsHeader>
+				</Child>
+				<Style FontSize="9" Bold="true" UnderLine="false" Italics="false" Category="SubTitle" />
+				<Text>Monitoring Report Following the Delivery of Treatment</Text>
+				<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+			</Child>
+			<Child xsi:type="XmlTextItem" Label="FinalTreatmentThreshold" Structure="TreatmentThresholdSection" MarginValues="0,10,0,10">
+				<Index>5</Index>
+				<Visibility>false</Visibility>
+				<Child xsi:type="XmlRowItem" Label="Headers" Structure="TableRow" MarginValues="0,0,0,0">
+					<Index>1</Index>
+					<Visibility>true</Visibility>
+					<Child Label="DegreeOfFreedom" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>1</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlTextItem" Label="Header" Structure="Paragraph" MarginValues="5,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="true" UnderLine="false" Italics="false" Category="Normal" />
+							<Text>Degree of Freedom</Text>
+							<TextHorizontalAlignment>Centre</TextHorizontalAlignment>
+						</Child>
+					</Child>
+					<Child Label="Upper Threshold" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>2</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlTextItem" Label="Header" Structure="Paragraph" MarginValues="5,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="true" UnderLine="false" Italics="false" Category="Normal" />
+							<Text>Upper Threshold Value</Text>
+							<TextHorizontalAlignment>Centre</TextHorizontalAlignment>
+						</Child>
+					</Child>
+					<Child Label="Lower Threshold" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>3</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlTextItem" Label="Header" Structure="Paragraph" MarginValues="5,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="true" UnderLine="false" Italics="false" Category="Normal" />
+							<Text>Lower Threshold Value</Text>
+							<TextHorizontalAlignment>Centre</TextHorizontalAlignment>
+						</Child>
+					</Child>
+					<NumberOfColumns>3</NumberOfColumns>
+					<IsHeader>false</IsHeader>
+				</Child>
+				<Child xsi:type="XmlRowItem" Label="VRT" Structure="TableRow" MarginValues="0,10,0,0">
+					<Index>2</Index>
+					<Visibility>true</Visibility>
+					<Child Label="DisplayLabel" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>1</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlTextItem" Label="Name" Structure="Paragraph" MarginValues="5,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="true" UnderLine="false" Italics="false" Category="Normal" />
+							<Text />
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+						</Child>
+					</Child>
+					<Child Label="UpperThreshold" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>2</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="5,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text />
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							<Unit />
+						</Child>
+					</Child>
+					<Child Label="LowerThreshold" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>3</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="5,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text />
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							<Unit />
+						</Child>
+					</Child>
+					<NumberOfColumns>3</NumberOfColumns>
+					<IsHeader>false</IsHeader>
+				</Child>
+				<Child xsi:type="XmlRowItem" Label="LNG" Structure="TableRow" MarginValues="0,10,0,0">
+					<Index>3</Index>
+					<Visibility>true</Visibility>
+					<Child Label="DisplayLabel" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>1</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlTextItem" Label="Name" Structure="Paragraph" MarginValues="5,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="true" UnderLine="false" Italics="false" Category="Normal" />
+							<Text />
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+						</Child>
+					</Child>
+					<Child Label="UpperThreshold" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>2</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="5,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text />
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							<Unit />
+						</Child>
+					</Child>
+					<Child Label="LowerThreshold" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>3</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="5,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text />
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							<Unit />
+						</Child>
+					</Child>
+					<NumberOfColumns>3</NumberOfColumns>
+					<IsHeader>false</IsHeader>
+				</Child>
+				<Child xsi:type="XmlRowItem" Label="LAT" Structure="TableRow" MarginValues="0,10,0,0">
+					<Index>4</Index>
+					<Visibility>true</Visibility>
+					<Child Label="DisplayLabel" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>1</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlTextItem" Label="Name" Structure="Paragraph" MarginValues="5,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="true" UnderLine="false" Italics="false" Category="Normal" />
+							<Text />
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+						</Child>
+					</Child>
+					<Child Label="UpperThreshold" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>2</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="5,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text />
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							<Unit />
+						</Child>
+					</Child>
+					<Child Label="LowerThreshold" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>3</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="5,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text />
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							<Unit />
+						</Child>
+					</Child>
+					<NumberOfColumns>3</NumberOfColumns>
+					<IsHeader>false</IsHeader>
+				</Child>
+				<Child xsi:type="XmlRowItem" Label="MAG" Structure="TableRow" MarginValues="0,10,0,0">
+					<Index>5</Index>
+					<Visibility>true</Visibility>
+					<Child Label="DisplayLabel" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>1</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlTextItem" Label="Name" Structure="Paragraph" MarginValues="5,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="true" UnderLine="false" Italics="false" Category="Normal" />
+							<Text />
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+						</Child>
+					</Child>
+					<Child Label="UpperThreshold" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>2</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="5,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text />
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							<Unit />
+						</Child>
+					</Child>
+					<Child Label="LowerThreshold" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>3</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="5,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text />
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							<Unit />
+						</Child>
+					</Child>
+					<NumberOfColumns>3</NumberOfColumns>
+					<IsHeader>false</IsHeader>
+				</Child>
+				<Child xsi:type="XmlRowItem" Label="YAW" Structure="TableRow" MarginValues="0,10,0,0">
+					<Index>6</Index>
+					<Visibility>true</Visibility>
+					<Child Label="DisplayLabel" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>1</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlTextItem" Label="Name" Structure="Paragraph" MarginValues="5,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="true" UnderLine="false" Italics="false" Category="Normal" />
+							<Text />
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+						</Child>
+					</Child>
+					<Child Label="UpperThreshold" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>2</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="5,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text />
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							<Unit />
+						</Child>
+					</Child>
+					<Child Label="LowerThreshold" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>3</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="5,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text />
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							<Unit />
+						</Child>
+					</Child>
+					<NumberOfColumns>3</NumberOfColumns>
+					<IsHeader>false</IsHeader>
+				</Child>
+				<Child xsi:type="XmlRowItem" Label="ROLL" Structure="TableRow" MarginValues="0,10,0,0">
+					<Index>7</Index>
+					<Visibility>true</Visibility>
+					<Child Label="DisplayLabel" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>1</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlTextItem" Label="Name" Structure="Paragraph" MarginValues="5,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="true" UnderLine="false" Italics="false" Category="Normal" />
+							<Text />
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+						</Child>
+					</Child>
+					<Child Label="UpperThreshold" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>2</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="5,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text />
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							<Unit />
+						</Child>
+					</Child>
+					<Child Label="LowerThreshold" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>3</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="5,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text />
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							<Unit />
+						</Child>
+					</Child>
+					<NumberOfColumns>3</NumberOfColumns>
+					<IsHeader>false</IsHeader>
+				</Child>
+				<Child xsi:type="XmlRowItem" Label="PITCH" Structure="TableRow" MarginValues="0,10,0,0">
+					<Index>8</Index>
+					<Visibility>true</Visibility>
+					<Child Label="DisplayLabel" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>1</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlTextItem" Label="Name" Structure="Paragraph" MarginValues="5,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="true" UnderLine="false" Italics="false" Category="Normal" />
+							<Text />
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+						</Child>
+					</Child>
+					<Child Label="UpperThreshold" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>2</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="5,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text />
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							<Unit />
+						</Child>
+					</Child>
+					<Child Label="LowerThreshold" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>3</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="5,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text />
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							<Unit />
+						</Child>
+					</Child>
+					<NumberOfColumns>3</NumberOfColumns>
+					<IsHeader>false</IsHeader>
+				</Child>
+				<Style FontSize="11" Bold="true" UnderLine="false" Italics="false" Category="Title" />
+				<Text>Treatment Threshold Values</Text>
+				<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+			</Child>
+			<Child xsi:type="XmlGraphsItem" Label="MonitoringData" Structure="TreatmentSectionGraph" MarginValues="25,10,0,0">
+				<Index>6</Index>
+				<Visibility>false</Visibility>
+				<Child xsi:type="XmlImageItem" Label="VRT" Structure="UIGraphContainer" MarginValues="0,0,0,0">
+					<Index>1</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text />
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+					<Path />
+					<ImageAlignment>Left</ImageAlignment>
+					<TextVerticalAlignment>Top</TextVerticalAlignment>
+					<Scale>100</Scale>
+				</Child>
+				<Child xsi:type="XmlImageItem" Label="LAT" Structure="UIGraphContainer" MarginValues="0,0,0,0">
+					<Index>2</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text />
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+					<Path />
+					<ImageAlignment>Left</ImageAlignment>
+					<TextVerticalAlignment>Top</TextVerticalAlignment>
+					<Scale>100</Scale>
+				</Child>
+				<Child xsi:type="XmlImageItem" Label="LNG" Structure="UIGraphContainer" MarginValues="0,0,0,0">
+					<Index>3</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text />
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+					<Path />
+					<ImageAlignment>Left</ImageAlignment>
+					<TextVerticalAlignment>Top</TextVerticalAlignment>
+					<Scale>100</Scale>
+				</Child>
+				<Child xsi:type="XmlImageItem" Label="MAG" Structure="UIGraphContainer" MarginValues="0,0,0,0">
+					<Index>4</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text />
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+					<Path />
+					<ImageAlignment>Left</ImageAlignment>
+					<TextVerticalAlignment>Top</TextVerticalAlignment>
+					<Scale>100</Scale>
+				</Child>
+				<Child xsi:type="XmlImageItem" Label="YAW" Structure="UIGraphContainer" MarginValues="0,0,0,0">
+					<Index>5</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text />
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+					<Path />
+					<ImageAlignment>Left</ImageAlignment>
+					<TextVerticalAlignment>Top</TextVerticalAlignment>
+					<Scale>100</Scale>
+				</Child>
+				<Child xsi:type="XmlImageItem" Label="ROLL" Structure="UIGraphContainer" MarginValues="0,0,0,0">
+					<Index>6</Index>
+					<Visibility>false</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text />
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+					<Path />
+					<ImageAlignment>Left</ImageAlignment>
+					<TextVerticalAlignment>Top</TextVerticalAlignment>
+					<Scale>100</Scale>
+				</Child>
+				<Child xsi:type="XmlImageItem" Label="PITCH" Structure="UIGraphContainer" MarginValues="0,0,0,0">
+					<Index>7</Index>
+					<Visibility>false</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text />
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+					<Path />
+					<ImageAlignment>Left</ImageAlignment>
+					<TextVerticalAlignment>Top</TextVerticalAlignment>
+					<Scale>100</Scale>
+				</Child>
+				<Style FontSize="9" Bold="true" UnderLine="false" Italics="false" Category="SubTitle" />
+				<Text>Monitoring Graphs</Text>
+				<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+				<DataSource />
+				<UseRangeFactor>false</UseRangeFactor>
+				<FirstDateTime />
+				<LastDateTime />
+				<MaximumDuration>600</MaximumDuration>
+			</Child>
+			<Style FontSize="9" Bold="true" UnderLine="false" Italics="false" Category="SubTitle" />
+			<Text />
+			<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+			<Format>Monitoring Sessions {0}</Format>
+		</Child>
+		<Child xsi:type="XmlFormattedTextItem" Label="MonitoringSessions 1" Structure="Section" MarginValues="0,10,0,0">
+			<Index>2</Index>
+			<Visibility>true</Visibility>
+			<Child Label="StartTime" Structure="ValuePair" MarginValues="25,2,0,0">
+				<Index>1</Index>
+				<Visibility>true</Visibility>
+				<Child xsi:type="XmlTextItem" Label="Label" Structure="Paragraph" MarginValues="0,0,0,0">
+					<Index>1</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text>Start Time</Text>
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+				</Child>
+				<Child xsi:type="XmlFormattedTextItem" Label="Value" Structure="Date" MarginValues="0,0,0,0">
+					<Index>2</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text>15-Nov-2017 05:50:19</Text>
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+					<Format>dd/MMM/yyyy HH:mm:ss</Format>
+				</Child>
+			</Child>
+			<Child Label="EndTime" Structure="ValuePair" MarginValues="25,2,0,0">
+				<Index>2</Index>
+				<Visibility>true</Visibility>
+				<Child xsi:type="XmlTextItem" Label="Label" Structure="Paragraph" MarginValues="0,0,0,0">
+					<Index>1</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text>Finish Time</Text>
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+				</Child>
+				<Child xsi:type="XmlFormattedTextItem" Label="Value" Structure="Date" MarginValues="0,0,0,0">
+					<Index>2</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text>15-Nov-2017 06:02:11</Text>
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+					<Format>dd/MMM/yyyy HH:mm:ss</Format>
+				</Child>
+			</Child>
+			<Child xsi:type="XmlTextItem" Label="FinalMonitoringScreenCapture" Structure="SectionImage" MarginValues="0,10,0,0">
+				<Index>3</Index>
+				<Visibility>false</Visibility>
+				<Child xsi:type="XmlImageItem" Label="FinalMonitoringScreenCaptureImage" Structure="UIContainer" MarginValues="0,2,0,0">
+					<Index>1</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="11" Bold="true" UnderLine="false" Italics="false" Category="Title" />
+					<Text>Final Patient Monitoring Position Screen Capture</Text>
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+					<Path>20170308\Reports\screen_captures\20171115_060211FinalMonitoringPosition.jpg</Path>
+					<ImageAlignment>Centre</ImageAlignment>
+					<TextVerticalAlignment>Top</TextVerticalAlignment>
+					<Scale>70</Scale>
+				</Child>
+				<Style FontSize="9" Bold="true" UnderLine="false" Italics="false" Category="SubTitle" />
+				<Text />
+				<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+			</Child>
+			<Child xsi:type="XmlTextItem" Label="FinalPatientMonitoringPosition" Structure="SectionDelta" MarginValues="0,10,0,0">
+				<Index>4</Index>
+				<Visibility>false</Visibility>
+				<Child xsi:type="XmlRowItem" Label="TreatmentSite" Structure="DeltaRow" MarginValues="25,2,0,0">
+					<Index>1</Index>
+					<Visibility>true</Visibility>
+					<Child Label="Column1" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>1</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlTextItem" Label="Unit" Structure="Paragraph" MarginValues="25,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text>Treatment Site</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+						</Child>
+					</Child>
+					<Child Label="Column2" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>2</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlTextItem" Label="Value" Structure="Paragraph" MarginValues="25,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text>Chest</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+						</Child>
+					</Child>
+					<NumberOfColumns>2</NumberOfColumns>
+					<IsHeader>false</IsHeader>
+				</Child>
+				<Child xsi:type="XmlRowItem" Label="TreatmentPhase" Structure="DeltaRow" MarginValues="25,2,0,0">
+					<Index>2</Index>
+					<Visibility>true</Visibility>
+					<Child Label="Column1" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>1</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlTextItem" Label="Unit" Structure="Paragraph" MarginValues="25,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text>Treatment Phase</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+						</Child>
+					</Child>
+					<Child Label="Column2" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>2</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlTextItem" Label="Value" Structure="Paragraph" MarginValues="25,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text>Daily QA (0.00 ,0.00 ,0.00)</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+						</Child>
+					</Child>
+					<NumberOfColumns>2</NumberOfColumns>
+					<IsHeader>false</IsHeader>
+				</Child>
+				<Child xsi:type="XmlRowItem" Label="CouchAngle" Structure="DeltaRow" MarginValues="25,2,0,0">
+					<Index>3</Index>
+					<Visibility>true</Visibility>
+					<Child Label="Column1" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>1</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlTextItem" Label="Unit" Structure="Paragraph" MarginValues="25,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text>Planned Couch Angle</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+						</Child>
+					</Child>
+					<Child Label="Column2" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>2</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="25,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text> 0</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							<Unit>degrees</Unit>
+						</Child>
+					</Child>
+					<NumberOfColumns>2</NumberOfColumns>
+					<IsHeader>false</IsHeader>
+				</Child>
+				<Child xsi:type="XmlRowItem" Label="Time" Structure="DeltaRow" MarginValues="25,2,0,0">
+					<Index>4</Index>
+					<Visibility>true</Visibility>
+					<Child Label="Column1" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>1</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlTextItem" Label="Unit" Structure="Paragraph" MarginValues="25,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text>Created Time</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+						</Child>
+					</Child>
+					<Child Label="Column2" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>2</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlFormattedTextItem" Label="Value" Structure="Date" MarginValues="25,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text>15-Nov-2017 06:02:12</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							<Format>dd/MMM/yyyy HH:mm:ss</Format>
+						</Child>
+					</Child>
+					<NumberOfColumns>2</NumberOfColumns>
+					<IsHeader>false</IsHeader>
+				</Child>
+				<Child xsi:type="XmlRowItem" Label="VRT" Structure="DeltaRow" MarginValues="25,2,0,0">
+					<Index>5</Index>
+					<Visibility>true</Visibility>
+					<Child Label="Column1" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>1</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlTextItem" Label="Unit" Structure="DeltaParagraph" MarginValues="25,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text>D_VRT_applied</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+						</Child>
+					</Child>
+					<Child Label="Column2" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>2</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="25,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text>0.06</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							<Unit>cm</Unit>
+						</Child>
+					</Child>
+					<NumberOfColumns>2</NumberOfColumns>
+					<IsHeader>false</IsHeader>
+				</Child>
+				<Child xsi:type="XmlRowItem" Label="LNG" Structure="DeltaRow" MarginValues="25,2,0,0">
+					<Index>6</Index>
+					<Visibility>true</Visibility>
+					<Child Label="Column1" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>1</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlTextItem" Label="Unit" Structure="DeltaParagraph" MarginValues="25,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text>D_LNG_applied</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+						</Child>
+					</Child>
+					<Child Label="Column2" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>2</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="25,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text>0.03</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							<Unit>cm</Unit>
+						</Child>
+					</Child>
+					<NumberOfColumns>2</NumberOfColumns>
+					<IsHeader>false</IsHeader>
+				</Child>
+				<Child xsi:type="XmlRowItem" Label="LAT" Structure="DeltaRow" MarginValues="25,2,0,0">
+					<Index>7</Index>
+					<Visibility>true</Visibility>
+					<Child Label="Column1" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>1</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlTextItem" Label="Unit" Structure="DeltaParagraph" MarginValues="25,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text>D_LAT_applied</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+						</Child>
+					</Child>
+					<Child Label="Column2" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>2</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="25,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text>-0.01</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							<Unit>cm</Unit>
+						</Child>
+					</Child>
+					<NumberOfColumns>2</NumberOfColumns>
+					<IsHeader>false</IsHeader>
+				</Child>
+				<Child xsi:type="XmlRowItem" Label="YAW" Structure="DeltaRow" MarginValues="25,2,0,0">
+					<Index>8</Index>
+					<Visibility>true</Visibility>
+					<Child Label="Column1" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>1</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlTextItem" Label="Unit" Structure="DeltaParagraph" MarginValues="25,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text>D_YAW_applied</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+						</Child>
+					</Child>
+					<Child Label="Column2" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>2</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="25,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text>-.1458752</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							<Unit>degrees</Unit>
+						</Child>
+					</Child>
+					<NumberOfColumns>2</NumberOfColumns>
+					<IsHeader>false</IsHeader>
+				</Child>
+				<Child xsi:type="XmlRowItem" Label="ROLL" Structure="DeltaRow" MarginValues="25,2,0,0">
+					<Index>9</Index>
+					<Visibility>false</Visibility>
+					<Child Label="Column1" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>1</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlTextItem" Label="Unit" Structure="DeltaParagraph" MarginValues="25,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text>D_ROLL_applied</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+						</Child>
+					</Child>
+					<Child Label="Column2" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>2</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="25,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text>-5.679138E-02</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							<Unit>degrees</Unit>
+						</Child>
+					</Child>
+					<NumberOfColumns>2</NumberOfColumns>
+					<IsHeader>false</IsHeader>
+				</Child>
+				<Child xsi:type="XmlRowItem" Label="PITCH" Structure="DeltaRow" MarginValues="25,2,0,0">
+					<Index>10</Index>
+					<Visibility>false</Visibility>
+					<Child Label="Column1" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>1</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlTextItem" Label="Unit" Structure="DeltaParagraph" MarginValues="25,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text>D_Pitch_applied</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+						</Child>
+					</Child>
+					<Child Label="Column2" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>2</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="25,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text>-.1727392</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							<Unit>degrees</Unit>
+						</Child>
+					</Child>
+					<NumberOfColumns>2</NumberOfColumns>
+					<IsHeader>false</IsHeader>
+				</Child>
+				<Child xsi:type="XmlRowItem" Label="Default" Structure="TableSingleRow" MarginValues="25,2,0,0">
+					<Index>11</Index>
+					<Visibility>false</Visibility>
+					<Child xsi:type="XmlTextItem" Label="Label" Structure="Paragraph" MarginValues="0,0,0,0">
+						<Index>1</Index>
+						<Visibility>true</Visibility>
+						<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+						<Text>The patient position was not verified using the treatment mode.</Text>
+						<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+					</Child>
+					<NumberOfColumns>2</NumberOfColumns>
+					<IsHeader>false</IsHeader>
+				</Child>
+				<Style FontSize="9" Bold="true" UnderLine="false" Italics="false" Category="SubTitle" />
+				<Text>Monitoring Report Following the Delivery of Treatment</Text>
+				<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+			</Child>
+			<Child xsi:type="XmlTextItem" Label="FinalTreatmentThreshold" Structure="TreatmentThresholdSection" MarginValues="0,10,0,10">
+				<Index>5</Index>
+				<Visibility>true</Visibility>
+				<Child xsi:type="XmlRowItem" Label="Headers" Structure="TableRow" MarginValues="0,0,0,0">
+					<Index>1</Index>
+					<Visibility>true</Visibility>
+					<Child Label="DegreeOfFreedom" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>1</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlTextItem" Label="Header" Structure="Paragraph" MarginValues="5,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="true" UnderLine="false" Italics="false" Category="Normal" />
+							<Text>Degree of Freedom</Text>
+							<TextHorizontalAlignment>Centre</TextHorizontalAlignment>
+						</Child>
+					</Child>
+					<Child Label="Upper Threshold" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>2</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlTextItem" Label="Header" Structure="Paragraph" MarginValues="5,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="true" UnderLine="false" Italics="false" Category="Normal" />
+							<Text>Upper Threshold Value</Text>
+							<TextHorizontalAlignment>Centre</TextHorizontalAlignment>
+						</Child>
+					</Child>
+					<Child Label="Lower Threshold" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>3</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlTextItem" Label="Header" Structure="Paragraph" MarginValues="5,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="true" UnderLine="false" Italics="false" Category="Normal" />
+							<Text>Lower Threshold Value</Text>
+							<TextHorizontalAlignment>Centre</TextHorizontalAlignment>
+						</Child>
+					</Child>
+					<NumberOfColumns>3</NumberOfColumns>
+					<IsHeader>false</IsHeader>
+				</Child>
+				<Child xsi:type="XmlRowItem" Label="VRT" Structure="TableRow" MarginValues="0,10,0,0">
+					<Index>2</Index>
+					<Visibility>true</Visibility>
+					<Child Label="DisplayLabel" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>1</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlTextItem" Label="Name" Structure="Paragraph" MarginValues="5,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="true" UnderLine="false" Italics="false" Category="Normal" />
+							<Text>VRT</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+						</Child>
+					</Child>
+					<Child Label="UpperThreshold" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>2</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="5,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text> .2</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							<Unit>cm</Unit>
+						</Child>
+					</Child>
+					<Child Label="LowerThreshold" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>3</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="5,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text>-.2</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							<Unit>cm</Unit>
+						</Child>
+					</Child>
+					<NumberOfColumns>3</NumberOfColumns>
+					<IsHeader>false</IsHeader>
+				</Child>
+				<Child xsi:type="XmlRowItem" Label="LNG" Structure="TableRow" MarginValues="0,10,0,0">
+					<Index>3</Index>
+					<Visibility>true</Visibility>
+					<Child Label="DisplayLabel" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>1</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlTextItem" Label="Name" Structure="Paragraph" MarginValues="5,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="true" UnderLine="false" Italics="false" Category="Normal" />
+							<Text>LNG</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+						</Child>
+					</Child>
+					<Child Label="UpperThreshold" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>2</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="5,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text> .2</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							<Unit>cm</Unit>
+						</Child>
+					</Child>
+					<Child Label="LowerThreshold" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>3</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="5,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text>-.2</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							<Unit>cm</Unit>
+						</Child>
+					</Child>
+					<NumberOfColumns>3</NumberOfColumns>
+					<IsHeader>false</IsHeader>
+				</Child>
+				<Child xsi:type="XmlRowItem" Label="LAT" Structure="TableRow" MarginValues="0,10,0,0">
+					<Index>4</Index>
+					<Visibility>true</Visibility>
+					<Child Label="DisplayLabel" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>1</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlTextItem" Label="Name" Structure="Paragraph" MarginValues="5,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="true" UnderLine="false" Italics="false" Category="Normal" />
+							<Text>LAT</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+						</Child>
+					</Child>
+					<Child Label="UpperThreshold" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>2</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="5,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text> .2</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							<Unit>cm</Unit>
+						</Child>
+					</Child>
+					<Child Label="LowerThreshold" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>3</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="5,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text>-.2</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							<Unit>cm</Unit>
+						</Child>
+					</Child>
+					<NumberOfColumns>3</NumberOfColumns>
+					<IsHeader>false</IsHeader>
+				</Child>
+				<Child xsi:type="XmlRowItem" Label="MAG" Structure="TableRow" MarginValues="0,10,0,0">
+					<Index>5</Index>
+					<Visibility>true</Visibility>
+					<Child Label="DisplayLabel" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>1</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlTextItem" Label="Name" Structure="Paragraph" MarginValues="5,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="true" UnderLine="false" Italics="false" Category="Normal" />
+							<Text>MAG</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+						</Child>
+					</Child>
+					<Child Label="UpperThreshold" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>2</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="5,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text> .2</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							<Unit>cm</Unit>
+						</Child>
+					</Child>
+					<Child Label="LowerThreshold" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>3</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="5,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text> 0</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							<Unit>cm</Unit>
+						</Child>
+					</Child>
+					<NumberOfColumns>3</NumberOfColumns>
+					<IsHeader>false</IsHeader>
+				</Child>
+				<Child xsi:type="XmlRowItem" Label="YAW" Structure="TableRow" MarginValues="0,10,0,0">
+					<Index>6</Index>
+					<Visibility>true</Visibility>
+					<Child Label="DisplayLabel" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>1</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlTextItem" Label="Name" Structure="Paragraph" MarginValues="5,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="true" UnderLine="false" Italics="false" Category="Normal" />
+							<Text>YAW</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+						</Child>
+					</Child>
+					<Child Label="UpperThreshold" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>2</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="5,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text> 3</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							<Unit>degrees</Unit>
+						</Child>
+					</Child>
+					<Child Label="LowerThreshold" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>3</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="5,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text>-3</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							<Unit>degrees</Unit>
+						</Child>
+					</Child>
+					<NumberOfColumns>3</NumberOfColumns>
+					<IsHeader>false</IsHeader>
+				</Child>
+				<Child xsi:type="XmlRowItem" Label="ROLL" Structure="TableRow" MarginValues="0,10,0,0">
+					<Index>7</Index>
+					<Visibility>true</Visibility>
+					<Child Label="DisplayLabel" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>1</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlTextItem" Label="Name" Structure="Paragraph" MarginValues="5,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="true" UnderLine="false" Italics="false" Category="Normal" />
+							<Text>ROLL</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+						</Child>
+					</Child>
+					<Child Label="UpperThreshold" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>2</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="5,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text> 3</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							<Unit>degrees</Unit>
+						</Child>
+					</Child>
+					<Child Label="LowerThreshold" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>3</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="5,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text>-3</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							<Unit>degrees</Unit>
+						</Child>
+					</Child>
+					<NumberOfColumns>3</NumberOfColumns>
+					<IsHeader>false</IsHeader>
+				</Child>
+				<Child xsi:type="XmlRowItem" Label="PITCH" Structure="TableRow" MarginValues="0,10,0,0">
+					<Index>8</Index>
+					<Visibility>true</Visibility>
+					<Child Label="DisplayLabel" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>1</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlTextItem" Label="Name" Structure="Paragraph" MarginValues="5,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="true" UnderLine="false" Italics="false" Category="Normal" />
+							<Text>PITCH</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+						</Child>
+					</Child>
+					<Child Label="UpperThreshold" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>2</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="5,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text> 3</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							<Unit>degrees</Unit>
+						</Child>
+					</Child>
+					<Child Label="LowerThreshold" Structure="TableCell" MarginValues="0,0,0,0">
+						<Index>3</Index>
+						<Visibility>true</Visibility>
+						<Child xsi:type="XmlUnitItem" Label="Value" Structure="DecimalValueWithUnit" MarginValues="5,2,0,0">
+							<Index>1</Index>
+							<Visibility>true</Visibility>
+							<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+							<Text>-3</Text>
+							<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+							<Unit>degrees</Unit>
+						</Child>
+					</Child>
+					<NumberOfColumns>3</NumberOfColumns>
+					<IsHeader>false</IsHeader>
+				</Child>
+				<Style FontSize="11" Bold="true" UnderLine="false" Italics="false" Category="Title" />
+				<Text>Treatment Threshold Values</Text>
+				<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+			</Child>
+			<Child xsi:type="XmlGraphsItem" Label="MonitoringData" Structure="TreatmentSectionGraph" MarginValues="25,10,0,0">
+				<Index>6</Index>
+				<Visibility>false</Visibility>
+				<Child xsi:type="XmlImageItem" Label="VRT" Structure="UIGraphContainer" MarginValues="0,0,0,0">
+					<Index>1</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text />
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+					<Path />
+					<ImageAlignment>Left</ImageAlignment>
+					<TextVerticalAlignment>Top</TextVerticalAlignment>
+					<Scale>100</Scale>
+				</Child>
+				<Child xsi:type="XmlImageItem" Label="LAT" Structure="UIGraphContainer" MarginValues="0,0,0,0">
+					<Index>2</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text />
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+					<Path />
+					<ImageAlignment>Left</ImageAlignment>
+					<TextVerticalAlignment>Top</TextVerticalAlignment>
+					<Scale>100</Scale>
+				</Child>
+				<Child xsi:type="XmlImageItem" Label="LNG" Structure="UIGraphContainer" MarginValues="0,0,0,0">
+					<Index>3</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text />
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+					<Path />
+					<ImageAlignment>Left</ImageAlignment>
+					<TextVerticalAlignment>Top</TextVerticalAlignment>
+					<Scale>100</Scale>
+				</Child>
+				<Child xsi:type="XmlImageItem" Label="MAG" Structure="UIGraphContainer" MarginValues="0,0,0,0">
+					<Index>4</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text />
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+					<Path />
+					<ImageAlignment>Left</ImageAlignment>
+					<TextVerticalAlignment>Top</TextVerticalAlignment>
+					<Scale>100</Scale>
+				</Child>
+				<Child xsi:type="XmlImageItem" Label="YAW" Structure="UIGraphContainer" MarginValues="0,0,0,0">
+					<Index>5</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text />
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+					<Path />
+					<ImageAlignment>Left</ImageAlignment>
+					<TextVerticalAlignment>Top</TextVerticalAlignment>
+					<Scale>100</Scale>
+				</Child>
+				<Child xsi:type="XmlImageItem" Label="ROLL" Structure="UIGraphContainer" MarginValues="0,0,0,0">
+					<Index>6</Index>
+					<Visibility>false</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text />
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+					<Path />
+					<ImageAlignment>Left</ImageAlignment>
+					<TextVerticalAlignment>Top</TextVerticalAlignment>
+					<Scale>100</Scale>
+				</Child>
+				<Child xsi:type="XmlImageItem" Label="PITCH" Structure="UIGraphContainer" MarginValues="0,0,0,0">
+					<Index>7</Index>
+					<Visibility>false</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text />
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+					<Path />
+					<ImageAlignment>Left</ImageAlignment>
+					<TextVerticalAlignment>Top</TextVerticalAlignment>
+					<Scale>100</Scale>
+				</Child>
+				<Child xsi:type="XmlImageItem" Label="VRT 1" Structure="UIGraphContainer" MarginValues="0,0,0,0">
+					<Index>8</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text xsi:nil="true" />
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+					<Path>20170308\Reports\RealTimeDeltas_171115_055019_VRT_171115060217125.jpg</Path>
+					<ImageAlignment>Left</ImageAlignment>
+					<TextVerticalAlignment>Top</TextVerticalAlignment>
+					<Scale>70</Scale>
+				</Child>
+				<Child xsi:type="XmlImageItem" Label="LNG 2" Structure="UIGraphContainer" MarginValues="0,0,0,0">
+					<Index>9</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text xsi:nil="true" />
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+					<Path>20170308\Reports\RealTimeDeltas_171115_055019_LNG_171115060217572.jpg</Path>
+					<ImageAlignment>Left</ImageAlignment>
+					<TextVerticalAlignment>Top</TextVerticalAlignment>
+					<Scale>70</Scale>
+				</Child>
+				<Child xsi:type="XmlImageItem" Label="LAT 3" Structure="UIGraphContainer" MarginValues="0,0,0,0">
+					<Index>10</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text xsi:nil="true" />
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+					<Path>20170308\Reports\RealTimeDeltas_171115_055019_LAT_171115060217588.jpg</Path>
+					<ImageAlignment>Left</ImageAlignment>
+					<TextVerticalAlignment>Top</TextVerticalAlignment>
+					<Scale>70</Scale>
+				</Child>
+				<Child xsi:type="XmlImageItem" Label="MAG 4" Structure="UIGraphContainer" MarginValues="0,0,0,0">
+					<Index>11</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text xsi:nil="true" />
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+					<Path>20170308\Reports\RealTimeDeltas_171115_055019_MAG_171115060217601.jpg</Path>
+					<ImageAlignment>Left</ImageAlignment>
+					<TextVerticalAlignment>Top</TextVerticalAlignment>
+					<Scale>70</Scale>
+				</Child>
+				<Child xsi:type="XmlImageItem" Label="YAW 5" Structure="UIGraphContainer" MarginValues="0,0,0,0">
+					<Index>12</Index>
+					<Visibility>true</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text xsi:nil="true" />
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+					<Path>20170308\Reports\RealTimeDeltas_171115_055019_YAW_171115060217614.jpg</Path>
+					<ImageAlignment>Left</ImageAlignment>
+					<TextVerticalAlignment>Top</TextVerticalAlignment>
+					<Scale>70</Scale>
+				</Child>
+				<Child xsi:type="XmlImageItem" Label="ROLL 6" Structure="UIGraphContainer" MarginValues="0,0,0,0">
+					<Index>13</Index>
+					<Visibility>false</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text xsi:nil="true" />
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+					<Path>20170308\Reports\RealTimeDeltas_171115_055019_ROLL_171115060217628.jpg</Path>
+					<ImageAlignment>Left</ImageAlignment>
+					<TextVerticalAlignment>Top</TextVerticalAlignment>
+					<Scale>70</Scale>
+				</Child>
+				<Child xsi:type="XmlImageItem" Label="PITCH 7" Structure="UIGraphContainer" MarginValues="0,0,0,0">
+					<Index>14</Index>
+					<Visibility>false</Visibility>
+					<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+					<Text xsi:nil="true" />
+					<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+					<Path>20170308\Reports\RealTimeDeltas_171115_055019_PITCH_171115060217645.jpg</Path>
+					<ImageAlignment>Left</ImageAlignment>
+					<TextVerticalAlignment>Top</TextVerticalAlignment>
+					<Scale>70</Scale>
+				</Child>
+				<Style FontSize="9" Bold="true" UnderLine="false" Italics="false" Category="SubTitle" />
+				<Text>Monitoring Graphs</Text>
+				<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+				<DataSource>F:\Vision RT\AlignRT\PData\20170308\170822 210129\Monitoring_171115_055019\RealTimeDeltas_171115_055019.txt</DataSource>
+				<UseRangeFactor>false</UseRangeFactor>
+				<FirstDateTime />
+				<LastDateTime />
+				<MaximumDuration>600</MaximumDuration>
+			</Child>
+			<Style FontSize="9" Bold="true" UnderLine="false" Italics="false" Category="SubTitle" />
+			<Text>Monitoring Session  1</Text>
+			<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+			<Format>Monitoring Sessions {0}</Format>
+		</Child>
+		<Style FontSize="11" Bold="true" UnderLine="false" Italics="false" Category="Title" />
+		<Text>Monitoring Sessions</Text>
+		<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+	</Section>
+	<Section xsi:type="XmlTextItem" Label="FinalScreenCapture" Structure="SectionImage" MarginValues="0,10,0,0">
+		<Index>12</Index>
+		<Visibility>true</Visibility>
+		<Child xsi:type="XmlImageItem" Label="ImagePath" Structure="UIContainer" MarginValues="0,2,0,0">
+			<Index>1</Index>
+			<Visibility>true</Visibility>
+			<Style FontSize="11" Bold="true" UnderLine="false" Italics="false" Category="Title" />
+			<Text />
+			<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+			<Path>20170308\Reports\screen_captures\20171115_060213FinalScreenCapture.jpg</Path>
+			<ImageAlignment>Centre</ImageAlignment>
+			<TextVerticalAlignment>Top</TextVerticalAlignment>
+			<Scale>70</Scale>
+		</Child>
+		<Style FontSize="11" Bold="true" UnderLine="false" Italics="false" Category="Title" />
+		<Text>Final Screen Capture</Text>
+		<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+	</Section>
+	<Section xsi:type="XmlTextItem" Label="CommentsBlock" Structure="Section" MarginValues="0,10,0,0">
+		<Index>13</Index>
+		<Visibility>false</Visibility>
+		<Child xsi:type="XmlTextItem" Label="Content" Structure="Paragraph" MarginValues="25,2,0,0">
+			<Index>1</Index>
+			<Visibility>true</Visibility>
+			<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+			<Text />
+			<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+		</Child>
+		<Style FontSize="11" Bold="true" UnderLine="false" Italics="false" Category="Title" />
+		<Text>Comment</Text>
+		<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+	</Section>
+	<Section xsi:type="XmlTextItem" Label="SignatureBlock" Structure="Section" MarginValues="0,10,0,0">
+		<Index>14</Index>
+		<Visibility>true</Visibility>
+		<Child xsi:type="XmlTextItem" Label="Content" Structure="Paragraph" MarginValues="0,10,0,0">
+			<Index>1</Index>
+			<Visibility>true</Visibility>
+			<Style FontSize="9" Bold="true" UnderLine="false" Italics="false" Category="SubTitle" />
+			<Text>Physician:_____________________________________________________</Text>
+			<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+		</Child>
+		<Style FontSize="8" Bold="false" UnderLine="false" Italics="false" Category="Normal" />
+		<Text />
+		<TextHorizontalAlignment>Left</TextHorizontalAlignment>
+	</Section>
+	<HashCode>+AoAEBJ6o38L7po8UGpa4+97TVzakK7kz5Nf0Xd04jMe/+LUiFgWiemq8Q1CbeYlFS0EvsmoGnx8OQB/DtVsLLAE1vdqFLIN9kjzF3SkF3A=</HashCode>
+</ReportStructure>

@@ -1,0 +1,438 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PatientTreatmentThreshold xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://tempuri.org/PatientTreatmentThreshold.xsd">
+	<PatientId>20150925ZEL</PatientId>
+	<Sites Label="Right Breast">
+		<TreatmentThreshold DecimalPlaces="2" DisplayUnit="cm">
+			<Magnitude IsWarning="false" ThresholdType="Magnitude" IsThresholdFixed="false" IsSymmetryOn="false">
+				<RangeValue>15</RangeValue>
+				<LowerThresholdValue>0</LowerThresholdValue>
+				<UpperThresholdValue>4</UpperThresholdValue>
+				<UpperWarningValue>0</UpperWarningValue>
+				<LowerWarningValue>0</LowerWarningValue>
+			</Magnitude>
+			<Vertical IsWarning="false" ThresholdType="Vertical" IsThresholdFixed="false" IsSymmetryOn="true">
+				<RangeValue>15</RangeValue>
+				<LowerThresholdValue>-4</LowerThresholdValue>
+				<UpperThresholdValue>4</UpperThresholdValue>
+				<UpperWarningValue>0</UpperWarningValue>
+				<LowerWarningValue>0</LowerWarningValue>
+			</Vertical>
+			<Lateral IsWarning="false" ThresholdType="Lateral" IsThresholdFixed="false" IsSymmetryOn="true">
+				<RangeValue>15</RangeValue>
+				<LowerThresholdValue>-4</LowerThresholdValue>
+				<UpperThresholdValue>4</UpperThresholdValue>
+				<UpperWarningValue>0</UpperWarningValue>
+				<LowerWarningValue>0</LowerWarningValue>
+			</Lateral>
+			<Longitudinal IsWarning="false" ThresholdType="Longitudinal" IsThresholdFixed="false" IsSymmetryOn="true">
+				<RangeValue>15</RangeValue>
+				<LowerThresholdValue>-4</LowerThresholdValue>
+				<UpperThresholdValue>4</UpperThresholdValue>
+				<UpperWarningValue>0</UpperWarningValue>
+				<LowerWarningValue>0</LowerWarningValue>
+			</Longitudinal>
+			<Pitch IsWarning="false" ThresholdType="Pitch" IsThresholdFixed="false" IsSymmetryOn="true">
+				<RangeValue>10</RangeValue>
+				<LowerThresholdValue>-3</LowerThresholdValue>
+				<UpperThresholdValue>3</UpperThresholdValue>
+				<UpperWarningValue>0</UpperWarningValue>
+				<LowerWarningValue>0</LowerWarningValue>
+			</Pitch>
+			<Roll IsWarning="false" ThresholdType="Roll" IsThresholdFixed="false" IsSymmetryOn="true">
+				<RangeValue>10</RangeValue>
+				<LowerThresholdValue>-3</LowerThresholdValue>
+				<UpperThresholdValue>3</UpperThresholdValue>
+				<UpperWarningValue>0</UpperWarningValue>
+				<LowerWarningValue>0</LowerWarningValue>
+			</Roll>
+			<Yaw IsWarning="false" ThresholdType="Yaw" IsThresholdFixed="false" IsSymmetryOn="true">
+				<RangeValue>10</RangeValue>
+				<LowerThresholdValue>-3</LowerThresholdValue>
+				<UpperThresholdValue>3</UpperThresholdValue>
+				<UpperWarningValue>0</UpperWarningValue>
+				<LowerWarningValue>0</LowerWarningValue>
+			</Yaw>
+			<MaxMisalignmentDuration>0</MaxMisalignmentDuration>
+		</TreatmentThreshold>
+		<Phases Label="TB2871 (0.01 ,-15.66 ,28.08)">
+			<TreatmentThreshold DecimalPlaces="2" DisplayUnit="cm">
+				<Magnitude IsWarning="false" ThresholdType="Magnitude" IsThresholdFixed="false" IsSymmetryOn="false">
+					<RangeValue>15</RangeValue>
+					<LowerThresholdValue>0</LowerThresholdValue>
+					<UpperThresholdValue>4</UpperThresholdValue>
+					<UpperWarningValue>0</UpperWarningValue>
+					<LowerWarningValue>0</LowerWarningValue>
+				</Magnitude>
+				<Vertical IsWarning="false" ThresholdType="Vertical" IsThresholdFixed="false" IsSymmetryOn="true">
+					<RangeValue>15</RangeValue>
+					<LowerThresholdValue>-4</LowerThresholdValue>
+					<UpperThresholdValue>4</UpperThresholdValue>
+					<UpperWarningValue>0</UpperWarningValue>
+					<LowerWarningValue>0</LowerWarningValue>
+				</Vertical>
+				<Lateral IsWarning="false" ThresholdType="Lateral" IsThresholdFixed="false" IsSymmetryOn="true">
+					<RangeValue>15</RangeValue>
+					<LowerThresholdValue>-4</LowerThresholdValue>
+					<UpperThresholdValue>4</UpperThresholdValue>
+					<UpperWarningValue>0</UpperWarningValue>
+					<LowerWarningValue>0</LowerWarningValue>
+				</Lateral>
+				<Longitudinal IsWarning="false" ThresholdType="Longitudinal" IsThresholdFixed="false" IsSymmetryOn="true">
+					<RangeValue>15</RangeValue>
+					<LowerThresholdValue>-4</LowerThresholdValue>
+					<UpperThresholdValue>4</UpperThresholdValue>
+					<UpperWarningValue>0</UpperWarningValue>
+					<LowerWarningValue>0</LowerWarningValue>
+				</Longitudinal>
+				<Pitch IsWarning="false" ThresholdType="Pitch" IsThresholdFixed="false" IsSymmetryOn="true">
+					<RangeValue>10</RangeValue>
+					<LowerThresholdValue>-3</LowerThresholdValue>
+					<UpperThresholdValue>3</UpperThresholdValue>
+					<UpperWarningValue>0</UpperWarningValue>
+					<LowerWarningValue>0</LowerWarningValue>
+				</Pitch>
+				<Roll IsWarning="false" ThresholdType="Roll" IsThresholdFixed="false" IsSymmetryOn="true">
+					<RangeValue>10</RangeValue>
+					<LowerThresholdValue>-3</LowerThresholdValue>
+					<UpperThresholdValue>3</UpperThresholdValue>
+					<UpperWarningValue>0</UpperWarningValue>
+					<LowerWarningValue>0</LowerWarningValue>
+				</Roll>
+				<Yaw IsWarning="false" ThresholdType="Yaw" IsThresholdFixed="false" IsSymmetryOn="true">
+					<RangeValue>10</RangeValue>
+					<LowerThresholdValue>-3</LowerThresholdValue>
+					<UpperThresholdValue>3</UpperThresholdValue>
+					<UpperWarningValue>0</UpperWarningValue>
+					<LowerWarningValue>0</LowerWarningValue>
+				</Yaw>
+				<MaxMisalignmentDuration>0</MaxMisalignmentDuration>
+			</TreatmentThreshold>
+			<Fields Label="ISOCENTER FIELD">
+				<TreatmentThreshold DecimalPlaces="2" DisplayUnit="cm">
+					<Magnitude IsWarning="false" ThresholdType="Magnitude" IsThresholdFixed="false" IsSymmetryOn="false">
+						<RangeValue>15</RangeValue>
+						<LowerThresholdValue>0</LowerThresholdValue>
+						<UpperThresholdValue>4</UpperThresholdValue>
+						<UpperWarningValue>0</UpperWarningValue>
+						<LowerWarningValue>0</LowerWarningValue>
+					</Magnitude>
+					<Vertical IsWarning="false" ThresholdType="Vertical" IsThresholdFixed="false" IsSymmetryOn="true">
+						<RangeValue>15</RangeValue>
+						<LowerThresholdValue>-4</LowerThresholdValue>
+						<UpperThresholdValue>4</UpperThresholdValue>
+						<UpperWarningValue>0</UpperWarningValue>
+						<LowerWarningValue>0</LowerWarningValue>
+					</Vertical>
+					<Lateral IsWarning="false" ThresholdType="Lateral" IsThresholdFixed="false" IsSymmetryOn="true">
+						<RangeValue>15</RangeValue>
+						<LowerThresholdValue>-4</LowerThresholdValue>
+						<UpperThresholdValue>4</UpperThresholdValue>
+						<UpperWarningValue>0</UpperWarningValue>
+						<LowerWarningValue>0</LowerWarningValue>
+					</Lateral>
+					<Longitudinal IsWarning="false" ThresholdType="Longitudinal" IsThresholdFixed="false" IsSymmetryOn="true">
+						<RangeValue>15</RangeValue>
+						<LowerThresholdValue>-4</LowerThresholdValue>
+						<UpperThresholdValue>4</UpperThresholdValue>
+						<UpperWarningValue>0</UpperWarningValue>
+						<LowerWarningValue>0</LowerWarningValue>
+					</Longitudinal>
+					<Pitch IsWarning="false" ThresholdType="Pitch" IsThresholdFixed="false" IsSymmetryOn="true">
+						<RangeValue>10</RangeValue>
+						<LowerThresholdValue>-3</LowerThresholdValue>
+						<UpperThresholdValue>3</UpperThresholdValue>
+						<UpperWarningValue>0</UpperWarningValue>
+						<LowerWarningValue>0</LowerWarningValue>
+					</Pitch>
+					<Roll IsWarning="false" ThresholdType="Roll" IsThresholdFixed="false" IsSymmetryOn="true">
+						<RangeValue>10</RangeValue>
+						<LowerThresholdValue>-3</LowerThresholdValue>
+						<UpperThresholdValue>3</UpperThresholdValue>
+						<UpperWarningValue>0</UpperWarningValue>
+						<LowerWarningValue>0</LowerWarningValue>
+					</Roll>
+					<Yaw IsWarning="false" ThresholdType="Yaw" IsThresholdFixed="false" IsSymmetryOn="true">
+						<RangeValue>10</RangeValue>
+						<LowerThresholdValue>-3</LowerThresholdValue>
+						<UpperThresholdValue>3</UpperThresholdValue>
+						<UpperWarningValue>0</UpperWarningValue>
+						<LowerWarningValue>0</LowerWarningValue>
+					</Yaw>
+					<MaxMisalignmentDuration>0</MaxMisalignmentDuration>
+				</TreatmentThreshold>
+				<ReferenceSurfaces Label="171010 211927">
+					<TreatmentThreshold DecimalPlaces="2" DisplayUnit="cm">
+						<Magnitude IsWarning="false" ThresholdType="Magnitude" IsThresholdFixed="false" IsSymmetryOn="false">
+							<RangeValue>15</RangeValue>
+							<LowerThresholdValue>0</LowerThresholdValue>
+							<UpperThresholdValue>4</UpperThresholdValue>
+							<UpperWarningValue>0</UpperWarningValue>
+							<LowerWarningValue>0</LowerWarningValue>
+						</Magnitude>
+						<Vertical IsWarning="false" ThresholdType="Vertical" IsThresholdFixed="false" IsSymmetryOn="true">
+							<RangeValue>15</RangeValue>
+							<LowerThresholdValue>-4</LowerThresholdValue>
+							<UpperThresholdValue>4</UpperThresholdValue>
+							<UpperWarningValue>0</UpperWarningValue>
+							<LowerWarningValue>0</LowerWarningValue>
+						</Vertical>
+						<Lateral IsWarning="false" ThresholdType="Lateral" IsThresholdFixed="false" IsSymmetryOn="true">
+							<RangeValue>15</RangeValue>
+							<LowerThresholdValue>-4</LowerThresholdValue>
+							<UpperThresholdValue>4</UpperThresholdValue>
+							<UpperWarningValue>0</UpperWarningValue>
+							<LowerWarningValue>0</LowerWarningValue>
+						</Lateral>
+						<Longitudinal IsWarning="false" ThresholdType="Longitudinal" IsThresholdFixed="false" IsSymmetryOn="true">
+							<RangeValue>15</RangeValue>
+							<LowerThresholdValue>-4</LowerThresholdValue>
+							<UpperThresholdValue>4</UpperThresholdValue>
+							<UpperWarningValue>0</UpperWarningValue>
+							<LowerWarningValue>0</LowerWarningValue>
+						</Longitudinal>
+						<Pitch IsWarning="false" ThresholdType="Pitch" IsThresholdFixed="false" IsSymmetryOn="true">
+							<RangeValue>10</RangeValue>
+							<LowerThresholdValue>-3</LowerThresholdValue>
+							<UpperThresholdValue>3</UpperThresholdValue>
+							<UpperWarningValue>0</UpperWarningValue>
+							<LowerWarningValue>0</LowerWarningValue>
+						</Pitch>
+						<Roll IsWarning="false" ThresholdType="Roll" IsThresholdFixed="false" IsSymmetryOn="true">
+							<RangeValue>10</RangeValue>
+							<LowerThresholdValue>-3</LowerThresholdValue>
+							<UpperThresholdValue>3</UpperThresholdValue>
+							<UpperWarningValue>0</UpperWarningValue>
+							<LowerWarningValue>0</LowerWarningValue>
+						</Roll>
+						<Yaw IsWarning="false" ThresholdType="Yaw" IsThresholdFixed="false" IsSymmetryOn="true">
+							<RangeValue>10</RangeValue>
+							<LowerThresholdValue>-3</LowerThresholdValue>
+							<UpperThresholdValue>3</UpperThresholdValue>
+							<UpperWarningValue>0</UpperWarningValue>
+							<LowerWarningValue>0</LowerWarningValue>
+						</Yaw>
+						<MaxMisalignmentDuration>0</MaxMisalignmentDuration>
+					</TreatmentThreshold>
+					<ROIs Label="Body">
+						<TreatmentThreshold DecimalPlaces="2" DisplayUnit="cm">
+							<Magnitude IsWarning="false" ThresholdType="Magnitude" IsThresholdFixed="false" IsSymmetryOn="false">
+								<RangeValue>15</RangeValue>
+								<LowerThresholdValue>0</LowerThresholdValue>
+								<UpperThresholdValue>4</UpperThresholdValue>
+								<UpperWarningValue>0</UpperWarningValue>
+								<LowerWarningValue>0</LowerWarningValue>
+							</Magnitude>
+							<Vertical IsWarning="false" ThresholdType="Vertical" IsThresholdFixed="false" IsSymmetryOn="true">
+								<RangeValue>15</RangeValue>
+								<LowerThresholdValue>-4</LowerThresholdValue>
+								<UpperThresholdValue>4</UpperThresholdValue>
+								<UpperWarningValue>0</UpperWarningValue>
+								<LowerWarningValue>0</LowerWarningValue>
+							</Vertical>
+							<Lateral IsWarning="false" ThresholdType="Lateral" IsThresholdFixed="false" IsSymmetryOn="true">
+								<RangeValue>15</RangeValue>
+								<LowerThresholdValue>-4</LowerThresholdValue>
+								<UpperThresholdValue>4</UpperThresholdValue>
+								<UpperWarningValue>0</UpperWarningValue>
+								<LowerWarningValue>0</LowerWarningValue>
+							</Lateral>
+							<Longitudinal IsWarning="false" ThresholdType="Longitudinal" IsThresholdFixed="false" IsSymmetryOn="true">
+								<RangeValue>15</RangeValue>
+								<LowerThresholdValue>-4</LowerThresholdValue>
+								<UpperThresholdValue>4</UpperThresholdValue>
+								<UpperWarningValue>0</UpperWarningValue>
+								<LowerWarningValue>0</LowerWarningValue>
+							</Longitudinal>
+							<Pitch IsWarning="false" ThresholdType="Pitch" IsThresholdFixed="false" IsSymmetryOn="true">
+								<RangeValue>10</RangeValue>
+								<LowerThresholdValue>-3</LowerThresholdValue>
+								<UpperThresholdValue>3</UpperThresholdValue>
+								<UpperWarningValue>0</UpperWarningValue>
+								<LowerWarningValue>0</LowerWarningValue>
+							</Pitch>
+							<Roll IsWarning="false" ThresholdType="Roll" IsThresholdFixed="false" IsSymmetryOn="true">
+								<RangeValue>10</RangeValue>
+								<LowerThresholdValue>-3</LowerThresholdValue>
+								<UpperThresholdValue>3</UpperThresholdValue>
+								<UpperWarningValue>0</UpperWarningValue>
+								<LowerWarningValue>0</LowerWarningValue>
+							</Roll>
+							<Yaw IsWarning="false" ThresholdType="Yaw" IsThresholdFixed="false" IsSymmetryOn="true">
+								<RangeValue>10</RangeValue>
+								<LowerThresholdValue>-3</LowerThresholdValue>
+								<UpperThresholdValue>3</UpperThresholdValue>
+								<UpperWarningValue>0</UpperWarningValue>
+								<LowerWarningValue>0</LowerWarningValue>
+							</Yaw>
+							<MaxMisalignmentDuration>0</MaxMisalignmentDuration>
+						</TreatmentThreshold>
+					</ROIs>
+				</ReferenceSurfaces>
+				<ReferenceSurfaces Label="171010 213152">
+					<TreatmentThreshold DecimalPlaces="2" DisplayUnit="cm">
+						<Magnitude IsWarning="false" ThresholdType="Magnitude" IsThresholdFixed="false" IsSymmetryOn="false">
+							<RangeValue>15</RangeValue>
+							<LowerThresholdValue>0</LowerThresholdValue>
+							<UpperThresholdValue>4</UpperThresholdValue>
+							<UpperWarningValue>0</UpperWarningValue>
+							<LowerWarningValue>0</LowerWarningValue>
+						</Magnitude>
+						<Vertical IsWarning="false" ThresholdType="Vertical" IsThresholdFixed="false" IsSymmetryOn="true">
+							<RangeValue>15</RangeValue>
+							<LowerThresholdValue>-4</LowerThresholdValue>
+							<UpperThresholdValue>4</UpperThresholdValue>
+							<UpperWarningValue>0</UpperWarningValue>
+							<LowerWarningValue>0</LowerWarningValue>
+						</Vertical>
+						<Lateral IsWarning="false" ThresholdType="Lateral" IsThresholdFixed="false" IsSymmetryOn="true">
+							<RangeValue>15</RangeValue>
+							<LowerThresholdValue>-4</LowerThresholdValue>
+							<UpperThresholdValue>4</UpperThresholdValue>
+							<UpperWarningValue>0</UpperWarningValue>
+							<LowerWarningValue>0</LowerWarningValue>
+						</Lateral>
+						<Longitudinal IsWarning="false" ThresholdType="Longitudinal" IsThresholdFixed="false" IsSymmetryOn="true">
+							<RangeValue>15</RangeValue>
+							<LowerThresholdValue>-4</LowerThresholdValue>
+							<UpperThresholdValue>4</UpperThresholdValue>
+							<UpperWarningValue>0</UpperWarningValue>
+							<LowerWarningValue>0</LowerWarningValue>
+						</Longitudinal>
+						<Pitch IsWarning="false" ThresholdType="Pitch" IsThresholdFixed="false" IsSymmetryOn="true">
+							<RangeValue>10</RangeValue>
+							<LowerThresholdValue>-3</LowerThresholdValue>
+							<UpperThresholdValue>3</UpperThresholdValue>
+							<UpperWarningValue>0</UpperWarningValue>
+							<LowerWarningValue>0</LowerWarningValue>
+						</Pitch>
+						<Roll IsWarning="false" ThresholdType="Roll" IsThresholdFixed="false" IsSymmetryOn="true">
+							<RangeValue>10</RangeValue>
+							<LowerThresholdValue>-3</LowerThresholdValue>
+							<UpperThresholdValue>3</UpperThresholdValue>
+							<UpperWarningValue>0</UpperWarningValue>
+							<LowerWarningValue>0</LowerWarningValue>
+						</Roll>
+						<Yaw IsWarning="false" ThresholdType="Yaw" IsThresholdFixed="false" IsSymmetryOn="true">
+							<RangeValue>10</RangeValue>
+							<LowerThresholdValue>-3</LowerThresholdValue>
+							<UpperThresholdValue>3</UpperThresholdValue>
+							<UpperWarningValue>0</UpperWarningValue>
+							<LowerWarningValue>0</LowerWarningValue>
+						</Yaw>
+						<MaxMisalignmentDuration>0</MaxMisalignmentDuration>
+					</TreatmentThreshold>
+					<ROIs Label="Body">
+						<TreatmentThreshold DecimalPlaces="2" DisplayUnit="cm">
+							<Magnitude IsWarning="false" ThresholdType="Magnitude" IsThresholdFixed="false" IsSymmetryOn="false">
+								<RangeValue>15</RangeValue>
+								<LowerThresholdValue>0</LowerThresholdValue>
+								<UpperThresholdValue>4</UpperThresholdValue>
+								<UpperWarningValue>0</UpperWarningValue>
+								<LowerWarningValue>0</LowerWarningValue>
+							</Magnitude>
+							<Vertical IsWarning="false" ThresholdType="Vertical" IsThresholdFixed="false" IsSymmetryOn="true">
+								<RangeValue>15</RangeValue>
+								<LowerThresholdValue>-4</LowerThresholdValue>
+								<UpperThresholdValue>4</UpperThresholdValue>
+								<UpperWarningValue>0</UpperWarningValue>
+								<LowerWarningValue>0</LowerWarningValue>
+							</Vertical>
+							<Lateral IsWarning="false" ThresholdType="Lateral" IsThresholdFixed="false" IsSymmetryOn="true">
+								<RangeValue>15</RangeValue>
+								<LowerThresholdValue>-4</LowerThresholdValue>
+								<UpperThresholdValue>4</UpperThresholdValue>
+								<UpperWarningValue>0</UpperWarningValue>
+								<LowerWarningValue>0</LowerWarningValue>
+							</Lateral>
+							<Longitudinal IsWarning="false" ThresholdType="Longitudinal" IsThresholdFixed="false" IsSymmetryOn="true">
+								<RangeValue>15</RangeValue>
+								<LowerThresholdValue>-4</LowerThresholdValue>
+								<UpperThresholdValue>4</UpperThresholdValue>
+								<UpperWarningValue>0</UpperWarningValue>
+								<LowerWarningValue>0</LowerWarningValue>
+							</Longitudinal>
+							<Pitch IsWarning="false" ThresholdType="Pitch" IsThresholdFixed="false" IsSymmetryOn="true">
+								<RangeValue>10</RangeValue>
+								<LowerThresholdValue>-3</LowerThresholdValue>
+								<UpperThresholdValue>3</UpperThresholdValue>
+								<UpperWarningValue>0</UpperWarningValue>
+								<LowerWarningValue>0</LowerWarningValue>
+							</Pitch>
+							<Roll IsWarning="false" ThresholdType="Roll" IsThresholdFixed="false" IsSymmetryOn="true">
+								<RangeValue>10</RangeValue>
+								<LowerThresholdValue>-3</LowerThresholdValue>
+								<UpperThresholdValue>3</UpperThresholdValue>
+								<UpperWarningValue>0</UpperWarningValue>
+								<LowerWarningValue>0</LowerWarningValue>
+							</Roll>
+							<Yaw IsWarning="false" ThresholdType="Yaw" IsThresholdFixed="false" IsSymmetryOn="true">
+								<RangeValue>10</RangeValue>
+								<LowerThresholdValue>-3</LowerThresholdValue>
+								<UpperThresholdValue>3</UpperThresholdValue>
+								<UpperWarningValue>0</UpperWarningValue>
+								<LowerWarningValue>0</LowerWarningValue>
+							</Yaw>
+							<MaxMisalignmentDuration>0</MaxMisalignmentDuration>
+						</TreatmentThreshold>
+					</ROIs>
+				</ReferenceSurfaces>
+				<ReferenceSurfaces Label="171010 213300">
+					<TreatmentThreshold DecimalPlaces="2" DisplayUnit="cm">
+						<Magnitude IsWarning="false" ThresholdType="Magnitude" IsThresholdFixed="false" IsSymmetryOn="false">
+							<RangeValue>15</RangeValue>
+							<LowerThresholdValue>0</LowerThresholdValue>
+							<UpperThresholdValue>4</UpperThresholdValue>
+							<UpperWarningValue>0</UpperWarningValue>
+							<LowerWarningValue>0</LowerWarningValue>
+						</Magnitude>
+						<Vertical IsWarning="false" ThresholdType="Vertical" IsThresholdFixed="false" IsSymmetryOn="true">
+							<RangeValue>15</RangeValue>
+							<LowerThresholdValue>-4</LowerThresholdValue>
+							<UpperThresholdValue>4</UpperThresholdValue>
+							<UpperWarningValue>0</UpperWarningValue>
+							<LowerWarningValue>0</LowerWarningValue>
+						</Vertical>
+						<Lateral IsWarning="false" ThresholdType="Lateral" IsThresholdFixed="false" IsSymmetryOn="true">
+							<RangeValue>15</RangeValue>
+							<LowerThresholdValue>-4</LowerThresholdValue>
+							<UpperThresholdValue>4</UpperThresholdValue>
+							<UpperWarningValue>0</UpperWarningValue>
+							<LowerWarningValue>0</LowerWarningValue>
+						</Lateral>
+						<Longitudinal IsWarning="false" ThresholdType="Longitudinal" IsThresholdFixed="false" IsSymmetryOn="true">
+							<RangeValue>15</RangeValue>
+							<LowerThresholdValue>-4</LowerThresholdValue>
+							<UpperThresholdValue>4</UpperThresholdValue>
+							<UpperWarningValue>0</UpperWarningValue>
+							<LowerWarningValue>0</LowerWarningValue>
+						</Longitudinal>
+						<Pitch IsWarning="false" ThresholdType="Pitch" IsThresholdFixed="false" IsSymmetryOn="true">
+							<RangeValue>10</RangeValue>
+							<LowerThresholdValue>-3</LowerThresholdValue>
+							<UpperThresholdValue>3</UpperThresholdValue>
+							<UpperWarningValue>0</UpperWarningValue>
+							<LowerWarningValue>0</LowerWarningValue>
+						</Pitch>
+						<Roll IsWarning="false" ThresholdType="Roll" IsThresholdFixed="false" IsSymmetryOn="true">
+							<RangeValue>10</RangeValue>
+							<LowerThresholdValue>-3</LowerThresholdValue>
+							<UpperThresholdValue>3</UpperThresholdValue>
+							<UpperWarningValue>0</UpperWarningValue>
+							<LowerWarningValue>0</LowerWarningValue>
+						</Roll>
+						<Yaw IsWarning="false" ThresholdType="Yaw" IsThresholdFixed="false" IsSymmetryOn="true">
+							<RangeValue>10</RangeValue>
+							<LowerThresholdValue>-3</LowerThresholdValue>
+							<UpperThresholdValue>3</UpperThresholdValue>
+							<UpperWarningValue>0</UpperWarningValue>
+							<LowerWarningValue>0</LowerWarningValue>
+						</Yaw>
+						<MaxMisalignmentDuration>0</MaxMisalignmentDuration>
+					</TreatmentThreshold>
+				</ReferenceSurfaces>
+			</Fields>
+		</Phases>
+	</Sites>
+	<LastModifiedDate>10/10/2017 21:33:00</LastModifiedDate>
+	<HashCode>d1aaCVwclRfigDI4iPKnhnrOM30OFzsTBgRrwnILIopVQ39jXT1j6s26AwIAqd+K6P2wDwkJANYNRrF0zkJi5qM4oDtgkDON8oSQBQpY2JI=</HashCode>
+</PatientTreatmentThreshold>

@@ -1,0 +1,1 @@
+AnalyzeImages -d "Images" -t 2 -o "Images\outputFile.csv" -r 1 -e 0
