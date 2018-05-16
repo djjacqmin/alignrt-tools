@@ -5,6 +5,38 @@ This python file contains functions that read the many types of files in the Ali
 
 import xml.etree.ElementTree as ET
 
+""" Helper functions """
+
+def anydup(thelist):
+    seen = set()
+    for x in thelist:
+        if x in seen: return True
+        seen.add(x)
+    return False
+
+def etree_to_dict(t,enumerated=False):
+    d={}
+    count=1
+    
+    for child in t:
+        # Construct key name
+        if enumerated:
+            key = '{}-{}'.format(child.tag,count)
+        else: 
+            key = child.tag
+        
+        # Determine if the child has children
+        if len(child)>0:
+            # enumberate the children?
+            enum = anydup([ele.tag for ele in child])
+            d[key] = etree_to_dict(child,enum)
+            count=count+1
+        else:
+            d[child.tag] = child.text
+        
+    return d
+
+
 """ Patient directory file readers """
 
 # ini files
@@ -26,7 +58,13 @@ def read_PatientDetails_ini(path):
 
 # xml files
 def read_PatientDetails_vpax(path):
-    pass
+    
+    try: 
+        tree = ET.parse('{0}/Patient Details.vpax'.format(path)).getroot()
+    except:
+        tree = ET.parse('{0}/Patient_Details.vpax'.format(path)).getroot()
+    
+    return etree_to_dict(tree)
 
 def read_PatientTreatmentThreshold_xml(path):
     pass
