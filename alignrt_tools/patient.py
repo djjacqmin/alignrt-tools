@@ -1,7 +1,14 @@
 """
 patient.py
-
 This module defines the Patient class, which stores information about individual AlignRT patients. In addition, this class contains methods for deriving information about the patient from its constituant data structures.
+
+Copyright (C) 2018, Dustin Jacqmin, PhD
+
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with this program. If not, see <http://www.gnu.org/licenses/>.
 """
 
 # Import helpful libraries
@@ -27,8 +34,7 @@ class Patient:
     sex = None # the Sex found in the Patient Details.vpax file
     dob = None # the DOB found in the Patient Details.vpax file
     latest_approved_record_surface_timestamp = None # the LatestApprovedRecordSurfaceTimestamp found in the Patient Details.vpax file
-    
-    
+        
     # Methods
     def __init__(self,path):
         self.path = path
