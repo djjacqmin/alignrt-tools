@@ -18,25 +18,38 @@ import dateutil.parser
 
 class Patient:
     """The Patient class contains attributes and methods that pertain to an individual AlignRT patient"""
-    
-    # Attributes
-    path = None # the full path to this patient
-    guid = None # the GUID found in the Patient Details.vpax file
-    description = None # the Description found in the Patient Details.vpax file
-    is_from_dicom = None # the IsFromDicom found in the Patient Details.vpax file
-    firs_tname = None # the FirstName found in the Patient Details.vpax file
-    middle_name = None # the MiddleName found in the Patient Details.vpax file
-    surname = None # the Surname found in the Patient Details.vpax file
-    patient_id = None # the PatientID found in the Patient Details.vpax file
-    patient_version = None # the PatientVersion found in the Patient Details.vpax file
-    notes = None # the Notes found in the Patient Details.vpax file
-    sites = [] # the Sites, stored in a list, found in the Patient Details.vpax file
-    sex = None # the Sex found in the Patient Details.vpax file
-    dob = None # the DOB found in the Patient Details.vpax file
-    latest_approved_record_surface_timestamp = None # the LatestApprovedRecordSurfaceTimestamp found in the Patient Details.vpax file
         
     # Methods
-    def __init__(self,path):
+    def __init__(self,path=None):
+        
+        if path is None:
+            # Create an empty patient  
+            self.create_empty_patient()
+        else:
+            # Create patient using the path provided
+            self.create_patient_from_directory(path)
+            
+    def create_empty_patient(self):
+        self.guid = None
+        self.description = None
+        self.is_from_dicom = None
+        self.first_name = None
+        self.first_name = None
+        self.middle_name = None
+        self.last_name = None
+        self.patient_id = None
+        self.patient_version = None
+        self.patient_version = None
+        self.notes = None
+        self.sex = None
+        self.date_of_birth = None
+        self.latest_approved_record_surface_timestamp = None
+        self.last_used_plotter_type = None
+        self.patient_texture_luminosity = None
+        self.sites = []
+            
+    def create_patient_from_directory(self,path):
+        
         self.path = path
         
         # Load the Patient Details XML to populate the rest of the 
@@ -45,6 +58,43 @@ class Patient:
         except:
             root = ET.parse('{0}/Patient_Details.vpax'.format(path)).getroot()
         
-        self.dob = dateutil.parser.parse(root.find('DOB').text)
-        self.guid = root.find('GUID').text
+        # Collect patient attributes from the Patient Details file
+        self.guid = self.get_patient_attribute_from_vpax(root,'GUID')
+        self.description = self.get_patient_attribute_from_vpax(root,'Description')
+        self.is_from_dicom = self.get_patient_attribute_from_vpax(root,'IsFromDicom')
+        self.first_name = self.get_patient_attribute_from_vpax(root,'FirstName')
+        self.first_name = self.get_patient_attribute_from_vpax(root,'FirstName')
+        self.middle_name = self.get_patient_attribute_from_vpax(root,'MiddleName')
+        self.last_name = self.get_patient_attribute_from_vpax(root,'Surname')
+        self.patient_id = self.get_patient_attribute_from_vpax(root,'PatientID')
+        self.patient_version = self.get_patient_attribute_from_vpax(root,'PatientVersion')
+        self.patient_version = self.get_patient_attribute_from_vpax(root,'PatientVersion')
+        self.notes = self.get_patient_attribute_from_vpax(root,'Notes')
+        self.sex = self.get_patient_attribute_from_vpax(root,'Sex')
+        self.date_of_birth = self.get_patient_attribute_from_vpax(root,'DOB')
+        self.latest_approved_record_surface_timestamp = self.get_patient_attribute_from_vpax(root,
+                                                           'LatestApprovedRecordSurfaceTimestamp')
+        self.last_used_plotter_type = self.get_patient_attribute_from_vpax(root,'LastUsedPlotterType')
+        self.patient_texture_luminosity = self.get_patient_attribute_from_vpax(root,'PatientTextureLuminosity')
         
+        # Convert attribute strings to other types, where applicable
+        if self.date_of_birth is not None: 
+            self.date_of_birth = dateutil.parser.parse(self.date_of_birth)
+        if self.latest_approved_record_surface_timestamp is not None: 
+            self.latest_approved_record_surface_timestamp = dateutil.parser.parse(self.latest_approved_record_surface_timestamp)
+        if self.is_from_dicom == 'true':
+            self.is_from_dicom = True
+        elif self.is_from_dicom == 'false':
+            self.is_from_dicom = False
+            
+        # Populate the sites array
+        self.sites = []
+        
+    def get_patient_attribute_from_vpax(self,tree,vpax_string):
+        if tree.find(vpax_string) is not None: 
+            return tree.find(vpax_string).text
+        else:
+            return None
+        
+        
+    
