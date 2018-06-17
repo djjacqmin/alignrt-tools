@@ -15,40 +15,51 @@ You should have received a copy of the GNU General Public License along with thi
 import xml.etree.ElementTree as ET
 from datetime import datetime
 import dateutil.parser
+import pandas as pd
 
 class Patient:
     """The Patient class contains attributes and methods that pertain to an individual AlignRT patient"""
+    # Attributes
+    patient_data_tags = (['GUID', 
+                         'Description', 
+                         'IsFromDicom',
+                         'FirstName',
+                         'MiddleName',
+                         'Surname',
+                         'PatientID',
+                         'PatientVersion',
+                         'Notes',
+                         'Sex',
+                         'DOB',
+                         'LatestApprovedRecordSurfaceTimestamp',
+                         'LastUsedPlotterType',
+                         'PatientTextureLuminosity'])
         
     # Methods
     def __init__(self,path=None):
         
         if path is None:
-            # Create an empty patient  
-            self.create_empty_patient()
+            self.patient_details = {}
+
+            for tag in Patient.patient_data_tags:
+                self.patient_details[tag] = None
+
+            self.path = None     
+            self.sites = []
         else:
             # Create patient using the path provided
-            self.create_patient_from_directory(path)
+            self._create_patient_from_directory(path)
             
-    def create_empty_patient(self):
-        self.guid = None
-        self.description = None
-        self.is_from_dicom = None
-        self.first_name = None
-        self.first_name = None
-        self.middle_name = None
-        self.last_name = None
-        self.patient_id = None
-        self.patient_version = None
-        self.patient_version = None
-        self.notes = None
-        self.sex = None
-        self.date_of_birth = None
-        self.latest_approved_record_surface_timestamp = None
-        self.last_used_plotter_type = None
-        self.patient_texture_luminosity = None
-        self.sites = []
-            
-    def create_patient_from_directory(self,path):
+    def get_patient_details_as_dataframe(self):
+        # There is no pd.Series.from_dict(), so we will use pd.DataFrame.from_dict()
+        # First, we will first have to convert each dictionary value to an array
+        temp_dict = {}
+        for key, value in self.patient_details.items():
+            temp_dict[key] = [value]
+        
+        return pd.DataFrame.from_dict(temp_dict)
+                        
+    def _create_patient_from_directory(self,path):
         
         self.path = path
         
@@ -58,39 +69,31 @@ class Patient:
         except:
             root = ET.parse('{0}/Patient_Details.vpax'.format(path)).getroot()
         
-        # Collect patient attributes from the Patient Details file
-        self.guid = self.get_patient_attribute_from_vpax(root,'GUID')
-        self.description = self.get_patient_attribute_from_vpax(root,'Description')
-        self.is_from_dicom = self.get_patient_attribute_from_vpax(root,'IsFromDicom')
-        self.first_name = self.get_patient_attribute_from_vpax(root,'FirstName')
-        self.first_name = self.get_patient_attribute_from_vpax(root,'FirstName')
-        self.middle_name = self.get_patient_attribute_from_vpax(root,'MiddleName')
-        self.last_name = self.get_patient_attribute_from_vpax(root,'Surname')
-        self.patient_id = self.get_patient_attribute_from_vpax(root,'PatientID')
-        self.patient_version = self.get_patient_attribute_from_vpax(root,'PatientVersion')
-        self.patient_version = self.get_patient_attribute_from_vpax(root,'PatientVersion')
-        self.notes = self.get_patient_attribute_from_vpax(root,'Notes')
-        self.sex = self.get_patient_attribute_from_vpax(root,'Sex')
-        self.date_of_birth = self.get_patient_attribute_from_vpax(root,'DOB')
-        self.latest_approved_record_surface_timestamp = self.get_patient_attribute_from_vpax(root,
-                                                           'LatestApprovedRecordSurfaceTimestamp')
-        self.last_used_plotter_type = self.get_patient_attribute_from_vpax(root,'LastUsedPlotterType')
-        self.patient_texture_luminosity = self.get_patient_attribute_from_vpax(root,'PatientTextureLuminosity')
+        self.patient_details = {}
         
-        # Convert attribute strings to other types, where applicable
-        if self.date_of_birth is not None: 
-            self.date_of_birth = dateutil.parser.parse(self.date_of_birth)
-        if self.latest_approved_record_surface_timestamp is not None: 
-            self.latest_approved_record_surface_timestamp = dateutil.parser.parse(self.latest_approved_record_surface_timestamp)
-        if self.is_from_dicom == 'true':
-            self.is_from_dicom = True
-        elif self.is_from_dicom == 'false':
-            self.is_from_dicom = False
+        for tag in Patient.patient_data_tags:
+            self.patient_details[tag] = self._get_patient_attribute_from_vpax(root,tag)
+        
+        # Convert Date of birth to datetime object
+        if self.patient_details['DOB'] is not None: 
+            self.patient_details['DOB'] = dateutil.parser.parse(self.patient_details['DOB'])
+            
+        # Convert LatestApprovedRecordSurfaceTimestamp to datetime object
+        shorter_name = self.patient_details['LatestApprovedRecordSurfaceTimestamp']
+        if shorter_name is not None: 
+            self.patient_details['LatestApprovedRecordSurfaceTimestamp'] = dateutil.parser.parse(shorter_name)
+            
+        # Convert IsFromDicom to boolean
+        if self.patient_details['IsFromDicom'] == 'true':
+            self.patient_details['IsFromDicom'] = True
+        elif self.patient_details['IsFromDicom'] == 'false':
+            self.patient_details['IsFromDicom'] = False
             
         # Populate the sites array
         self.sites = []
         
-    def get_patient_attribute_from_vpax(self,tree,vpax_string):
+    def _get_patient_attribute_from_vpax(self,tree,vpax_string):
+        
         if tree.find(vpax_string) is not None: 
             return tree.find(vpax_string).text
         else:

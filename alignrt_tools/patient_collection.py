@@ -14,6 +14,7 @@ You should have received a copy of the GNU General Public License along with thi
 # Import helpful libraries and modules
 from alignrt_tools.patient import Patient
 import os.path
+import pandas as pd
 
 class PatientCollection:
     """The PatientCollection class contains attributes and methods that pertain to an a collection of AlignRT patients. """
@@ -26,9 +27,21 @@ class PatientCollection:
             self.patients = []
         else:
             # Create patient collection using the path provided
-            self.create_patient_collection_from_directory(path)
+            self._create_patient_collection_from_directory(path)
     
-    def create_patient_collection_from_directory(self,path):
+    def get_patient_collection_as_dataframe(self):
+        # Create an empty dataframe
+        df = None
+        
+        for patient in self.patients:
+            if df is None:
+                df = patient.get_patient_details_as_dataframe()
+            else:
+                df = df.append(patient.get_patient_details_as_dataframe(),ignore_index=True)
+        
+        return df
+    
+    def _create_patient_collection_from_directory(self,path):
         # Creates a patient collection from the directories within path.
         
         # Get a list of the subdirectories in the path
