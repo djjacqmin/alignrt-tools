@@ -1,6 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<PatientTreatmentThreshold xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://tempuri.org/PatientTreatmentThreshold.xsd">
-	<PatientId>20150925ZEL</PatientId>
-	<LastModifiedDate>10/10/2017 21:18:55</LastModifiedDate>
-	<HashCode>dgWUpemYLbBpDJHKjyfuQXR04v3m4Tat+jFJmb1GSfXT/mkBeJBLSrtpHoZyGjcgDeBugrNmfX0Ww8FIfyPWzHgz6kEEuXwFmeZ+pt3445M=</HashCode>
-</PatientTreatmentThreshold>

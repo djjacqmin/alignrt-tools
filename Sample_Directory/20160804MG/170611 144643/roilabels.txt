@@ -1,1 +1,0 @@
-Default ROI,selection.roi,SHIFT_ISOCENTRE

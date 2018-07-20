@@ -1,1 +1,0 @@
-Body,selection.roi,SHIFT_ISOCENTRE
