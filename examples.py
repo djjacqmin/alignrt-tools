@@ -1,8 +1,6 @@
 """ Examples demonstrating how to use alignrt_tools"""
 
 # Import alignrt_tools Libraries
-import sys
-sys.path.append('../alignrt-tools')
 import alignrt_tools as art
 
 # Define a path containing alignrt data
