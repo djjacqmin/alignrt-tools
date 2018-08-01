@@ -1,4 +1,4 @@
-'''
+"""
 This module defines the Patient class and PatientCollection class, which store 
 information about AlignRT patients. In addition, this class contains methods 
 for deriving information about the patient from its constituant data structures.
@@ -16,7 +16,7 @@ PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License along with 
 this program. If not, see <http://www.gnu.org/licenses/>.
-'''
+"""
 
 # Import helpful libraries
 import xml.etree.ElementTree as ET
@@ -26,7 +26,7 @@ import pandas as pd
 import os.path
 
 class Patient:
-    '''The Patient class contains attributes and methods that pertain to an 
+    """The Patient class contains attributes and methods that pertain to an 
     individual AlignRT patient
     
     ...
@@ -41,7 +41,7 @@ class Patient:
     get_patient_details_as_dataframe()
         Returns a pandas dataframe object containing information about a patient
     
-    '''
+    """
     # Attributes
     patient_data_tags = (['GUID', 
                          'Description', 
