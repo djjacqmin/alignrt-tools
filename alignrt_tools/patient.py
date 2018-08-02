@@ -70,7 +70,7 @@ class Patient:
                 self.patient_details[tag] = None
 
             self.path = None
-            self.sites = []
+            self.site_collection = site.SiteCollection()
         else:
             # Create patient using the path provided
             self._create_patient_from_directory(path)
@@ -118,7 +118,7 @@ class Patient:
             self.patient_details['IsFromDicom'] = False
 
         # Create a SiteCollection for the patient
-        self.sites = site.SiteCollection(root.find("Sites"))
+        self.site_collection = site.SiteCollection(root.find("Sites"))
 
     def _get_patient_attribute_from_vpax(self, tree, vpax_string):
 
