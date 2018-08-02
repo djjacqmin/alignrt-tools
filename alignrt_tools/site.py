@@ -18,10 +18,11 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <http://www.gnu.org/licenses/>.
 """
 
+
 class Site:
     """The Site class contains attributes and methods that 
     pertain to an individual AlignRT site
-    
+
     ...
 
     Attributes
@@ -31,26 +32,27 @@ class Site:
 
     Methods
     -------
-    
+
     """
     # Attributes
-    site_data_tags = (['GUID', 
-                         'Description', 
-                         'IsFromDicom'])
+    site_data_tags = (['GUID',
+                       'Description',
+                       'IsFromDicom'])
 
     # Methods
-    def __init__(self,site_tree=None):
+    def __init__(self, site_tree=None):
         """
         Parameters
         ----------
         site_tree : ElementTree
-            an ElementTree object that contains site details (default is None)
+            an ElementTree object created from Patient_Details.vpax, 
+            the root of which is an individual site (default is None)
         """
 
         if site_tree is None:
             # Create an empty site
             self.site_details = {}
-            
+
             for tag in Site.site_data_tags:
                 self.site_details[tag] = None
 
@@ -58,34 +60,37 @@ class Site:
             # Create site using the ElementTree provided
             self._create_site_from_element_tree(site_tree)
 
-    def _create_site_from_element_tree(self,site_tree):
+    def _create_site_from_element_tree(self, site_tree):
         """ 
         A private method used to populate site details from an ElementTree object
 
         Parameters
         ----------
         site_tree : ElementTree
-            an ElementTree object that contains site details
+            an ElementTree object created from Patient_Details.vpax, 
+            the root of which is an individual site (default is None)
         """
 
         self.site_details = {}
 
         # Loop over site data tags
         for tag in Site.site_data_tags:
-            if site_tree.find(tag) is not None: 
+            if site_tree.find(tag) is not None:
                 self.site_details[tag] = site_tree.find(tag).text
             else:
                 self.site_details[tag] = None
-        
+
         # Convert IsFromDicom to boolean
         if self.site_details['IsFromDicom'] == 'true':
             self.site_details['IsFromDicom'] = True
         elif self.site_details['IsFromDicom'] == 'false':
             self.site_details['IsFromDicom'] = False
 
+
 class SiteCollection:
-    """The SiteCollection class contains attributes and methods that pertain to a collection of AlignRT sites for a given patient.
-    
+    """The SiteCollection class contains attributes and methods that 
+    pertain to a collection of AlignRT sites for a given patient.
+
     ...
 
     Attributes
@@ -95,6 +100,44 @@ class SiteCollection:
     Methods
     -------
     None
-        
+
     """
     # Attributes
+
+    # Methods
+    def __init__(self, site_collection_tree=None):
+        """
+        Parameters
+        ----------
+        site_collection_tree : ElementTree
+            an ElementTree object created from Patient_Details.vpax, 
+            the root of which is the Sites  (default is None)
+        """
+        if site_collection_tree is None:
+            # Create an empty patient collection
+            self.num_sites = 0
+            self.sites = []
+        else:
+            # Create patient collection using the path provided
+            self._create_site_collection_from_element_tree(
+                site_collection_tree)
+
+    def _create_site_collection_from_element_tree(self, site_collection_tree):
+        """ 
+        A private method used to populate a site collection
+        from an ElementTree object
+
+        Parameters
+        ----------
+        site_tree : ElementTree
+            an ElementTree object created from Patient_Details.vpax, 
+            the root of which is the Sites  (default is None)
+        """
+
+        self.sites = []
+
+        # Iterate through the ElementTree to create a Site object for each site
+        for site_tree in site_collection_tree:
+            self.sites.append(Site(site_tree))
+
+        self.num_sites = len(self.sites)
