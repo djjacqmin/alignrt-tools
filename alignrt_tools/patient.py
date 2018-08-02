@@ -24,7 +24,7 @@ from datetime import datetime
 import dateutil.parser
 import pandas as pd
 import os.path
-from alignrt_tools import site
+from alignrt_tools.site import SiteCollection
 
 
 class Patient:
@@ -70,7 +70,7 @@ class Patient:
                 self.patient_details[tag] = None
 
             self.path = None
-            self.site_collection = site.SiteCollection()
+            self.site_collection = SiteCollection()
         else:
             # Create patient using the path provided
             self._create_patient_from_directory(path)
@@ -118,7 +118,7 @@ class Patient:
             self.patient_details['IsFromDicom'] = False
 
         # Create a SiteCollection for the patient
-        self.site_collection = site.SiteCollection(root.find("Sites"))
+        self.site_collection = SiteCollection(root.find("Sites"))
 
     def _get_patient_attribute_from_vpax(self, tree, vpax_string):
 
