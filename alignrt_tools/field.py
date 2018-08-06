@@ -1,7 +1,7 @@
 """
-This module defines the Site class and SiteCollection class, which store 
-information about AlignRT sites. In addition, this class contains methods 
-for deriving information about the sites from its constituant data structures.
+This module defines the Field class and FieldCollection class, which store 
+information about AlignRT fields. In addition, this class contains methods 
+for deriving information about the fields from its constituant data structures.
 
 Copyright (C) 2018, Dustin Jacqmin, PhD
 
@@ -19,11 +19,10 @@ this program. If not, see <http://www.gnu.org/licenses/>.
 """
 
 from alignrt_tools.generic import GenericAlignRTClass
-from alignrt_tools.phase import PhaseCollection
 
-class Site(GenericAlignRTClass):
-    """The Site class contains attributes and methods that 
-    pertain to an individual AlignRT site
+class Field(GenericAlignRTClass):
+    """The Field class contains attributes and methods that 
+    pertain to an individual AlignRT field
 
     ...
 
@@ -45,22 +44,12 @@ class Site(GenericAlignRTClass):
         ----------
         tree : ElementTree
             an ElementTree object created from Patient_Details.vpax, 
-            the root of which is an individual site (default is None)
+            the root of which is an individual field (default is None)
         """
 
         super().__init__(tree)
 
-        # Create a PhaseCollection for the site
-        if tree is None:
-            # Create an empty object
-           self.phase_collection = None
-
-        else:
-            # Create an SiteCollection using the ElementTree provided
-            self.phase_collection = PhaseCollection(tree.find("Phases"))
-
-
-class SiteCollection:
+class FieldCollection:
     """The SiteCollection class contains attributes and methods that 
     pertain to a collection of AlignRT sites for a given patient.
 
@@ -84,17 +73,18 @@ class SiteCollection:
         ----------
         collection_tree : ElementTree
             an ElementTree object created from Patient_Details.vpax, 
-            the root of which is the Sites tag (default is None)
+            the root of which is the Fields tag (default is None)
         """
+        
         if collection_tree is None:
             # Create an empty site collection
-            self.num_sites = 0
-            self.sites = []
+            self.num_fields = 0
+            self.fields = []
         else:
-            self.sites = []
+            self.fields = []
 
             # Iterate through the ElementTree to create a Site object for each site
-            for site_tree in collection_tree:
-                self.sites.append(Site(site_tree))
+            for field_tree in collection_tree:
+                self.fields.append(Field(field_tree))
 
-            self.num_sites = len(self.sites)
+            self.num_fields = len(self.fields)

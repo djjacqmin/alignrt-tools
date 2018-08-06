@@ -1,7 +1,7 @@
 """
-This module defines the Site class and SiteCollection class, which store 
-information about AlignRT sites. In addition, this class contains methods 
-for deriving information about the sites from its constituant data structures.
+This module defines the Phase class and PhaseCollection class, which store 
+information about AlignRT phases. In addition, this class contains methods 
+for deriving information about the phases from its constituant data structures.
 
 Copyright (C) 2018, Dustin Jacqmin, PhD
 
@@ -19,11 +19,11 @@ this program. If not, see <http://www.gnu.org/licenses/>.
 """
 
 from alignrt_tools.generic import GenericAlignRTClass
-from alignrt_tools.phase import PhaseCollection
+from alignrt_tools.field import FieldCollection
 
-class Site(GenericAlignRTClass):
-    """The Site class contains attributes and methods that 
-    pertain to an individual AlignRT site
+class Phase(GenericAlignRTClass):
+    """The Phase class contains attributes and methods that 
+    pertain to an individual AlignRT phase (plan)
 
     ...
 
@@ -45,24 +45,23 @@ class Site(GenericAlignRTClass):
         ----------
         tree : ElementTree
             an ElementTree object created from Patient_Details.vpax, 
-            the root of which is an individual site (default is None)
+            the root of which is an individual phase (default is None)
         """
 
         super().__init__(tree)
 
-        # Create a PhaseCollection for the site
+        # Create a Field for the phase
         if tree is None:
             # Create an empty object
-           self.phase_collection = None
+           self.field_collection = None
 
         else:
             # Create an SiteCollection using the ElementTree provided
-            self.phase_collection = PhaseCollection(tree.find("Phases"))
+            self.field_collection = FieldCollection(tree.find("Fields"))
 
-
-class SiteCollection:
-    """The SiteCollection class contains attributes and methods that 
-    pertain to a collection of AlignRT sites for a given patient.
+class PhaseCollection:
+    """The PhaseCollection class contains attributes and methods that 
+    pertain to a collection of AlignRT phases for a given patient.
 
     ...
 
@@ -84,17 +83,18 @@ class SiteCollection:
         ----------
         collection_tree : ElementTree
             an ElementTree object created from Patient_Details.vpax, 
-            the root of which is the Sites tag (default is None)
+            the root of which is the Phases tag (default is None)
         """
+
         if collection_tree is None:
-            # Create an empty site collection
-            self.num_sites = 0
-            self.sites = []
+            # Create an empty phase collection
+            self.num_phases = 0
+            self.phases = []
         else:
-            self.sites = []
+            self.phases = []
 
-            # Iterate through the ElementTree to create a Site object for each site
-            for site_tree in collection_tree:
-                self.sites.append(Site(site_tree))
+            # Iterate through the ElementTree to create a Phase object for each site
+            for tree in collection_tree:
+                self.phases.append(Phase(tree))
 
-            self.num_sites = len(self.sites)
+            self.num_phases = len(self.phases)

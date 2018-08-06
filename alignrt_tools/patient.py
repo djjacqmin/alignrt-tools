@@ -25,108 +25,48 @@ import dateutil.parser
 import pandas as pd
 import os.path
 from alignrt_tools.site import SiteCollection
+from alignrt_tools.generic import GenericAlignRTClass
 
 
-class Patient:
-    """The Patient class contains attributes and methods that pertain to an 
-    individual AlignRT patient
+class Patient(GenericAlignRTClass):
+    """The Patient class contains attributes and methods that pertain 
+    to an individual AlignRT patient
 
     ...
 
     Attributes
     ----------
-    patient_data_tags : list(str)
-        a list of data tags that are common to most patients
+    alignrt_data_tags : list(str)
+        a list of data tags inherited from the superclass
 
     Methods
     -------
-    get_patient_details_as_dataframe()
-        Returns a pandas dataframe object containing information about a patient
-
+    get_details_as_dataframe()
+        Returns the patient details as a pandas dataframe
     """
-    # Attributes
-    patient_data_tags = (['GUID',
-                          'Description',
-                          'IsFromDicom',
-                          'FirstName',
-                          'MiddleName',
-                          'Surname',
-                          'PatientID',
-                          'PatientVersion',
-                          'Notes',
-                          'Sex',
-                          'DOB',
-                          'LatestApprovedRecordSurfaceTimestamp',
-                          'LastUsedPlotterType',
-                          'PatientTextureLuminosity'])
 
     # Methods
-    def __init__(self, path=None):
+    def __init__(self, tree=None, path=None):
+        """
+        Parameters
+        ----------
+        tree : ElementTree
+            an ElementTree object created from Patient_Details.vpax, 
+            the root of which is an individual patient (default is None)
+        """
 
-        if path is None:
-            self.patient_details = {}
-
-            for tag in Patient.patient_data_tags:
-                self.patient_details[tag] = None
-
-            self.path = None
-            self.site_collection = SiteCollection()
-        else:
-            # Create patient using the path provided
-            self._create_patient_from_directory(path)
-
-    def get_patient_details_as_dataframe(self):
-        # There is no pd.Series.from_dict(), so we will use pd.DataFrame.from_dict()
-        # First, we will first have to convert each dictionary value to an array
-        temp_dict = {}
-        for key, value in self.patient_details.items():
-            temp_dict[key] = [value]
-
-        return pd.DataFrame.from_dict(temp_dict)
-
-    def _create_patient_from_directory(self, path):
+        super().__init__(tree)
 
         self.path = path
 
-        # Load the Patient Details XML to populate the rest of the
-        try:
-            root = ET.parse('{0}/Patient Details.vpax'.format(path)).getroot()
-        except:
-            root = ET.parse('{0}/Patient_Details.vpax'.format(path)).getroot()
-
-        self.patient_details = {}
-
-        for tag in Patient.patient_data_tags:
-            self.patient_details[tag] = self._get_patient_attribute_from_vpax(
-                root, tag)
-
-        # Convert Date of birth to datetime object
-        if self.patient_details['DOB'] is not None:
-            self.patient_details['DOB'] = dateutil.parser.parse(
-                self.patient_details['DOB'])
-
-        # Convert LatestApprovedRecordSurfaceTimestamp to datetime object
-        shorter_name = self.patient_details['LatestApprovedRecordSurfaceTimestamp']
-        if shorter_name is not None:
-            self.patient_details['LatestApprovedRecordSurfaceTimestamp'] = dateutil.parser.parse(
-                shorter_name)
-
-        # Convert IsFromDicom to boolean
-        if self.patient_details['IsFromDicom'] == 'true':
-            self.patient_details['IsFromDicom'] = True
-        elif self.patient_details['IsFromDicom'] == 'false':
-            self.patient_details['IsFromDicom'] = False
-
         # Create a SiteCollection for the patient
-        self.site_collection = SiteCollection(root.find("Sites"))
+        if tree is None:
+            # Create an empty object
+           self.site_collection = None
 
-    def _get_patient_attribute_from_vpax(self, tree, vpax_string):
-
-        if tree.find(vpax_string) is not None:
-            return tree.find(vpax_string).text
         else:
-            return None
-
+            # Create an SiteCollection using the ElementTree provided
+            self.site_collection = SiteCollection(tree.find("Sites"))
 
 class PatientCollection:
     """The PatientCollection class contains attributes and methods that pertain to an a collection of AlignRT patients. """
@@ -164,9 +104,12 @@ class PatientCollection:
         # Determine which of the folders correspond to patients
         self.patients = []
         for folder in folders:
-            if (os.path.isfile('{0}/{1}/Patient Details.vpax'.format(path, folder)) or
-                    os.path.isfile('{0}/{1}/Patient_Details.vpax'.format(path, folder))):
+            if os.path.isfile('{0}/{1}/Patient Details.vpax'.format(path, folder)):
+                pd_path = '{0}/{1}/Patient Details.vpax'.format(path, folder)
+                self.patients.append(Patient(ET.parse(pd_path).getroot(),path))
 
-                self.patients.append(Patient('{0}/{1}'.format(path, folder)))
-
+            elif os.path.isfile('{0}/{1}/Patient_Details.vpax'.format(path, folder)):
+                pd_path = '{0}/{1}/Patient_Details.vpax'.format(path, folder)
+                self.patients.append(Patient(ET.parse(pd_path).getroot(),path))
+                
         self.num_patients = len(self.patients)
