@@ -10,5 +10,5 @@ sgrt_path = '../alignrt-playground/Sample_Directory'
 pc = art.PatientCollection(sgrt_path)
 
 # Create and display a pandas dataframe of the patient collection
-df = pc.get_patient_collection_as_dataframe()
+df = pc.get_collection_as_dataframe()
 print(df)

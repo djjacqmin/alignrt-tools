@@ -69,7 +69,20 @@ class Patient(GenericAlignRTClass):
             self.site_collection = SiteCollection(tree.find("Sites"))
 
 class PatientCollection:
-    """The PatientCollection class contains attributes and methods that pertain to an a collection of AlignRT patients. """
+    """The PatientCollection class contains attributes and methods that pertain to an a collection of AlignRT patients. 
+       
+    ...
+
+    Attributes
+    ----------
+    None
+
+    Methods
+    -------
+    get_collection_as_dataframe()
+        Returns the patient details as a pandas dataframe for all 
+        patients in the collection
+    """
 
     def __init__(self, path=None):
 
@@ -81,16 +94,16 @@ class PatientCollection:
             # Create patient collection using the path provided
             self._create_patient_collection_from_directory(path)
 
-    def get_patient_collection_as_dataframe(self):
+    def get_collection_as_dataframe(self):
         # Create an empty dataframe
         df = None
 
         for patient in self.patients:
             if df is None:
-                df = patient.get_patient_details_as_dataframe()
+                df = patient.get_details_as_dataframe()
             else:
                 df = df.append(
-                    patient.get_patient_details_as_dataframe(), ignore_index=True)
+                    patient.get_details_as_dataframe(), ignore_index=True)
 
         return df
 
