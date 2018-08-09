@@ -20,8 +20,6 @@ this program. If not, see <http://www.gnu.org/licenses/>.
 
 # Import helpful libraries
 import xml.etree.ElementTree as ET
-from datetime import datetime
-import dateutil.parser
 import pandas as pd
 import os.path
 from alignrt_tools.site import SiteCollection

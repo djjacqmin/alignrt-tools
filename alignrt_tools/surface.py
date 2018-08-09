@@ -1,4 +1,3 @@
-
 """
 This module defines a Surface class. This class contains surfaces 
 created by the AlignRT software.
@@ -19,8 +18,10 @@ this program. If not, see <http://www.gnu.org/licenses/>.
 """
 
 # Import helpful libraries
+import os.path
 from datetime import datetime
 import dateutil.parser
+from alignrt_tools.realtimedeltas import RealTimeDeltas
 
 
 class Surface:
@@ -50,8 +51,9 @@ class Surface:
         self.path = path
         self.surface_details = {}
         self.site_details = {}
+        self.realtimedeltas_collection = {}
 
-        # To reduce memory overhead and computation time, we will only
+        # To reduce memory overhead and loading time, we will only
         # load a surface mesh when requested
         self.surface_mesh = None
 
@@ -65,6 +67,7 @@ class Surface:
                     self.surface_details[pieces[0]] = pieces[1].split("\n")[0]
                 else:
                     self.surface_details[pieces[0]] = None
+
             # Read site.ini and convert to dictionary
             site_ini = open("{0}/site.ini".format(path), "r")
             for line in site_ini:
@@ -74,3 +77,33 @@ class Surface:
                 else:
                     self.site_details[pieces[0]] = None
 
+            # Get a list of the subdirectories in the surface folder
+            # path
+            folders = [
+                name
+                for name in os.listdir(path)
+                if os.path.isdir(os.path.join(path, name))
+            ]
+
+            # Determine if any of the folders contain
+            # RealTimeDeltas_DATE_TIME.txt files
+            for folder in folders:
+                """ 
+                The name of a RealTimeDeltas folder is 
+                Monitoring_DATE_TIME. The name of the file within will 
+                be RealTimeDeltas_DATE_TIME.txt. First, let's extract 
+                the DATE_TIME string. 
+                """
+
+                # Check to see if this a monitoring folder
+                if folder[0:10] == "Monitoring":
+                    # Construct the likely RealTimeDeltas file path
+                    date_time_str = folder.split("Monitoring_")[1]
+                    rtd_path = (
+                        path + folder + "/" + "RealTimeDeltas_" + date_time_str + ".txt"
+                    )
+                    if os.path.isfile(rtd_path):
+                        # Create a new RealTimeDeltas object
+                        self.realtimedeltas_collection[date_time_str] = RealTimeDeltas(
+                            rtd_path
+                        )
