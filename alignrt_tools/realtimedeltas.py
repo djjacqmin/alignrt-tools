@@ -65,7 +65,7 @@ class RealTimeDeltas:
 
         if path is not None:
 
-            with open(path) as rtd:
+            with open(path, "r") as rtd:
                 header_lines = rtd.readlines()[0 : RealTimeDeltas.header_len]
 
                 for line in header_lines:
