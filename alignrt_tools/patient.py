@@ -63,25 +63,22 @@ class Patient(GenericAlignRTClass):
         super().__init__(tree)
 
         self.path = path
+        self.site_collection = None
+        self.surface_collection = {}
 
         # Create a SiteCollection for the patient
-        if tree is None:
-            # Create an empty object
-            self.site_collection = None
+        if tree is not None:
 
-        else:
             # Create an SiteCollection using the ElementTree provided
             self.site_collection = SiteCollection(tree.find("Sites"))
 
-        # Get a list of the subdirectories in the path
-        folders = [
-            name for name in os.listdir(path) if os.path.isdir(os.path.join(path, name))
-        ]
+            # Get a list of the subdirectories in the path
+            folders = [
+                name
+                for name in os.listdir(path)
+                if os.path.isdir(os.path.join(path, name))
+            ]
 
-        if tree is None:
-            # Create an empty dictionary
-            self.surface_collection = {}
-        else:
             # Determine if the folders are surfaces
             for folder in folders:
                 if os.path.isfile("{0}/{1}/capture.obj".format(path, folder)):
@@ -142,10 +139,12 @@ class PatientCollection:
         for folder in folders:
             if os.path.isfile("{0}/{1}/Patient Details.vpax".format(path, folder)):
                 pd_path = "{0}/{1}/Patient Details.vpax".format(path, folder)
-                self.patients.append(Patient(ET.parse(pd_path).getroot(), path))
+                px_path = "{0}/{1}/".format(path, folder)
+                self.patients.append(Patient(ET.parse(pd_path).getroot(), px_path))
 
             elif os.path.isfile("{0}/{1}/Patient_Details.vpax".format(path, folder)):
                 pd_path = "{0}/{1}/Patient_Details.vpax".format(path, folder)
-                self.patients.append(Patient(ET.parse(pd_path).getroot(), path))
+                px_path = "{0}/{1}/".format(path, folder)
+                self.patients.append(Patient(ET.parse(pd_path).getroot(), px_path))
 
         self.num_patients = len(self.patients)

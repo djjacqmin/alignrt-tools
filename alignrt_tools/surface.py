@@ -51,7 +51,7 @@ class Surface:
         self.surface_details = {}
         self.site_details = {}
 
-        # To reduce memory overhead and computation time, we will only 
+        # To reduce memory overhead and computation time, we will only
         # load a surface mesh when requested
         self.surface_mesh = None
 
@@ -66,7 +66,7 @@ class Surface:
                 else:
                     self.surface_details[pieces[0]] = None
             # Read site.ini and convert to dictionary
-            site_ini = open("{0}/capture.ini".format(path), "r")
+            site_ini = open("{0}/site.ini".format(path), "r")
             for line in site_ini:
                 pieces = line.split("=")
                 if len(pieces) > 1:
