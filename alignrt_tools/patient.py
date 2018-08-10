@@ -20,12 +20,11 @@ this program. If not, see <http://www.gnu.org/licenses/>.
 
 # Import helpful libraries
 import xml.etree.ElementTree as ET
-from datetime import datetime
-import dateutil.parser
 import pandas as pd
 import os.path
 from alignrt_tools.site import SiteCollection
 from alignrt_tools.generic import GenericAlignRTClass
+from alignrt_tools.surface import Surface
 
 
 class Patient(GenericAlignRTClass):
@@ -53,20 +52,41 @@ class Patient(GenericAlignRTClass):
         tree : ElementTree
             an ElementTree object created from Patient_Details.vpax, 
             the root of which is an individual patient (default is None)
+        path : str
+            the path to the directory which contains the patient's 
+            files
         """
 
+        # Instantiate the Patient using the generic class
         super().__init__(tree)
 
         self.path = path
+        self.site_collection = None
+        self.surface_collection = {}
+
+        print(self.details["Surname"])
 
         # Create a SiteCollection for the patient
-        if tree is None:
-            # Create an empty object
-           self.site_collection = None
+        if tree is not None:
 
-        else:
             # Create an SiteCollection using the ElementTree provided
             self.site_collection = SiteCollection(tree.find("Sites"))
+
+            # Get a list of the subdirectories in the path
+            folders = [
+                name
+                for name in os.listdir(path)
+                if os.path.isdir(os.path.join(path, name))
+            ]
+
+            # Determine if the folders are surfaces
+            for folder in folders:
+                if os.path.isfile("{0}/{1}/capture.obj".format(path, folder)):
+                    # Create a new surface
+                    self.surface_collection[folder] = Surface(
+                        "{0}/{1}".format(path, folder)
+                    )
+
 
 class PatientCollection:
     """The PatientCollection class contains attributes and methods that pertain to an a collection of AlignRT patients. 
@@ -102,8 +122,7 @@ class PatientCollection:
             if df is None:
                 df = patient.get_details_as_dataframe()
             else:
-                df = df.append(
-                    patient.get_details_as_dataframe(), ignore_index=True)
+                df = df.append(patient.get_details_as_dataframe(), ignore_index=True)
 
         return df
 
@@ -111,18 +130,21 @@ class PatientCollection:
         # Creates a patient collection from the directories within path.
 
         # Get a list of the subdirectories in the path
-        folders = [name for name in os.listdir(
-            path) if os.path.isdir(os.path.join(path, name))]
+        folders = [
+            name for name in os.listdir(path) if os.path.isdir(os.path.join(path, name))
+        ]
 
         # Determine which of the folders correspond to patients
         self.patients = []
         for folder in folders:
-            if os.path.isfile('{0}/{1}/Patient Details.vpax'.format(path, folder)):
-                pd_path = '{0}/{1}/Patient Details.vpax'.format(path, folder)
-                self.patients.append(Patient(ET.parse(pd_path).getroot(),path))
+            if os.path.isfile("{0}/{1}/Patient Details.vpax".format(path, folder)):
+                pd_path = "{0}/{1}/Patient Details.vpax".format(path, folder)
+                px_path = "{0}/{1}/".format(path, folder)
+                self.patients.append(Patient(ET.parse(pd_path).getroot(), px_path))
 
-            elif os.path.isfile('{0}/{1}/Patient_Details.vpax'.format(path, folder)):
-                pd_path = '{0}/{1}/Patient_Details.vpax'.format(path, folder)
-                self.patients.append(Patient(ET.parse(pd_path).getroot(),path))
-                
+            elif os.path.isfile("{0}/{1}/Patient_Details.vpax".format(path, folder)):
+                pd_path = "{0}/{1}/Patient_Details.vpax".format(path, folder)
+                px_path = "{0}/{1}/".format(path, folder)
+                self.patients.append(Patient(ET.parse(pd_path).getroot(), px_path))
+
         self.num_patients = len(self.patients)
