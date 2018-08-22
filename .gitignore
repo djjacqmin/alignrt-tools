@@ -2,3 +2,4 @@
 *.pyo
 *.ply
 *.o
+obj_to_ply
