@@ -47,7 +47,8 @@ class RealTimeDeltas:
 
     Methods
     -------
-    None
+    get_realtimedeltas_as_dataframe()
+        Returns the real-time delta file as a pandas dataframe
     """
 
     # Current file format uses 11 header lines
@@ -77,6 +78,8 @@ class RealTimeDeltas:
                     else:
                         self.realtimedeltas_details[pieces[0]] = None
 
+                rtd.close()
+
         # Change Start Time and End Time to datetime objects
         self.realtimedeltas_details["Start Time"] = datetime.strptime(
             self.realtimedeltas_details["Start Time"], "%y%m%d_%H%M%S"
@@ -85,7 +88,7 @@ class RealTimeDeltas:
             self.realtimedeltas_details["End Time"], "%y%m%d_%H%M%S"
         )
 
-    def return_realtimedeltas_as_dataframe(self):
+    def get_realtimedeltas_as_dataframe(self):
         """
         Parameters
         ----------

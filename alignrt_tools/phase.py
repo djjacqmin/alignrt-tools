@@ -19,7 +19,8 @@ this program. If not, see <http://www.gnu.org/licenses/>.
 """
 
 from alignrt_tools.generic import GenericAlignRTClass
-from alignrt_tools.field import FieldCollection
+from alignrt_tools.field import Field
+
 
 class Phase(GenericAlignRTClass):
     """The Phase class contains attributes and methods that 
@@ -53,11 +54,34 @@ class Phase(GenericAlignRTClass):
         # Create a Field for the phase
         if tree is None:
             # Create an empty object
-           self.field_collection = None
+            self.fields = None
 
         else:
-            # Create an SiteCollection using the ElementTree provided
-            self.field_collection = FieldCollection(tree.find("Fields"))
+            # Create an array of Fields using the ElementTree provided
+            self._populate_fields_array(tree.find("Fields"))
+
+    def _populate_fields_array(self, collection_tree=None):
+        """
+        Parameters
+        ----------
+        collection_tree : ElementTree
+            an ElementTree object created from Patient_Details.vpax, 
+            the root of which is the Fields tag (default is None)
+        """
+
+        if collection_tree is None:
+            # Create an empty site collection
+            self.num_fields = 0
+            self.fields = []
+        else:
+            self.fields = []
+
+            # Iterate through the ElementTree to create a Site object for each site
+            for field_tree in collection_tree:
+                self.fields.append(Field(field_tree))
+
+            self.num_fields = len(self.fields)
+
 
 class PhaseCollection:
     """The PhaseCollection class contains attributes and methods that 
@@ -74,6 +98,7 @@ class PhaseCollection:
     None
 
     """
+
     # Attributes
 
     # Methods

@@ -22,6 +22,7 @@ import os.path
 from datetime import datetime
 import dateutil.parser
 from alignrt_tools.realtimedeltas import RealTimeDeltas
+import pandas as pd
 
 
 class Surface:
@@ -55,7 +56,6 @@ class Surface:
         self.site_details = {}
         self.realtimedeltas_collection = {}
 
-        print(self.path)
         # To reduce memory overhead and loading time, we will only
         # load a surface mesh when requested
         self.surface_mesh = None
@@ -63,7 +63,9 @@ class Surface:
         if path is not None:
 
             # Read capture.ini and convert to dictionary
-            with open("{0}/capture.ini".format(path), "r") as capt_ini:
+            with open(
+                "{0}/capture.ini".format(path), "r", encoding="latin-1"
+            ) as capt_ini:
                 try:
                     for line in capt_ini:
 
@@ -78,9 +80,10 @@ class Surface:
                             "{0}/capture.ini".format(path)
                         )
                     )
+                capt_ini.close()
 
             # Read site.ini and convert to dictionary
-            with open("{0}/site.ini".format(path), "r") as site_ini:
+            with open("{0}/site.ini".format(path), "r", encoding="latin-1") as site_ini:
                 try:
                     for line in site_ini:
                         pieces = line.split("=")
@@ -90,10 +93,11 @@ class Surface:
                             self.site_details[pieces[0]] = None
                 except UnicodeDecodeError:
                     print(
-                        "Parsing {} resulted in unicode error".format(
+                        "Parsing {} resulted in Unicode decode error".format(
                             "{0}/site.ini".format(path)
                         )
                     )
+                site_ini.close()
 
             if load_rtds:
                 self.load_realtimedeltas()
@@ -138,3 +142,41 @@ class Surface:
                         self.realtimedeltas_collection[date_time_str] = RealTimeDeltas(
                             rtd_path
                         )
+
+    def get_surface_details_as_dataframe(self):
+        """
+        Returns the surface details dictionary as a dataframe item
+
+        Parameters
+        ----------
+        None
+        
+        """
+
+        # First, we will first have to convert each dictionary value to
+        # an array with a single item
+        temp_dict = {}
+        for key, value in self.surface_details.items():
+            temp_dict[key] = [value]
+
+        # Finally, return the dataframe
+        return pd.DataFrame.from_dict(temp_dict)
+
+    def get_site_details_as_dataframe(self):
+        """
+        Returns the site details dictionary as a dataframe item
+
+        Parameters
+        ----------
+        None
+        
+        """
+
+        # First, we will first have to convert each dictionary value to
+        # an array with a single item
+        temp_dict = {}
+        for key, value in self.site_details.items():
+            temp_dict[key] = [value]
+
+        # Finally, return the dataframe
+        return pd.DataFrame.from_dict(temp_dict)

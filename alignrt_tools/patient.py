@@ -64,8 +64,6 @@ class Patient(GenericAlignRTClass):
         self.site_collection = None
         self.surface_collection = {}
 
-        print(self.details["Surname"])
-
         # Create a SiteCollection for the patient
         if tree is not None:
 
