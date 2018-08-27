@@ -49,3 +49,4 @@ class Field(GenericAlignRTClass):
         """
 
         super().__init__(tree)
+        self.surfaces = []

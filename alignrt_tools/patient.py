@@ -22,8 +22,8 @@ this program. If not, see <http://www.gnu.org/licenses/>.
 import xml.etree.ElementTree as ET
 import pandas as pd
 import os.path
-from alignrt_tools.site import SiteCollection
 from alignrt_tools.generic import GenericAlignRTClass
+from alignrt_tools.site import Site
 from alignrt_tools.surface import Surface
 
 
@@ -61,14 +61,17 @@ class Patient(GenericAlignRTClass):
         super().__init__(tree)
 
         self.path = path
-        self.site_collection = None
-        self.surface_collection = {}
+        self.sites = []
+        self.surfaces = {}
 
-        # Create a SiteCollection for the patient
+        # Create an array of sites for the patient
         if tree is not None:
 
-            # Create an SiteCollection using the ElementTree provided
-            self.site_collection = SiteCollection(tree.find("Sites"))
+            # Iterate through the ElementTree to create a Site object for each site
+            for site_tree in tree.find('Sites'):
+                self.sites.append(Site(site_tree))
+
+        if path is not None:
 
             # Get a list of the subdirectories in the path
             folders = [
@@ -81,14 +84,13 @@ class Patient(GenericAlignRTClass):
             for folder in folders:
                 if os.path.isfile("{0}/{1}/capture.obj".format(path, folder)):
                     # Create a new surface
-                    self.surface_collection[folder] = Surface(
-                        "{0}/{1}".format(path, folder)
-                    )
+                    self.surfaces[folder] = Surface(
+                        "{0}/{1}".format(path,                                      folder))
 
 
 class PatientCollection:
     """The PatientCollection class contains attributes and methods that pertain to an a collection of AlignRT patients. 
-       
+
     ...
 
     Attributes
@@ -120,7 +122,8 @@ class PatientCollection:
             if df is None:
                 df = patient.get_details_as_dataframe()
             else:
-                df = df.append(patient.get_details_as_dataframe(), ignore_index=True)
+                df = df.append(
+                    patient.get_details_as_dataframe(), ignore_index=True)
 
         return df
 
@@ -138,11 +141,13 @@ class PatientCollection:
             if os.path.isfile("{0}/{1}/Patient Details.vpax".format(path, folder)):
                 pd_path = "{0}/{1}/Patient Details.vpax".format(path, folder)
                 px_path = "{0}/{1}/".format(path, folder)
-                self.patients.append(Patient(ET.parse(pd_path).getroot(), px_path))
+                self.patients.append(
+                    Patient(ET.parse(pd_path).getroot(), px_path))
 
             elif os.path.isfile("{0}/{1}/Patient_Details.vpax".format(path, folder)):
                 pd_path = "{0}/{1}/Patient_Details.vpax".format(path, folder)
                 px_path = "{0}/{1}/".format(path, folder)
-                self.patients.append(Patient(ET.parse(pd_path).getroot(), px_path))
+                self.patients.append(
+                    Patient(ET.parse(pd_path).getroot(), px_path))
 
         self.num_patients = len(self.patients)

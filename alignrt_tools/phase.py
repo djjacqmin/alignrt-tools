@@ -1,7 +1,6 @@
 """
-This module defines the Phase class and PhaseCollection class, which store 
-information about AlignRT phases. In addition, this class contains methods 
-for deriving information about the phases from its constituant data structures.
+This module defines the Phas class, which stores information about AlignRT 
+phases. In addition, this class contains methods for deriving information about the phases from its constituant data structures.
 
 Copyright (C) 2018, Dustin Jacqmin, PhD
 
@@ -50,76 +49,11 @@ class Phase(GenericAlignRTClass):
         """
 
         super().__init__(tree)
+        self.fields = []
 
-        # Create a Field for the phase
-        if tree is None:
-            # Create an empty object
-            self.fields = None
+        # Create an array for the fields that belong to this phase
+        if tree is not None:
 
-        else:
             # Create an array of Fields using the ElementTree provided
-            self._populate_fields_array(tree.find("Fields"))
-
-    def _populate_fields_array(self, collection_tree=None):
-        """
-        Parameters
-        ----------
-        collection_tree : ElementTree
-            an ElementTree object created from Patient_Details.vpax, 
-            the root of which is the Fields tag (default is None)
-        """
-
-        if collection_tree is None:
-            # Create an empty site collection
-            self.num_fields = 0
-            self.fields = []
-        else:
-            self.fields = []
-
-            # Iterate through the ElementTree to create a Site object for each site
-            for field_tree in collection_tree:
+            for field_tree in tree.find('Fields'):
                 self.fields.append(Field(field_tree))
-
-            self.num_fields = len(self.fields)
-
-
-class PhaseCollection:
-    """The PhaseCollection class contains attributes and methods that 
-    pertain to a collection of AlignRT phases for a given patient.
-
-    ...
-
-    Attributes
-    ----------
-    None
-
-    Methods
-    -------
-    None
-
-    """
-
-    # Attributes
-
-    # Methods
-    def __init__(self, collection_tree=None):
-        """
-        Parameters
-        ----------
-        collection_tree : ElementTree
-            an ElementTree object created from Patient_Details.vpax, 
-            the root of which is the Phases tag (default is None)
-        """
-
-        if collection_tree is None:
-            # Create an empty phase collection
-            self.num_phases = 0
-            self.phases = []
-        else:
-            self.phases = []
-
-            # Iterate through the ElementTree to create a Phase object for each site
-            for tree in collection_tree:
-                self.phases.append(Phase(tree))
-
-            self.num_phases = len(self.phases)
