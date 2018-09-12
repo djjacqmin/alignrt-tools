@@ -24,6 +24,8 @@ import pandas as pd
 import os.path
 from alignrt_tools.generic import GenericAlignRTClass
 from alignrt_tools.site import Site
+from alignrt_tools.phase import Phase
+from alignrt_tools.field import Field
 from alignrt_tools.surface import Surface
 
 
@@ -62,7 +64,6 @@ class Patient(GenericAlignRTClass):
 
         self.path = path
         self.sites = []
-        self.surfaces = {}
 
         # Create an array of sites for the patient
         if tree is not None:
@@ -84,8 +85,47 @@ class Patient(GenericAlignRTClass):
             for folder in folders:
                 if os.path.isfile("{0}/{1}/capture.obj".format(path, folder)):
                     # Create a new surface
-                    self.surfaces[folder] = Surface(
-                        "{0}/{1}".format(path,                                      folder))
+                    temp_surface = Surface("{0}/{1}".format(path, folder))
+
+                    # Identify the Site, Phase and Field for the surface
+                    for site in self.sites:
+                        if site.details['Description'] == temp_surface.site_details['Treatment Site']:
+                            for phase in site.phases:
+                                if phase.details['Description'] == temp_surface.site_details['Phase']:
+                                    for field in phase.fields:
+                                        if field.details['Description'] == temp_surface.site_details['Field']:
+                                            # Append the surface to this field
+                                            field.surfaces.append(temp_surface)
+
+    def get_realtimedeltas_as_dataframe(self):
+        """
+        Returns the real-time deltas for this patient as a dataframe
+
+        Parameters
+        ----------
+        None
+
+        Returns
+        -------
+        A dataframe containing all of the real-time deltas for this patient
+
+        """
+        df = None
+
+        for site in self.sites:
+
+            if df is None:
+                df = site.get_realtimedeltas_as_dataframe()
+            else:
+                df = df.append(
+                    site.get_realtimedeltas_as_dataframe(), ignore_index=True)
+
+        # Append the field details
+        for key, value in self.details.items():
+            super_key = 'Patient Details - ' + key
+            df[super_key] = value
+
+        return df
 
 
 class PatientCollection:

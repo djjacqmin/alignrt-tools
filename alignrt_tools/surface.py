@@ -23,6 +23,7 @@ from datetime import datetime
 import dateutil.parser
 from alignrt_tools.realtimedeltas import RealTimeDeltas
 import pandas as pd
+import numpy as np
 
 
 class Surface:
@@ -49,16 +50,16 @@ class Surface:
             the path to the directory which contains the surface 
             files
         load_rtds : bool
-            determines whether the RealTimeDelta objects are created during initialization (default is False)
+            determines whether the real-time deltas are loaded into a dataframe during initialization (default is False)
         """
         self.path = path
         self.surface_details = {}
         self.site_details = {}
-        self.realtimedeltas_collection = {}
 
         # To reduce memory overhead and loading time, we will only
-        # load a surface mesh when requested
+        # load a surface mesh and realtimedelta dataframe when requested
         self.surface_mesh = None
+        self.realtimedeltas = None
 
         if path is not None:
 
@@ -71,7 +72,8 @@ class Surface:
 
                         pieces = line.split("=")
                         if len(pieces) > 1:
-                            self.surface_details[pieces[0]] = pieces[1].split("\n")[0]
+                            self.surface_details[pieces[0]] = pieces[1].split("\n")[
+                                0]
                         else:
                             self.surface_details[pieces[0]] = None
                 except UnicodeDecodeError:
@@ -80,7 +82,6 @@ class Surface:
                             "{0}/capture.ini".format(path)
                         )
                     )
-                capt_ini.close()
 
             # Read site.ini and convert to dictionary
             with open("{0}/site.ini".format(path), "r", encoding="latin-1") as site_ini:
@@ -88,24 +89,99 @@ class Surface:
                     for line in site_ini:
                         pieces = line.split("=")
                         if len(pieces) > 1:
-                            self.site_details[pieces[0]] = pieces[1].split("\n")[0]
+                            self.site_details[pieces[0]] = pieces[1].split("\n")[
+                                0]
                         else:
                             self.site_details[pieces[0]] = None
+
+                    # In site.ini, the Phase and Field have surrounding quotes that get included in the dictionary values. This can complicate the matching process. Let's remove them
+                    self.site_details['Phase'] = self.site_details['Phase'][1:-1]
+                    self.site_details['Field'] = self.site_details['Field'][1:-1]
+
                 except UnicodeDecodeError:
                     print(
                         "Parsing {} resulted in Unicode decode error".format(
                             "{0}/site.ini".format(path)
                         )
                     )
-                site_ini.close()
 
             if load_rtds:
-                self.load_realtimedeltas()
+                self._load_rtds_as_dataframe()
 
-    def load_realtimedeltas(self):
+    def get_surface_details_as_dataframe(self):
+        """
+        Returns the surface details dictionary as a dataframe item
 
-        # Verify that the collection is empty
-        if not self.realtimedeltas_collection:
+        Parameters
+        ----------
+        None
+
+        """
+
+        # First, we will first have to convert each dictionary value to
+        # an array with a single item
+        temp_dict = {}
+        for key, value in self.surface_details.items():
+            temp_dict[key] = [value]
+
+        # Finally, return the dataframe
+        return pd.DataFrame.from_dict(temp_dict)
+
+    def get_site_details_as_dataframe(self):
+        """
+        Returns the site details dictionary as a dataframe item
+
+        Parameters
+        ----------
+        None
+
+        """
+
+        # First, we will first have to convert each dictionary value to
+        # an array with a single item
+        temp_dict = {}
+        for key, value in self.site_details.items():
+            temp_dict[key] = [value]
+
+        # Finally, return the dataframe
+        return pd.DataFrame.from_dict(temp_dict)
+
+    def get_realtimedeltas_as_dataframe(self):
+        """
+        Returns the real time deltas as a dataframe
+
+        Parameters
+        ----------
+        None
+
+        Returns
+        -------
+        A dataframe containing all of the real-time deltas for this surface
+
+        """
+
+        # If the dataframe does not exist, create it
+        if self.realtimedeltas is None:
+            self._load_rtds_as_dataframe()
+
+        # Append the site details and surface details
+        for key, value in self.site_details.items():
+            super_key = 'site.ini details - ' + key
+            self.realtimedeltas[super_key] = value
+        for key, value in self.surface_details.items():
+            super_key = 'Surface Details - ' + key
+            self.realtimedeltas[super_key] = value
+
+        return self.realtimedeltas
+
+    def _load_rtds_as_dataframe(self):
+
+            # Verify that the collection is empty
+        if self.realtimedeltas is None:
+
+            # Create a blank dataframe
+            df = None
+
             # Get a list of the subdirectories in the surface folder path
             folders = [
                 name
@@ -126,7 +202,7 @@ class Surface:
                 # Check to see if this a monitoring folder
                 if folder[0:10] == "Monitoring":
 
-                    # Construct the likely RealTimeDeltas file path
+                        # Construct the likely RealTimeDeltas file path
                     date_time_str = folder.split("Monitoring_")[1]
                     rtd_path = (
                         self.path
@@ -137,46 +213,68 @@ class Surface:
                         + date_time_str
                         + ".txt"
                     )
+
+                    # Determine if the file exists
                     if os.path.isfile(rtd_path):
-                        # Create a new RealTimeDeltas object
-                        self.realtimedeltas_collection[date_time_str] = RealTimeDeltas(
-                            rtd_path
+
+                        # Read the real-time deltas header
+                        rtd_details = {}
+                        with open(rtd_path, "r") as rtd:
+                            header_lines = rtd.readlines()[0:11]
+
+                            for line in header_lines:
+                                pieces = line.split(":, ")
+                                if len(pieces) > 1:
+                                    rtd_details[pieces[0]] = (
+                                        pieces[1].split(
+                                            "\n")[0].split("\x00")[0]
+                                    )
+                                else:
+                                    rtd_details[pieces[0]] = None
+
+                        # Change Start Time and End Time to datetime objects
+                        rtd_details["Start Time"] = datetime.strptime(
+                            rtd_details["Start Time"], "%y%m%d_%H%M%S"
+                        )
+                        rtd_details["End Time"] = datetime.strptime(
+                            rtd_details["End Time"], "%y%m%d_%H%M%S"
                         )
 
-    def get_surface_details_as_dataframe(self):
-        """
-        Returns the surface details dictionary as a dataframe item
+                        # Next, open the rest of a the file as a dataframe
+                        temp_df = pd.read_csv(rtd_path, header=11)
 
-        Parameters
-        ----------
-        None
-        
-        """
+                        # Some early patient may have deltas in mm. Convert to cm.
+                        if " D.VRT (mm)" in temp_df:
+                            temp_df[" D.VRT (cm)"] = temp_df[" D.VRT (mm)"] / 10.0
+                        if " D.LAT (mm)" in temp_df:
+                            temp_df[" D.LAT (cm)"] = temp_df[" D.LAT (mm)"] / 10.0
+                        if " D.VRT (mm)" in temp_df:
+                            temp_df[" D.LNG (cm)"] = temp_df[" D.LNG (mm)"] / 10.0
 
-        # First, we will first have to convert each dictionary value to
-        # an array with a single item
-        temp_dict = {}
-        for key, value in self.surface_details.items():
-            temp_dict[key] = [value]
+                        # Add a column for magnitude
 
-        # Finally, return the dataframe
-        return pd.DataFrame.from_dict(temp_dict)
+                        temp_df[" D.MAG (cm)"] = (
+                            temp_df[" D.VRT (cm)"] * temp_df[" D.VRT (cm)"]
+                            + temp_df[" D.LAT (cm)"] * temp_df[" D.LAT (cm)"]
+                            + temp_df[" D.LNG (cm)"] * temp_df[" D.LNG (cm)"]
+                        )
+                        temp_df[" D.MAG (cm)"] = temp_df[" D.MAG (cm)"].apply(
+                            np.sqrt)
 
-    def get_site_details_as_dataframe(self):
-        """
-        Returns the site details dictionary as a dataframe item
+                        # Add a column for the Clock Time
+                        start_time = rtd_details["Start Time"]
+                        elapsed_time = pd.to_timedelta(
+                            temp_df["Elapsed Time (sec)"], "s")
+                        temp_df["Clock Time"] = start_time + elapsed_time
 
-        Parameters
-        ----------
-        None
-        
-        """
+                        # Add the rtd_details to the dataframe
+                        for key, value in rtd_details.items():
+                            temp_df[key] = value
 
-        # First, we will first have to convert each dictionary value to
-        # an array with a single item
-        temp_dict = {}
-        for key, value in self.site_details.items():
-            temp_dict[key] = [value]
+                        # Append values to the real time deltas dataframe
+                        if df is None:
+                            df = temp_df
+                        else:
+                            df = df.append(temp_df, ignore_index=True)
 
-        # Finally, return the dataframe
-        return pd.DataFrame.from_dict(temp_dict)
+            self.realtimedeltas = df

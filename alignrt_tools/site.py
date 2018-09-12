@@ -58,3 +58,33 @@ class Site(GenericAlignRTClass):
             # Iterate through the ElementTree to create a Phase object for each phase
             for phase_tree in tree.find('Phases'):
                 self.phases.append(Phase(phase_tree))
+
+    def get_realtimedeltas_as_dataframe(self):
+        """
+        Returns the real-time deltas for this site as a dataframe
+
+        Parameters
+        ----------
+        None
+
+        Returns
+        -------
+        A dataframe containing all of the real-time deltas for this site
+
+        """
+        df = None
+
+        for phase in self.phases:
+
+            if df is None:
+                df = phase.get_realtimedeltas_as_dataframe()
+            else:
+                df = df.append(
+                    phase.get_realtimedeltas_as_dataframe(), ignore_index=True)
+
+        # Append the site details
+        for key, value in self.details.items():
+            super_key = 'Site Details - ' + key
+            df[super_key] = value
+
+        return df

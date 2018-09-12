@@ -50,3 +50,33 @@ class Field(GenericAlignRTClass):
 
         super().__init__(tree)
         self.surfaces = []
+
+    def get_realtimedeltas_as_dataframe(self):
+        """
+        Returns the real-time deltas for this field as a dataframe
+
+        Parameters
+        ----------
+        None
+
+        Returns
+        -------
+        A dataframe containing all of the real-time deltas for this field
+
+        """
+        df = None
+
+        for surface in self.surfaces:
+
+            if df is None:
+                df = surface.get_realtimedeltas_as_dataframe()
+            else:
+                df = df.append(
+                    surface.get_realtimedeltas_as_dataframe(), ignore_index=True)
+
+        # Append the field details
+        for key, value in self.details.items():
+            super_key = 'Field Details - ' + key
+            df[super_key] = value
+
+        return df

@@ -78,15 +78,14 @@ class RealTimeDeltas:
                     else:
                         self.realtimedeltas_details[pieces[0]] = None
 
-                rtd.close()
 
-        # Change Start Time and End Time to datetime objects
-        self.realtimedeltas_details["Start Time"] = datetime.strptime(
-            self.realtimedeltas_details["Start Time"], "%y%m%d_%H%M%S"
-        )
-        self.realtimedeltas_details["End Time"] = datetime.strptime(
-            self.realtimedeltas_details["End Time"], "%y%m%d_%H%M%S"
-        )
+            # Change Start Time and End Time to datetime objects
+            self.realtimedeltas_details["Start Time"] = datetime.strptime(
+                self.realtimedeltas_details["Start Time"], "%y%m%d_%H%M%S"
+            )
+            self.realtimedeltas_details["End Time"] = datetime.strptime(
+                self.realtimedeltas_details["End Time"], "%y%m%d_%H%M%S"
+            )
 
     def get_realtimedeltas_as_dataframe(self):
         """
