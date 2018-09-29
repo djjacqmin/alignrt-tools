@@ -21,7 +21,6 @@ this program. If not, see <http://www.gnu.org/licenses/>.
 import os.path
 from datetime import datetime
 import dateutil.parser
-from alignrt_tools.realtimedeltas import RealTimeDeltas
 import pandas as pd
 import numpy as np
 
@@ -116,6 +115,10 @@ class Surface:
         ----------
         None
 
+        Returns
+        -------
+        A dataframe containing the surface details for this surface
+
         """
 
         # First, we will first have to convert each dictionary value to
@@ -134,6 +137,10 @@ class Surface:
         Parameters
         ----------
         None
+
+        Returns
+        -------
+        A dataframe containing the site details for this field
 
         """
 
@@ -164,13 +171,16 @@ class Surface:
         if self.realtimedeltas is None:
             self._load_rtds_as_dataframe()
 
-        # Append the site details and surface details
-        for key, value in self.site_details.items():
-            super_key = 'site.ini details - ' + key
-            self.realtimedeltas[super_key] = value
-        for key, value in self.surface_details.items():
-            super_key = 'Surface Details - ' + key
-            self.realtimedeltas[super_key] = value
+        # After _load_rtds_as_dataframe(), the realtimedeltas may
+        # still be None if this surface does not have real-time deltas
+        if self.realtimedeltas is not None:
+            # Append the site details and surface details
+            for key, value in self.site_details.items():
+                super_key = 'site.ini details - ' + key
+                self.realtimedeltas[super_key] = value
+            for key, value in self.surface_details.items():
+                super_key = 'Surface Details - ' + key
+                self.realtimedeltas[super_key] = value
 
         return self.realtimedeltas
 
@@ -179,7 +189,7 @@ class Surface:
             # Verify that the collection is empty
         if self.realtimedeltas is None:
 
-            # Create a blank dataframe
+            # Set df to None
             df = None
 
             # Get a list of the subdirectories in the surface folder path
@@ -202,7 +212,7 @@ class Surface:
                 # Check to see if this a monitoring folder
                 if folder[0:10] == "Monitoring":
 
-                        # Construct the likely RealTimeDeltas file path
+                    # Construct the likely RealTimeDeltas file path
                     date_time_str = folder.split("Monitoring_")[1]
                     rtd_path = (
                         self.path

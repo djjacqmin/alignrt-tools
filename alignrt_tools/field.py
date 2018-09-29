@@ -1,7 +1,7 @@
 """
 This module defines the Field class and FieldCollection class, which store 
 information about AlignRT fields. In addition, this class contains methods 
-for deriving information about the fields from its constituant data structures.
+for deriving information about the fields from its constituent data structures.
 
 Copyright (C) 2018, Dustin Jacqmin, PhD
 
@@ -74,9 +74,11 @@ class Field(GenericAlignRTClass):
                 df = df.append(
                     surface.get_realtimedeltas_as_dataframe(), ignore_index=True)
 
-        # Append the field details
-        for key, value in self.details.items():
-            super_key = 'Field Details - ' + key
-            df[super_key] = value
+        # At this point, df may still yet be None
+        # if this Field does not have real-time deltas
+        if df is not None:
+            for key, value in self.details.items():
+                super_key = 'Field Details - ' + key
+                df[super_key] = value
 
         return df

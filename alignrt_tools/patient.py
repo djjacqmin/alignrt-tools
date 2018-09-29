@@ -1,7 +1,7 @@
 """
 This module defines the Patient class and PatientCollection class, which store 
 information about AlignRT patients. In addition, this class contains methods 
-for deriving information about the patient from its constituant data structures.
+for deriving information about the patient from its constituent data structures.
 
 Copyright (C) 2018, Dustin Jacqmin, PhD
 
@@ -24,9 +24,8 @@ import pandas as pd
 import os.path
 from alignrt_tools.generic import GenericAlignRTClass
 from alignrt_tools.site import Site
-from alignrt_tools.phase import Phase
-from alignrt_tools.field import Field
 from alignrt_tools.surface import Surface
+from alignrt_tools.treatment import TreatmentCalendar
 
 
 class Patient(GenericAlignRTClass):
@@ -120,12 +119,31 @@ class Patient(GenericAlignRTClass):
                 df = df.append(
                     site.get_realtimedeltas_as_dataframe(), ignore_index=True)
 
-        # Append the field details
-        for key, value in self.details.items():
-            super_key = 'Patient Details - ' + key
-            df[super_key] = value
+        # At this point, df may still yet be None
+        # if this Patient does not have real-time deltas
+        if df is not None:
+            # Append the field details
+            for key, value in self.details.items():
+                super_key = 'Patient Details - ' + key
+                df[super_key] = value
 
         return df
+
+    def get_treatment_calendar(self):
+        """
+        Returns a TreatmentCalendar for this patient
+
+        Parameters
+        ----------
+        None
+
+        Returns
+        -------
+        A TreatmentCalendar object for this patient. It may be empty if there are no real-time deltas for this patient.
+
+        """
+
+        return TreatmentCalendar(self.get_realtimedeltas_as_dataframe())
 
 
 class PatientCollection:

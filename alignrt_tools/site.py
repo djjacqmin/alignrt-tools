@@ -82,9 +82,12 @@ class Site(GenericAlignRTClass):
                 df = df.append(
                     phase.get_realtimedeltas_as_dataframe(), ignore_index=True)
 
-        # Append the site details
-        for key, value in self.details.items():
-            super_key = 'Site Details - ' + key
-            df[super_key] = value
+        # At this point, df may still yet be None
+        # if this Site does not have real-time deltas
+        if df is not None:
+            # Append the site details
+            for key, value in self.details.items():
+                super_key = 'Site Details - ' + key
+                df[super_key] = value
 
         return df

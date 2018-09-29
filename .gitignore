@@ -4,3 +4,4 @@
 *.o
 obj_to_ply
 .vscode/launch.json
+alignrt_tools/.vscode/settings.json

@@ -81,9 +81,12 @@ class Phase(GenericAlignRTClass):
                 df = df.append(
                     field.get_realtimedeltas_as_dataframe(), ignore_index=True)
 
-        # Append the phase details
-        for key, value in self.details.items():
-            super_key = 'Phase Details - ' + key
-            df[super_key] = value
+        # At this point, df may still yet be None
+        # if this Phase does not have real-time deltas
+        if df is not None:
+            # Append the phase details
+            for key, value in self.details.items():
+                super_key = 'Phase Details - ' + key
+                df[super_key] = value
 
         return df
