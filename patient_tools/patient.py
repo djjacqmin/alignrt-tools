@@ -26,6 +26,7 @@ from alignrt_tools.generic import GenericAlignRTClass
 from alignrt_tools.site import Site
 from alignrt_tools.surface import Surface
 from alignrt_tools.treatment import TreatmentCalendar
+from IPython.display import clear_output
 
 
 class Patient(GenericAlignRTClass):
@@ -195,7 +196,11 @@ class PatientCollection:
 
         # Determine which of the folders correspond to patients
         self.patients = []
+        count = 1
         for folder in folders:
+            # Print the progress of the patient data structure creation
+            clear_output()
+            print("Processing folder {} of {}".format(count, len(folders)))
             if os.path.isfile("{0}/{1}/Patient Details.vpax".format(path, folder)):
                 pd_path = "{0}/{1}/Patient Details.vpax".format(path, folder)
                 px_path = "{0}/{1}/".format(path, folder)
@@ -207,5 +212,7 @@ class PatientCollection:
                 px_path = "{0}/{1}/".format(path, folder)
                 self.patients.append(
                     Patient(ET.parse(pd_path).getroot(), px_path))
+
+            count = count + 1
 
         self.num_patients = len(self.patients)

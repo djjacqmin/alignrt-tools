@@ -167,4 +167,3 @@ class TreatmentSession:
 
     def get_position_cdf(self):
         pass
-        
