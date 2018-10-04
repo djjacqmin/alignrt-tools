@@ -67,43 +67,26 @@ class Surface:
             
             # Read capture.ini and convert to dictionary
             with open((r / "capture.ini"), "r", encoding="latin-1") as capt_ini:
-                try:
-                    for line in capt_ini:
-
-                        pieces = line.split("=")
-                        if len(pieces) > 1:
-                            self.surface_details[pieces[0]] = pieces[1].split("\n")[
-                                0]
-                        else:
-                            self.surface_details[pieces[0]] = None
-                except UnicodeDecodeError:
-                    print(
-                        "Parsing {} resulted in unicode error".format(
-                            "{0}/capture.ini".format(surface_path)
-                        )
-                    )
+                for line in capt_ini:
+                    pieces = line.split("=")
+                    if (len(pieces) > 1):
+                        if (pieces[1].split("\n")[0] is not ""):
+                            self.surface_details[pieces[0]] = pieces[1].split("\n")[0]
 
             # Read site.ini and convert to dictionary
             with open((r / "site.ini"), "r", encoding="latin-1") as site_ini:
-                try:
-                    for line in site_ini:
-                        pieces = line.split("=")
-                        if len(pieces) > 1:
-                            self.site_details[pieces[0]] = pieces[1].split("\n")[
-                                0]
-                        else:
-                            self.site_details[pieces[0]] = None
+                for line in site_ini:
+                    pieces = line.split("=")
+                    if (len(pieces) > 1):
+                        if (pieces[1].split("\n")[0] is not ""):
+                            self.site_details[pieces[0]] = pieces[1].split("\n")[0]
 
-                    # In site.ini, the Phase and Field have surrounding quotes that get included in the dictionary values. This can complicate the matching process. Let's remove them
-                    self.site_details['Phase'] = self.site_details['Phase'][1:-1]
-                    self.site_details['Field'] = self.site_details['Field'][1:-1]
-
-                except UnicodeDecodeError:
-                    print(
-                        "Parsing {} resulted in Unicode decode error".format(
-                            "{0}/site.ini".format(surface_path)
-                        )
-                    )
+                # In site.ini, the Phase and Field have surrounding
+                # quotes that get included in the dictionary values. 
+                # This can complicate the matching process. 
+                # Let's remove them
+                self.site_details['Phase'] = self.site_details['Phase'][1:-1]
+                self.site_details['Field'] = self.site_details['Field'][1:-1]
 
             if load_rtds:
                 self._load_rtds_as_dataframe()

@@ -21,6 +21,7 @@ this program. If not, see <http://www.gnu.org/licenses/>.
 import xml.etree.ElementTree as ET
 from datetime import datetime
 import dateutil.parser
+import numpy as np
 import pandas as pd
 
 class GenericAlignRTClass:
@@ -145,19 +146,19 @@ class GenericAlignRTClass:
         # Convert Date of birth to datetime object
         if 'DOB' in self.details.keys():
             self.details['DOB'] = dateutil.parser.parse(
-                self.details['DOB'])
+                self.details['DOB'],yearfirst=True)
 
         # Convert LatestApprovedSurfaceDateTimeStamp to datetime object
         shorter_name = 'LatestApprovedSurfaceDateTimeStamp'
         if shorter_name in self.details.keys():
             self.details[shorter_name] = dateutil.parser.parse(
-                self.details[shorter_name])
+                self.details[shorter_name],yearfirst=True)
 
         # Convert LatestApprovedRecordSurfaceTimestamp to datetime object
         shorter_name = 'LatestApprovedRecordSurfaceTimestamp'
         if shorter_name in self.details.keys():
             self.details[shorter_name] = dateutil.parser.parse(
-                self.details[shorter_name])
+                self.details[shorter_name],yearfirst=True)
 
         # Convert IsFromDicom to boolean
         if 'IsFromDicom' in self.details.keys():
@@ -165,3 +166,42 @@ class GenericAlignRTClass:
                 self.details['IsFromDicom'] = True
             elif self.details['IsFromDicom'] == 'false':
                 self.details['IsFromDicom'] = False
+
+        # Convert IsApproved to boolean
+        if 'IsApproved' in self.details.keys():
+            if self.details['IsApproved'] == 'true':
+                self.details['IsApproved'] = True
+            elif self.details['IsApproved'] == 'false':
+                self.details['IsApproved'] = False
+
+        # Convert IsApproved to boolean
+        if 'IsIsoCenterField' in self.details.keys():
+            if self.details['IsIsoCenterField'] == 'true':
+                self.details['IsIsoCenterField'] = True
+            elif self.details['IsIsoCenterField'] == 'false':
+                self.details['IsIsoCenterField'] = False
+
+        # Convert IsApproved to boolean
+        if 'IsDynamicBeamType' in self.details.keys():
+            if self.details['IsDynamicBeamType'] == 'true':
+                self.details['IsDynamicBeamType'] = True
+            elif self.details['IsDynamicBeamType'] == 'false':
+                self.details['IsDynamicBeamType'] = False
+
+        # Perform conversions to int64
+        if 'LastUsedPlotterType' in self.details.keys():
+            self.details['LastUsedPlotterType'] = np.int(self.details['LastUsedPlotterType'])
+        if 'PatientTextureLuminosity' in self.details.keys():
+            self.details['PatientTextureLuminosity'] = np.int(self.details['PatientTextureLuminosity'])
+
+        # Perform conversions to float64
+        if 'IsoRotValue' in self.details.keys():
+            self.details['IsoRotValue'] = np.float(self.details['IsoRotValue'])
+        if 'RepresentedCouchRotation' in self.details.keys():
+            self.details['RepresentedCouchRotation'] = np.float(self.details['RepresentedCouchRotation'])        
+        if 'IsoXValue' in self.details.keys():
+            self.details['IsoXValue'] = np.float(self.details['IsoXValue'])
+        if 'IsoYValue' in self.details.keys():
+            self.details['IsoYValue'] = np.float(self.details['IsoYValue'])  
+        if 'IsoZValue' in self.details.keys():
+            self.details['IsoZValue'] = np.float(self.details['IsoZValue'])

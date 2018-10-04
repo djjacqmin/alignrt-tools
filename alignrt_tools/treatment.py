@@ -137,6 +137,13 @@ class TreatmentSession:
             session of treatment
         """
 
+        # First, set the "Clock Time" to the index and sort by index
+        df = df.set_index('Clock Time')
+        df = df.sort_index()
+
+        # Next, let's add a new column called "True Elapsed Time (min)"
+        df['True Elapsed Time (min)'] = ((df.index - df.index.min()).microseconds/1000000 + (df.index - df.index.min()).seconds)/60
+
         self._df = df
 
     def get_treatment_session_as_dataframe(self):
@@ -155,6 +162,74 @@ class TreatmentSession:
         """
 
         return self._df
+
+    def get_translations_and_rotations_plot(self):
+        """
+        Returns matplotlib figure, axes tuple that contains a plot of
+        the real-time delta translations and rotations for this session
+
+        Parameters
+        ----------
+        None
+
+        Returns
+        -------
+        A matplotlib figure, axes tuple that contains a plot of
+        the real-time delta translations and rotations for this session
+
+        """
+
+
+        # Create a figure with two rows and one column
+        fig, axs = plt.subplots(2, 1,figsize=[12,6])
+
+        # Grab a subset of the dataframe that exludes the 999 values
+        # that are used when the patient is not found
+        dfplot = self._df[self._df[" D.MAG (cm)"] < 999.0 ]
+
+        # Set plot parameters
+        lw = 0.5    # line width for raw data
+        lw_rw = 3   # line width for rolling average data
+        alp = 0.3   # alpha for raw data
+        alp_rw = 1  # alpha for rolling average data
+        rw = 50     # rolling window width
+
+        # Plot the VRT, LNG, LAG and MAG
+        axs[0].plot(dfplot['True Elapsed Time (min)'], dfplot[' D.VRT (cm)'],color="#5654F7",linewidth=lw,alpha=alp,label='_nolegend_')
+        axs[0].plot(dfplot['True Elapsed Time (min)'], dfplot[' D.VRT (cm)'].rolling(rw,center=True).mean(),color="#5654F7",linewidth=lw_rw,alpha=alp_rw,label='Vertical')
+
+        axs[0].plot(dfplot['True Elapsed Time (min)'], dfplot[' D.LNG (cm)'],color="#CF161E",linewidth=lw,alpha=alp,label='_nolegend_')
+        axs[0].plot(dfplot['True Elapsed Time (min)'], dfplot[' D.LNG (cm)'].rolling(rw,center=True).mean(),color="#CF161E",linewidth=lw_rw,alpha=alp_rw,label='Longitudinal')
+
+        axs[0].plot(dfplot['True Elapsed Time (min)'], dfplot[' D.LAT (cm)'],color="#41bf71",linewidth=lw,alpha=alp,label='_nolegend_')
+        axs[0].plot(dfplot['True Elapsed Time (min)'], dfplot[' D.LAT (cm)'].rolling(rw,center=True).mean(),color="#41bf71",linewidth=lw_rw,alpha=alp_rw,label='Lateral')
+
+        axs[0].plot(dfplot['True Elapsed Time (min)'], dfplot[' D.MAG (cm)'],color="#000000",linewidth=lw,alpha=alp,label='_nolegend_')
+        axs[0].plot(dfplot['True Elapsed Time (min)'], dfplot[' D.MAG (cm)'].rolling(rw,center=True).mean(),color="#000000",linewidth=lw_rw,alpha=alp_rw,label='Magnitude')
+
+        # Add limits and labels for VRT, LNG, LAG AND MAG
+        axs[0].set_xlabel("Time (min)")
+        axs[0].set_ylabel("Real-time Position (cm)")
+        max_beam_on_mag = dfplot[dfplot[' XRayState'] == 1][" D.MAG (cm)"].max()
+        axs[0].set_ylim(-1.5*max_beam_on_mag,1.5*max_beam_on_mag)
+        axs[0].legend(ncol=4)
+
+        # Plot the Rtn, Pitch and Roll
+        axs[1].plot(dfplot['True Elapsed Time (min)'], dfplot[' D.Rtn (deg)'],color="#5654F7",linewidth=lw,alpha=alp,label='_nolegend_')
+        axs[1].plot(dfplot['True Elapsed Time (min)'], dfplot[' D.Rtn (deg)'].rolling(rw,center=True).mean(),color="#5654F7",linewidth=lw_rw,alpha=alp_rw, label="Rotation")
+
+        axs[1].plot(dfplot['True Elapsed Time (min)'], dfplot[' D.Roll (deg)'],color="#CF161E",linewidth=lw,alpha=alp,label='_nolegend_')
+        axs[1].plot(dfplot['True Elapsed Time (min)'], dfplot[' D.Roll (deg)'].rolling(rw,center=True).mean(),color="#CF161E",linewidth=lw_rw,alpha=alp_rw, label="Roll")
+
+        axs[1].plot(dfplot['True Elapsed Time (min)'], dfplot[' D.Pitch (deg)'],color="#41bf71",linewidth=lw,alpha=alp, label='_nolegend_')
+        axs[1].plot(dfplot['True Elapsed Time (min)'], dfplot[' D.Pitch (deg)'].rolling(rw,center=True).mean(),color="#41bf71",linewidth=lw_rw,alpha=alp_rw, label="Pitch")
+
+        # Add limits and labels for  Rtn, Pitch and Roll
+        axs[1].set_xlabel("Time (min)")
+        axs[1].set_ylabel("Real-time Rotation (deg)")
+        axs[1].legend(ncol=3)
+
+        return fig, axs
 
     def get_translations_plot(self):
         pass
