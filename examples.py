@@ -6,7 +6,7 @@ import alignrt_tools as art
 
 # Define a path containing alignrt data
 # sgrt_path = '../alignrt-playground/Sample_Directory'
-sgrt_path = 'X:\\Dustin\\OSMS\\RoomD\\PData'
+sgrt_path = 'X:\\Dustin\\OSMS\\RoomA\\PData'
 
 # Create a patient collection using the PatientCollection class constructor
 start = time.time()
@@ -41,7 +41,7 @@ def get_first_plan(pc):
     for px in pc.patients:
         for sx in px.sites:
             for fx in sx.phases:
-                if "SRS_" in fx.details['Description']:
+                if "BreR_" in fx.details['Description']:
                     return px
 
 
