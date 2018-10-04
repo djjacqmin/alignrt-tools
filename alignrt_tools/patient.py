@@ -21,7 +21,7 @@ this program. If not, see <http://www.gnu.org/licenses/>.
 # Import helpful libraries
 import xml.etree.ElementTree as ET
 import pandas as pd
-import os.path
+from pathlib import Path
 from alignrt_tools.generic import GenericAlignRTClass
 from alignrt_tools.site import Site
 from alignrt_tools.surface import Surface
@@ -47,14 +47,14 @@ class Patient(GenericAlignRTClass):
     """
 
     # Methods
-    def __init__(self, tree=None, path=None):
+    def __init__(self, tree=None, patient_path=None):
         """
         Parameters
         ----------
         tree : ElementTree
             an ElementTree object created from Patient_Details.vpax, 
             the root of which is an individual patient (default is None)
-        path : str
+        patient_path : str
             the path to the directory which contains the patient's 
             files
         """
@@ -62,7 +62,7 @@ class Patient(GenericAlignRTClass):
         # Instantiate the Patient using the generic class
         super().__init__(tree)
 
-        self.path = path
+        self.patient_path = patient_path
         self.sites = []
 
         # Create an array of sites for the patient
@@ -72,20 +72,19 @@ class Patient(GenericAlignRTClass):
             for site_tree in tree.find('Sites'):
                 self.sites.append(Site(site_tree))
 
-        if path is not None:
+        if patient_path is not None:
+
+            # Create a Path object from alignrt_path
+            r = Path(patient_path)
 
             # Get a list of the subdirectories in the path
-            folders = [
-                name
-                for name in os.listdir(path)
-                if os.path.isdir(os.path.join(path, name))
-            ]
+            folders = [ item for item in r.iterdir() if item.is_dir() ]
 
             # Determine if the folders are surfaces
             for folder in folders:
-                if os.path.isfile("{0}/{1}/capture.obj".format(path, folder)):
+                if (folder / "capture.obj").is_file():
                     # Create a new surface
-                    temp_surface = Surface("{0}/{1}".format(path, folder))
+                    temp_surface = Surface(folder)
 
                     # Identify the Site, Phase and Field for the surface
                     for site in self.sites:
@@ -163,16 +162,17 @@ class PatientCollection:
         patients in the collection
     """
 
-    def __init__(self, path=None):
+    def __init__(self, alignrt_path=None):
 
-        if path is None:
-            # Create an empty patient collection
-            self.num_patients = 0
-            self.patients = []
-        else:
+        self.patients = []
+
+        if alignrt_path is not None:
             # Create patient collection using the path provided
-            self._create_patient_collection_from_directory(path)
+            self._create_patient_collection_from_directory(alignrt_path)
 
+    def get_num_patients(self):
+        return len(self.patients)
+    
     def get_collection_as_dataframe(self):
         # Create an empty dataframe
         df = None
@@ -186,33 +186,30 @@ class PatientCollection:
 
         return df
 
-    def _create_patient_collection_from_directory(self, path):
+    def _create_patient_collection_from_directory(self, alignrt_path):
         # Creates a patient collection from the directories within path.
 
+        # Create a Path object from alignrt_path
+        r = Path(alignrt_path)
+
         # Get a list of the subdirectories in the path
-        folders = [
-            name for name in os.listdir(path) if os.path.isdir(os.path.join(path, name))
-        ]
+        folders = [ item for item in r.iterdir() if item.is_dir() ]
 
         # Determine which of the folders correspond to patients
-        self.patients = []
         count = 1
+
         for folder in folders:
             # Print the progress of the patient data structure creation
             clear_output()
             print("Processing folder {} of {}".format(count, len(folders)))
-            if os.path.isfile("{0}/{1}/Patient Details.vpax".format(path, folder)):
-                pd_path = "{0}/{1}/Patient Details.vpax".format(path, folder)
-                px_path = "{0}/{1}/".format(path, folder)
-                self.patients.append(
-                    Patient(ET.parse(pd_path).getroot(), px_path))
-
-            elif os.path.isfile("{0}/{1}/Patient_Details.vpax".format(path, folder)):
-                pd_path = "{0}/{1}/Patient_Details.vpax".format(path, folder)
-                px_path = "{0}/{1}/".format(path, folder)
-                self.patients.append(
-                    Patient(ET.parse(pd_path).getroot(), px_path))
-
             count = count + 1
 
-        self.num_patients = len(self.patients)
+            # Check to see if Patient Details.vpax is in the folder
+            if (folder / "Patient Details.vpax").is_file():
+                self.patients.append(
+                    Patient(ET.parse(folder / "Patient Details.vpax").getroot(), folder))
+
+            # Check to see if Patient_Details.vpax is in the folder
+            if (folder / "Patient_Details.vpax").is_file():
+                self.patients.append(
+                    Patient(ET.parse(folder / "Patient_Details.vpax").getroot(), folder))

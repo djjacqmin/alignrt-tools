@@ -18,7 +18,7 @@ this program. If not, see <http://www.gnu.org/licenses/>.
 """
 
 # Import helpful libraries
-import os.path
+from pathlib import Path
 from datetime import datetime
 import dateutil.parser
 import pandas as pd
@@ -41,17 +41,17 @@ class Surface:
         Returns the surface details as a pandas dataframe
     """
 
-    def __init__(self, path=None, load_rtds=False):
+    def __init__(self, surface_path=None, load_rtds=False):
         """
         Parameters
         ----------
-        path : str
+        surface_path : str
             the path to the directory which contains the surface 
             files
         load_rtds : bool
             determines whether the real-time deltas are loaded into a dataframe during initialization (default is False)
         """
-        self.path = path
+        self.surface_path = surface_path
         self.surface_details = {}
         self.site_details = {}
 
@@ -60,12 +60,13 @@ class Surface:
         self.surface_mesh = None
         self.realtimedeltas = None
 
-        if path is not None:
+        if surface_path is not None:
 
+            # Create a Path object from alignrt_path
+            r = Path(surface_path)
+            
             # Read capture.ini and convert to dictionary
-            with open(
-                "{0}/capture.ini".format(path), "r", encoding="latin-1"
-            ) as capt_ini:
+            with open((r / "capture.ini"), "r", encoding="latin-1") as capt_ini:
                 try:
                     for line in capt_ini:
 
@@ -78,12 +79,12 @@ class Surface:
                 except UnicodeDecodeError:
                     print(
                         "Parsing {} resulted in unicode error".format(
-                            "{0}/capture.ini".format(path)
+                            "{0}/capture.ini".format(surface_path)
                         )
                     )
 
             # Read site.ini and convert to dictionary
-            with open("{0}/site.ini".format(path), "r", encoding="latin-1") as site_ini:
+            with open((r / "site.ini"), "r", encoding="latin-1") as site_ini:
                 try:
                     for line in site_ini:
                         pieces = line.split("=")
@@ -100,7 +101,7 @@ class Surface:
                 except UnicodeDecodeError:
                     print(
                         "Parsing {} resulted in Unicode decode error".format(
-                            "{0}/site.ini".format(path)
+                            "{0}/site.ini".format(surface_path)
                         )
                     )
 
@@ -186,18 +187,17 @@ class Surface:
 
     def _load_rtds_as_dataframe(self):
 
-            # Verify that the collection is empty
+        # Verify that the collection is empty
         if self.realtimedeltas is None:
 
             # Set df to None
             df = None
 
-            # Get a list of the subdirectories in the surface folder path
-            folders = [
-                name
-                for name in os.listdir(self.path)
-                if os.path.isdir(os.path.join(self.path, name))
-            ]
+            # Create a Path object from surface_path
+            r = Path(self.surface_path)
+
+            # Get a list of the subdirectories in the path
+            folders = [ item for item in r.iterdir() if item.is_dir() ]
 
             # Determine if any of the folders contain
             # RealTimeDeltas_DATE_TIME.txt files
@@ -210,22 +210,14 @@ class Surface:
                 """
 
                 # Check to see if this a monitoring folder
-                if folder[0:10] == "Monitoring":
+                if folder.name[0:10] == "Monitoring":
 
                     # Construct the likely RealTimeDeltas file path
-                    date_time_str = folder.split("Monitoring_")[1]
-                    rtd_path = (
-                        self.path
-                        + "/"
-                        + folder
-                        + "/"
-                        + "RealTimeDeltas_"
-                        + date_time_str
-                        + ".txt"
-                    )
-
+                    date_time_str = folder.name.split("Monitoring_")[1]
+                    rtd_path = folder / "RealTimeDeltas_{}.txt".format(date_time_str)
+ 
                     # Determine if the file exists
-                    if os.path.isfile(rtd_path):
+                    if rtd_path.is_file():
 
                         # Read the real-time deltas header
                         rtd_details = {}
