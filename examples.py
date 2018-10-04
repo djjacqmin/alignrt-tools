@@ -5,8 +5,8 @@ import time
 import alignrt_tools as art
 
 # Define a path containing alignrt data
-# sgrt_path = '../alignrt-playground/Sample_Directory'
-sgrt_path = 'X:\\Dustin\\OSMS\\RoomA\\PData'
+sgrt_path = '../alignrt-playground/Sample_Directory'
+# sgrt_path = 'X:\\Dustin\\OSMS\\RoomA\\PData'
 
 # Create a patient collection using the PatientCollection class constructor
 start = time.time()
