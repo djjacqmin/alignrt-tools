@@ -20,7 +20,6 @@ this program. If not, see <http://www.gnu.org/licenses/>.
 # Import helpful libraries
 from pathlib import Path
 from datetime import datetime
-import dateutil.parser
 import pandas as pd
 import numpy as np
 
@@ -64,14 +63,15 @@ class Surface:
 
             # Create a Path object from alignrt_path
             r = Path(surface_path)
-            
+
             # Read capture.ini and convert to dictionary
             with open((r / "capture.ini"), "r", encoding="latin-1") as capt_ini:
                 for line in capt_ini:
                     pieces = line.split("=")
                     if (len(pieces) > 1):
                         if (pieces[1].split("\n")[0] is not ""):
-                            self.surface_details[pieces[0]] = pieces[1].split("\n")[0]
+                            self.surface_details[pieces[0]] = pieces[1].split("\n")[
+                                0]
 
             # Read site.ini and convert to dictionary
             with open((r / "site.ini"), "r", encoding="latin-1") as site_ini:
@@ -79,17 +79,26 @@ class Surface:
                     pieces = line.split("=")
                     if (len(pieces) > 1):
                         if (pieces[1].split("\n")[0] is not ""):
-                            self.site_details[pieces[0]] = pieces[1].split("\n")[0]
+                            self.site_details[pieces[0]] = pieces[1].split("\n")[
+                                0]
 
                 # In site.ini, the Phase and Field have surrounding
-                # quotes that get included in the dictionary values. 
-                # This can complicate the matching process. 
+                # quotes that get included in the dictionary values.
+                # This can complicate the matching process.
                 # Let's remove them
                 self.site_details['Phase'] = self.site_details['Phase'][1:-1]
                 self.site_details['Field'] = self.site_details['Field'][1:-1]
 
             if load_rtds:
                 self._load_rtds_as_dataframe()
+
+            # Add the creation date-time to the surface_details
+            self.surface_details['Created'] = datetime.strptime(
+                r.name, "%y%m%d %H%M%S")
+
+            # Create a full name for the surface based on the "Field", "Label Prefix" and time-stamp
+            self.surface_details['Full Name'] = "{} {} {}".format(
+                self.site_details['Field'], self.surface_details['Label Prefix'], self.surface_details['Created'])
 
     def get_surface_details_as_dataframe(self):
         """
@@ -180,7 +189,7 @@ class Surface:
             r = Path(self.surface_path)
 
             # Get a list of the subdirectories in the path
-            folders = [ item for item in r.iterdir() if item.is_dir() ]
+            folders = [item for item in r.iterdir() if item.is_dir()]
 
             # Determine if any of the folders contain
             # RealTimeDeltas_DATE_TIME.txt files
@@ -197,8 +206,9 @@ class Surface:
 
                     # Construct the likely RealTimeDeltas file path
                     date_time_str = folder.name.split("Monitoring_")[1]
-                    rtd_path = folder / "RealTimeDeltas_{}.txt".format(date_time_str)
- 
+                    rtd_path = folder / \
+                        "RealTimeDeltas_{}.txt".format(date_time_str)
+
                     # Determine if the file exists
                     if rtd_path.is_file():
 
