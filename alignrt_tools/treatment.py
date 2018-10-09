@@ -65,6 +65,9 @@ class TreatmentCalendar:
                 self.treatment_days.append(
                     TreatmentDay(df[df['Date'] == day]))
 
+            # Sort the days
+            self.treatment_days.sort(key=lambda td: td.treatment_date)
+
 
 class TreatmentDay:
     """ The TreatmentDay organizes a single day of real-time delta
@@ -108,6 +111,10 @@ class TreatmentDay:
             # day). This functionality will be added later.
 
             self.treatment_sessions.append(TreatmentSession(df))
+            self.treatment_date = df['Clock Time'].min().date()
+
+            # Sort the treatment sessions by time
+            self.treatment_sessions.sort(key=lambda ts: ts.treatment_time)
 
 
 class TreatmentSession:
@@ -138,15 +145,20 @@ class TreatmentSession:
             session of treatment
         """
 
-        # First, set the "Clock Time" to the index and sort by index
-        df = df.set_index('Clock Time')
-        df = df.sort_index()
+        # Check to see if the df is None
+        if df is not None:
 
-        # Next, let's add a new column called "True Elapsed Time (min)"
-        df['True Elapsed Time (min)'] = (
-            (df.index - df.index.min()).microseconds/1000000 + (df.index - df.index.min()).seconds)/60
+            self.treatment_time = df['Clock Time'].min().time()
 
-        self._df = df
+            # First, set the "Clock Time" to the index and sort by index
+            df = df.set_index('Clock Time')
+            df = df.sort_index()
+
+            # Next, let's add a new column called "True Elapsed Time (min)"
+            df['True Elapsed Time (min)'] = (
+                (df.index - df.index.min()).microseconds/1000000 + (df.index - df.index.min()).seconds)/60
+
+            self._df = df
 
     def get_treatment_session_as_dataframe(self):
         """

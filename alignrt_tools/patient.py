@@ -78,7 +78,7 @@ class Patient(GenericAlignRTClass):
             r = Path(patient_path)
 
             # Get a list of the subdirectories in the path
-            folders = [ item for item in r.iterdir() if item.is_dir() ]
+            folders = [item for item in r.iterdir() if item.is_dir()]
 
             # Determine if the folders are surfaces
             for folder in folders:
@@ -145,6 +145,35 @@ class Patient(GenericAlignRTClass):
 
         return TreatmentCalendar(self.get_realtimedeltas_as_dataframe())
 
+    def __eq__(self, other):
+        """
+        Returns True if the other Patient has the same Patient.details,
+        otherwise returns false
+
+        Parameters
+        ----------
+        other
+            An object that may be a Patient object
+
+        Returns
+        ------- 
+        True if the patient has the same Patient.details dictionary values,
+        otherwise returns false
+        """
+
+        # If other isn't a Patient object, return False
+        if not isinstance(other, Patient):
+            return False
+
+        # Determine equivalence using the details dictionaries
+        # This is not perfect, as the sites lists may
+        # be different, but should work for all patients
+        # generated with the PatientCollection init method.
+        return self.details == other.details
+
+    def __hash__(self):
+        return hash(tuple(self.details.values()))
+
 
 class PatientCollection:
     """The PatientCollection class contains attributes and methods that pertain to an a collection of AlignRT patients. 
@@ -162,18 +191,47 @@ class PatientCollection:
         patients in the collection
     """
 
-    def __init__(self, alignrt_path=None):
+    def __init__(self, alignrt_path_list=None):
+        """
+        Parameters
+        ----------
+        alignrt_path_list : str or list of str
+            a path, or a list of paths (as strings), to the AlignRT 
+            Pdata directories 
+        """
 
         self.patients = []
 
-        if alignrt_path is not None:
+        if alignrt_path_list is not None:
+
+            # Make sure alignrt_path_list is a list
+
+            alignrt_path_list = self._string_to_list(
+                alignrt_path_list)
+
             # Create patient collection using the path provided
-            self._create_patient_collection_from_directory(alignrt_path)
+            self._create_patient_collection_from_directory(alignrt_path_list)
 
     def get_num_patients(self):
+        """
+        Returns the number of patients in the PatientCollection
+
+        Returns
+        ----------
+        the number of patients in the PatientCollection as an int
+        """
+
         return len(self.patients)
-    
+
     def get_collection_as_dataframe(self):
+        """
+        Returns the patient details for all of the patients in the PatientCollection as a DataFrame
+
+        Returns
+        ----------
+        A DataFrame containing the patient details for each patient
+        """
+
         # Create an empty dataframe
         df = None
 
@@ -186,30 +244,108 @@ class PatientCollection:
 
         return df
 
-    def _create_patient_collection_from_directory(self, alignrt_path):
+    def get_filtered_patient_collection(self,
+                                        phase_filter=[]
+                                        ):
+        """
+        Filters the current patient collection using the input 
+        parameters and returns them in a new patient collection
+
+        Parameters
+        ----------
+        phase_filter : str or list of str
+            a string, or list of strings, containing the text you would 
+            like to match in Phase.details['Description']. This is 
+            typically the name of the plan. For example, 
+            phase_filter=['BreR','BreL'] would include plans that have
+            "BreR" and "BreL" in the plan name. 
+            (Default is an empty list)
+        Returns
+        ----------
+        A PatientCollection containing the patients who are included
+        in the filter
+        """
+
+        # Create a new PatientCollection
+        pc = PatientCollection()
+
+        # Ensure all keyword parameters are iterables
+        phase_filter = pc._string_to_list(phase_filter)
+
+        # Cycle through patients, sites, phases, fields and surfaces
+        # to perform search [This search is quite simple right now.
+        # A patient may get selected multiples times. For speed,
+        # it would be smart to drop out of inner loops to the outer
+        # loop once a patient is selected.]
+        for px in self.patients:
+            # Nothing yet
+            for sx in px.sites:
+                # Nothing yet
+                for fx in sx.phases:
+                    # Perform search based on phase_filter
+                    if pc._includes_patient(phase_filter,
+                                            fx.details['Description']
+                                            ):
+                        pc.patients.append(px)
+ #                   for fl in fx.fields:
+ #                      # Nothing yet
+ #                       for su in fl.surfaces:
+ #                           # Nothing yet
+ #                           continue
+
+        # Clear duplicates using set()
+        pc.patients = list(set(pc.patients))
+
+        return pc
+
+    def _create_patient_collection_from_directory(self, alignrt_path_list):
         # Creates a patient collection from the directories within path.
 
-        # Create a Path object from alignrt_path
-        r = Path(alignrt_path)
+        # Iterate through the list of paths
+        dir_count = 1
+        for alignrt_path in alignrt_path_list:
 
-        # Get a list of the subdirectories in the path
-        folders = [ item for item in r.iterdir() if item.is_dir() ]
+            # Create a Path object from alignrt_path
+            r = Path(alignrt_path)
 
-        # Determine which of the folders correspond to patients
-        count = 1
+            # Get a list of the subdirectories in the path
+            folders = [item for item in r.iterdir() if item.is_dir()]
 
-        for folder in folders:
-            # Print the progress of the patient data structure creation
-            clear_output()
-            print("Processing folder {} of {}".format(count, len(folders)))
-            count = count + 1
+            # Determine which of the folders correspond to patients
+            count = 1
 
-            # Check to see if Patient Details.vpax is in the folder
-            if (folder / "Patient Details.vpax").is_file():
-                self.patients.append(
-                    Patient(ET.parse(folder / "Patient Details.vpax").getroot(), folder))
+            for folder in folders:
+                # Print the progress of the patient data structure creation
+                clear_output()
+                print("Processing folder {} of {} in directory {} of {}".format(
+                    count,
+                    len(folders),
+                    dir_count,
+                    len(alignrt_path_list))
+                )
+                count = count + 1
 
-            # Check to see if Patient_Details.vpax is in the folder
-            if (folder / "Patient_Details.vpax").is_file():
-                self.patients.append(
-                    Patient(ET.parse(folder / "Patient_Details.vpax").getroot(), folder))
+                # Check to see if Patient Details.vpax is in the folder
+                if (folder / "Patient Details.vpax").is_file():
+                    self.patients.append(
+                        Patient(ET.parse(folder / "Patient Details.vpax").getroot(), folder))
+
+                # Check to see if Patient_Details.vpax is in the folder
+                if (folder / "Patient_Details.vpax").is_file():
+                    self.patients.append(
+                        Patient(ET.parse(folder / "Patient_Details.vpax").getroot(), folder))
+
+            dir_count = dir_count + 1
+
+    @staticmethod
+    def _string_to_list(string_or_list):
+
+        # If the string_or_list is a string, return it in a list
+        if isinstance(string_or_list, str):
+            string_or_list = [string_or_list]
+
+        return string_or_list
+
+    @staticmethod
+    def _includes_patient(filter_list, detail_value):
+        return any(x in detail_value for x in filter_list)
