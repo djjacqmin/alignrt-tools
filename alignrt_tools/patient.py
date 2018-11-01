@@ -245,7 +245,9 @@ class PatientCollection:
         return df
 
     def get_filtered_patient_collection(self,
-                                        phase_filter=[]
+                                        patient_id_filter=[],
+                                        phase_filter=[],
+                                        include_numerical_patient_id_only=False
                                         ):
         """
         Filters the current patient collection using the input 
@@ -270,6 +272,7 @@ class PatientCollection:
         pc = PatientCollection()
 
         # Ensure all keyword parameters are iterables
+        patient_id_filter = pc._string_to_list(patient_id_filter)
         phase_filter = pc._string_to_list(phase_filter)
 
         # Cycle through patients, sites, phases, fields and surfaces
@@ -278,7 +281,11 @@ class PatientCollection:
         # it would be smart to drop out of inner loops to the outer
         # loop once a patient is selected.]
         for px in self.patients:
-            # Nothing yet
+            # Perform search based on phase_filter
+            if pc._includes_patient(patient_id_filter,
+                                    px.details['PatientID']
+                                    ):
+                pc.patients.append(px)
             for sx in px.sites:
                 # Nothing yet
                 for fx in sx.phases:
@@ -295,6 +302,13 @@ class PatientCollection:
 
         # Clear duplicates using set()
         pc.patients = list(set(pc.patients))
+
+        # Remove patients based on filters
+        for px in pc.patients:
+            if include_numerical_patient_id_only:
+                # Remove patients who have non-digits in their Patient ID
+                if not px.details['PatientID'].isdigit():
+                    pc.patients.remove(px)
 
         return pc
 

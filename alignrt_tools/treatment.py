@@ -339,7 +339,7 @@ class TreatmentSession:
 
         # Determine maximum absolute pitch, roll or rotation:
         max_of_all = np.abs(
-            dfbo[[' D.Rtn (deg)', ' D.Pitch (deg)', ' D.Roll (deg)']].max()).max()
+            dfbo[[' D.Rtn (deg)', ' D.Pitch (deg)', ' D.Roll (deg)']]).max().max()
 
         # Set y axis limits
         axs[1].set_ylim(-1.5*max_of_all, 1.5*max_of_all)
