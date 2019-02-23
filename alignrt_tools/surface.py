@@ -68,37 +68,37 @@ class Surface:
             with open((r / "capture.ini"), "r", encoding="latin-1") as capt_ini:
                 for line in capt_ini:
                     pieces = line.split("=")
-                    if (len(pieces) > 1):
-                        if (pieces[1].split("\n")[0] is not ""):
-                            self.surface_details[pieces[0]] = pieces[1].split("\n")[
-                                0]
+                    if len(pieces) > 1:
+                        if pieces[1].split("\n")[0] is not "":
+                            self.surface_details[pieces[0]] = pieces[1].split("\n")[0]
 
             # Read site.ini and convert to dictionary
             with open((r / "site.ini"), "r", encoding="latin-1") as site_ini:
                 for line in site_ini:
                     pieces = line.split("=")
-                    if (len(pieces) > 1):
-                        if (pieces[1].split("\n")[0] is not ""):
-                            self.site_details[pieces[0]] = pieces[1].split("\n")[
-                                0]
+                    if len(pieces) > 1:
+                        if pieces[1].split("\n")[0] is not "":
+                            self.site_details[pieces[0]] = pieces[1].split("\n")[0]
 
                 # In site.ini, the Phase and Field have surrounding
                 # quotes that get included in the dictionary values.
                 # This can complicate the matching process.
                 # Let's remove them
-                self.site_details['Phase'] = self.site_details['Phase'][1:-1]
-                self.site_details['Field'] = self.site_details['Field'][1:-1]
+                self.site_details["Phase"] = self.site_details["Phase"][1:-1]
+                self.site_details["Field"] = self.site_details["Field"][1:-1]
 
             if load_rtds:
                 self._load_rtds_as_dataframe()
 
             # Add the creation date-time to the surface_details
-            self.surface_details['Created'] = datetime.strptime(
-                r.name, "%y%m%d %H%M%S")
+            self.surface_details["Created"] = datetime.strptime(r.name, "%y%m%d %H%M%S")
 
             # Create a full name for the surface based on the "Field", "Label Prefix" and time-stamp
-            self.surface_details['Full Name'] = "{} {} {}".format(
-                self.site_details['Field'], self.surface_details['Label Prefix'], self.surface_details['Created'])
+            self.surface_details["Full Name"] = "{} {} {}".format(
+                self.site_details["Field"],
+                self.surface_details["Label Prefix"],
+                self.surface_details["Created"],
+            )
 
     def get_surface_details_as_dataframe(self):
         """
@@ -169,10 +169,10 @@ class Surface:
         if self.realtimedeltas is not None:
             # Append the site details and surface details
             for key, value in self.site_details.items():
-                super_key = 'site.ini details - ' + key
+                super_key = "site.ini details - " + key
                 self.realtimedeltas[super_key] = value
             for key, value in self.surface_details.items():
-                super_key = 'Surface Details - ' + key
+                super_key = "Surface Details - " + key
                 self.realtimedeltas[super_key] = value
 
         return self.realtimedeltas
@@ -206,8 +206,7 @@ class Surface:
 
                     # Construct the likely RealTimeDeltas file path
                     date_time_str = folder.name.split("Monitoring_")[1]
-                    rtd_path = folder / \
-                        "RealTimeDeltas_{}.txt".format(date_time_str)
+                    rtd_path = folder / "RealTimeDeltas_{}.txt".format(date_time_str)
 
                     # Determine if the file exists
                     if rtd_path.is_file():
@@ -221,8 +220,7 @@ class Surface:
                                 pieces = line.split(":, ")
                                 if len(pieces) > 1:
                                     rtd_details[pieces[0]] = (
-                                        pieces[1].split(
-                                            "\n")[0].split("\x00")[0]
+                                        pieces[1].split("\n")[0].split("\x00")[0]
                                     )
                                 else:
                                     rtd_details[pieces[0]] = None
@@ -253,13 +251,13 @@ class Surface:
                             + temp_df[" D.LAT (cm)"] * temp_df[" D.LAT (cm)"]
                             + temp_df[" D.LNG (cm)"] * temp_df[" D.LNG (cm)"]
                         )
-                        temp_df[" D.MAG (cm)"] = temp_df[" D.MAG (cm)"].apply(
-                            np.sqrt)
+                        temp_df[" D.MAG (cm)"] = temp_df[" D.MAG (cm)"].apply(np.sqrt)
 
                         # Add a column for the Clock Time
                         start_time = rtd_details["Start Time"]
                         elapsed_time = pd.to_timedelta(
-                            temp_df["Elapsed Time (sec)"], "s")
+                            temp_df["Elapsed Time (sec)"], "s"
+                        )
                         temp_df["Clock Time"] = start_time + elapsed_time
 
                         # Add the rtd_details to the dataframe

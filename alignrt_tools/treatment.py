@@ -57,13 +57,12 @@ class TreatmentCalendar:
         # Check to see if the df is None
         if df is not None:
             # Create a new row in the DataFrame called "Date" from "DateTime"
-            df['Date'] = df['Clock Time'].apply(pd.datetime.date)
+            df["Date"] = df["Clock Time"].apply(pd.datetime.date)
 
-            for day in df['Date'].unique():
+            for day in df["Date"].unique():
                 # Create a TreatmentDay using the subset of the DataFrame
                 # that includes the date
-                self.treatment_days.append(
-                    TreatmentDay(df[df['Date'] == day]))
+                self.treatment_days.append(TreatmentDay(df[df["Date"] == day]))
 
             # Sort the days
             self.treatment_days.sort(key=lambda td: td.treatment_date)
@@ -111,7 +110,7 @@ class TreatmentDay:
             # day). This functionality will be added later.
 
             self.treatment_sessions.append(TreatmentSession(df))
-            self.treatment_date = df['Clock Time'].min().date()
+            self.treatment_date = df["Clock Time"].min().date()
 
             # Sort the treatment sessions by time
             self.treatment_sessions.sort(key=lambda ts: ts.treatment_time)
@@ -148,15 +147,17 @@ class TreatmentSession:
         # Check to see if the df is None
         if df is not None:
 
-            self.treatment_time = df['Clock Time'].min().time()
+            self.treatment_time = df["Clock Time"].min().time()
 
             # First, set the "Clock Time" to the index and sort by index
-            df = df.set_index('Clock Time')
+            df = df.set_index("Clock Time")
             df = df.sort_index()
 
             # Next, let's add a new column called "True Elapsed Time (min)"
-            df['True Elapsed Time (min)'] = (
-                (df.index - df.index.min()).microseconds/1000000 + (df.index - df.index.min()).seconds)/60
+            df["True Elapsed Time (min)"] = (
+                (df.index - df.index.min()).microseconds / 1000000
+                + (df.index - df.index.min()).seconds
+            ) / 60
 
             self._df = df
 
@@ -201,148 +202,189 @@ class TreatmentSession:
         dfplot = self._df[self._df[" D.MAG (cm)"] < 999.0]
 
         # Create a subset of dfplot that includes only beam-on time
-        dfbo = dfplot[dfplot[' XRayState'] == 1]
+        dfbo = dfplot[dfplot[" XRayState"] == 1]
 
         # Set plot parameters
-        lw = 0.5    # line width for raw data
-        lw_rw = 2   # line width for rolling average data
-        alp = 0.3   # alpha for raw data
+        lw = 0.5  # line width for raw data
+        lw_rw = 2  # line width for rolling average data
+        alp = 0.3  # alpha for raw data
         alp_rw = 1  # alpha for rolling average data
-        rw = 20     # rolling window width
+        rw = 20  # rolling window width
 
         # Plot the raw VRT and the VRT rolling average
-        axs[0].plot(dfplot['True Elapsed Time (min)'],
-                    dfplot[' D.VRT (cm)'],
-                    color="#5654F7",
-                    linewidth=lw,
-                    alpha=alp,
-                    label='_nolegend_')
-        axs[0].plot(dfplot['True Elapsed Time (min)'],
-                    dfplot[' D.VRT (cm)'].rolling(rw, center=True).mean(),
-                    color="#5654F7",
-                    linewidth=lw_rw,
-                    alpha=alp_rw,
-                    label='Vertical')
+        axs[0].plot(
+            dfplot["True Elapsed Time (min)"],
+            dfplot[" D.VRT (cm)"],
+            color="#5654F7",
+            linewidth=lw,
+            alpha=alp,
+            label="_nolegend_",
+        )
+        axs[0].plot(
+            dfplot["True Elapsed Time (min)"],
+            dfplot[" D.VRT (cm)"].rolling(rw, center=True).mean(),
+            color="#5654F7",
+            linewidth=lw_rw,
+            alpha=alp_rw,
+            label="Vertical",
+        )
 
         # Plot the raw LNG and the LNG rolling average
-        axs[0].plot(dfplot['True Elapsed Time (min)'],
-                    dfplot[' D.LNG (cm)'],
-                    color="#CF161E",
-                    linewidth=lw,
-                    alpha=alp,
-                    label='_nolegend_')
-        axs[0].plot(dfplot['True Elapsed Time (min)'],
-                    dfplot[' D.LNG (cm)'].rolling(rw, center=True).mean(), color="#CF161E",
-                    linewidth=lw_rw,
-                    alpha=alp_rw,
-                    label='Longitudinal')
+        axs[0].plot(
+            dfplot["True Elapsed Time (min)"],
+            dfplot[" D.LNG (cm)"],
+            color="#CF161E",
+            linewidth=lw,
+            alpha=alp,
+            label="_nolegend_",
+        )
+        axs[0].plot(
+            dfplot["True Elapsed Time (min)"],
+            dfplot[" D.LNG (cm)"].rolling(rw, center=True).mean(),
+            color="#CF161E",
+            linewidth=lw_rw,
+            alpha=alp_rw,
+            label="Longitudinal",
+        )
 
         # Plot the raw LAT and the LAT rolling average
-        axs[0].plot(dfplot['True Elapsed Time (min)'],
-                    dfplot[' D.LAT (cm)'],
-                    color="#41bf71",
-                    linewidth=lw,
-                    alpha=alp,
-                    label='_nolegend_')
-        axs[0].plot(dfplot['True Elapsed Time (min)'],
-                    dfplot[' D.LAT (cm)'].rolling(rw, center=True).mean(), color="#41bf71",
-                    linewidth=lw_rw,
-                    alpha=alp_rw,
-                    label='Lateral')
+        axs[0].plot(
+            dfplot["True Elapsed Time (min)"],
+            dfplot[" D.LAT (cm)"],
+            color="#41bf71",
+            linewidth=lw,
+            alpha=alp,
+            label="_nolegend_",
+        )
+        axs[0].plot(
+            dfplot["True Elapsed Time (min)"],
+            dfplot[" D.LAT (cm)"].rolling(rw, center=True).mean(),
+            color="#41bf71",
+            linewidth=lw_rw,
+            alpha=alp_rw,
+            label="Lateral",
+        )
 
         # Plot the raw MAG and the MAG rolling average
-        axs[0].plot(dfplot['True Elapsed Time (min)'],
-                    dfplot[' D.MAG (cm)'],
-                    color="#000000",
-                    linewidth=lw,
-                    alpha=alp,
-                    label='_nolegend_')
-        axs[0].plot(dfplot['True Elapsed Time (min)'],
-                    dfplot[' D.MAG (cm)'].rolling(rw, center=True).mean(), color="#000000",
-                    linewidth=lw_rw,
-                    alpha=alp_rw,
-                    label='Magnitude')
+        axs[0].plot(
+            dfplot["True Elapsed Time (min)"],
+            dfplot[" D.MAG (cm)"],
+            color="#000000",
+            linewidth=lw,
+            alpha=alp,
+            label="_nolegend_",
+        )
+        axs[0].plot(
+            dfplot["True Elapsed Time (min)"],
+            dfplot[" D.MAG (cm)"].rolling(rw, center=True).mean(),
+            color="#000000",
+            linewidth=lw_rw,
+            alpha=alp_rw,
+            label="Magnitude",
+        )
 
         # Add beam-on time
-        axs[0].fill_between(dfplot['True Elapsed Time (min)'],
-                            -10*np.ones(len(dfplot)),
-                            20*dfplot[' XRayState']-10,
-                            color='r',
-                            alpha=.4)
+        axs[0].fill_between(
+            dfplot["True Elapsed Time (min)"],
+            -10 * np.ones(len(dfplot)),
+            20 * dfplot[" XRayState"] - 10,
+            color="r",
+            alpha=0.4,
+        )
 
         # Add labels for the first plot
         axs[0].set_xlabel("Time (min)")
         axs[0].set_ylabel("Real-time Position (cm)")
 
         # Set x axis limits
-        axs[0].set_xlim(0, ceil(dfbo['True Elapsed Time (min)'].max())+0.2)
+        axs[0].set_xlim(0, ceil(dfbo["True Elapsed Time (min)"].max()) + 0.2)
 
         # Determine maximum magnitude during beam-on time
         max_beam_on_mag = dfbo[" D.MAG (cm)"].max()
 
         # Set y axis limits
-        axs[0].set_ylim(-1.5*max_beam_on_mag, 1.5*max_beam_on_mag)
+        axs[0].set_ylim(-1.5 * max_beam_on_mag, 1.5 * max_beam_on_mag)
         axs[0].legend(ncol=4)
 
         # Plot the raw Rtn and the Rtn rolling average
-        axs[1].plot(dfplot['True Elapsed Time (min)'],
-                    dfplot[' D.Rtn (deg)'],
-                    color="#5654F7",
-                    linewidth=lw,
-                    alpha=alp,
-                    label='_nolegend_')
-        axs[1].plot(dfplot['True Elapsed Time (min)'],
-                    dfplot[' D.Rtn (deg)'].rolling(rw, center=True).mean(), color="#5654F7",
-                    linewidth=lw_rw,
-                    alpha=alp_rw,
-                    label="Rotation")
+        axs[1].plot(
+            dfplot["True Elapsed Time (min)"],
+            dfplot[" D.Rtn (deg)"],
+            color="#5654F7",
+            linewidth=lw,
+            alpha=alp,
+            label="_nolegend_",
+        )
+        axs[1].plot(
+            dfplot["True Elapsed Time (min)"],
+            dfplot[" D.Rtn (deg)"].rolling(rw, center=True).mean(),
+            color="#5654F7",
+            linewidth=lw_rw,
+            alpha=alp_rw,
+            label="Rotation",
+        )
 
         # Plot the raw Roll and the Roll rolling average
-        axs[1].plot(dfplot['True Elapsed Time (min)'],
-                    dfplot[' D.Roll (deg)'],
-                    color="#CF161E",
-                    linewidth=lw,
-                    alpha=alp,
-                    label='_nolegend_')
-        axs[1].plot(dfplot['True Elapsed Time (min)'],
-                    dfplot[' D.Roll (deg)'].rolling(rw, center=True).mean(), color="#CF161E",
-                    linewidth=lw_rw,
-                    alpha=alp_rw,
-                    label="Roll")
+        axs[1].plot(
+            dfplot["True Elapsed Time (min)"],
+            dfplot[" D.Roll (deg)"],
+            color="#CF161E",
+            linewidth=lw,
+            alpha=alp,
+            label="_nolegend_",
+        )
+        axs[1].plot(
+            dfplot["True Elapsed Time (min)"],
+            dfplot[" D.Roll (deg)"].rolling(rw, center=True).mean(),
+            color="#CF161E",
+            linewidth=lw_rw,
+            alpha=alp_rw,
+            label="Roll",
+        )
 
         # Plot the raw Pitch and the Pitch rolling average
-        axs[1].plot(dfplot['True Elapsed Time (min)'],
-                    dfplot[' D.Pitch (deg)'],
-                    color="#41bf71",
-                    linewidth=lw,
-                    alpha=alp,
-                    label='_nolegend_')
-        axs[1].plot(dfplot['True Elapsed Time (min)'],
-                    dfplot[' D.Pitch (deg)'].rolling(rw, center=True).mean(), color="#41bf71",
-                    linewidth=lw_rw,
-                    alpha=alp_rw,
-                    label="Pitch")
+        axs[1].plot(
+            dfplot["True Elapsed Time (min)"],
+            dfplot[" D.Pitch (deg)"],
+            color="#41bf71",
+            linewidth=lw,
+            alpha=alp,
+            label="_nolegend_",
+        )
+        axs[1].plot(
+            dfplot["True Elapsed Time (min)"],
+            dfplot[" D.Pitch (deg)"].rolling(rw, center=True).mean(),
+            color="#41bf71",
+            linewidth=lw_rw,
+            alpha=alp_rw,
+            label="Pitch",
+        )
 
         # Add beam-on time
-        axs[1].fill_between(dfplot['True Elapsed Time (min)'],
-                            -10*np.ones(len(dfplot)),
-                            20*dfplot[' XRayState']-10,
-                            color='r',
-                            alpha=.4)
+        axs[1].fill_between(
+            dfplot["True Elapsed Time (min)"],
+            -10 * np.ones(len(dfplot)),
+            20 * dfplot[" XRayState"] - 10,
+            color="r",
+            alpha=0.4,
+        )
 
         # Add labels for the second plot
         axs[1].set_xlabel("Time (min)")
         axs[1].set_ylabel("Real-time Rotation (deg)")
 
         # Set x axis limits
-        axs[1].set_xlim(0, ceil(dfbo['True Elapsed Time (min)'].max())+0.2)
+        axs[1].set_xlim(0, ceil(dfbo["True Elapsed Time (min)"].max()) + 0.2)
 
         # Determine maximum absolute pitch, roll or rotation:
-        max_of_all = np.abs(
-            dfbo[[' D.Rtn (deg)', ' D.Pitch (deg)', ' D.Roll (deg)']]).max().max()
+        max_of_all = (
+            np.abs(dfbo[[" D.Rtn (deg)", " D.Pitch (deg)", " D.Roll (deg)"]])
+            .max()
+            .max()
+        )
 
         # Set y axis limits
-        axs[1].set_ylim(-1.5*max_of_all, 1.5*max_of_all)
+        axs[1].set_ylim(-1.5 * max_of_all, 1.5 * max_of_all)
 
         # Add the legend
         axs[1].legend(ncol=3)

@@ -55,7 +55,7 @@ class Phase(GenericAlignRTClass):
         if tree is not None:
 
             # Create an array of Fields using the ElementTree provided
-            for field_tree in tree.find('Fields'):
+            for field_tree in tree.find("Fields"):
                 self.fields.append(Field(field_tree))
 
     def get_realtimedeltas_as_dataframe(self):
@@ -79,14 +79,15 @@ class Phase(GenericAlignRTClass):
                 df = field.get_realtimedeltas_as_dataframe()
             else:
                 df = df.append(
-                    field.get_realtimedeltas_as_dataframe(), ignore_index=True)
+                    field.get_realtimedeltas_as_dataframe(), ignore_index=True
+                )
 
         # At this point, df may still yet be None
         # if this Phase does not have real-time deltas
         if df is not None:
             # Append the phase details
             for key, value in self.details.items():
-                super_key = 'Phase Details - ' + key
+                super_key = "Phase Details - " + key
                 df[super_key] = value
 
         return df

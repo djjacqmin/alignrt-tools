@@ -72,13 +72,14 @@ class Field(GenericAlignRTClass):
                 df = surface.get_realtimedeltas_as_dataframe()
             else:
                 df = df.append(
-                    surface.get_realtimedeltas_as_dataframe(), ignore_index=True)
+                    surface.get_realtimedeltas_as_dataframe(), ignore_index=True
+                )
 
         # At this point, df may still yet be None
         # if this Field does not have real-time deltas
         if df is not None:
             for key, value in self.details.items():
-                super_key = 'Field Details - ' + key
+                super_key = "Field Details - " + key
                 df[super_key] = value
 
         return df

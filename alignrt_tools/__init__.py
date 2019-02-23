@@ -1,4 +1,4 @@
-'''
+"""
 The alignrt_tools package allows evaluation and manipulation of data produced by AlignRT software. 
 
 Copyright (C) 2018, Dustin Jacqmin, PhD
@@ -13,6 +13,6 @@ PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License along with 
 this program. If not, see <http://www.gnu.org/licenses/>.
-'''
+"""
 
 from alignrt_tools.patient import Patient, PatientCollection

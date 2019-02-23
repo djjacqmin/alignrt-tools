@@ -42,35 +42,38 @@ class GenericAlignRTClass:
     get_details_as_dataframe()
         Returns the patient details as a pandas dataframe
     """
+
     # Attributes
-    alignrt_data_tags = (['Patient',
-                          'GUID',
-                          'Description',
-                          'IsFromDicom',
-                          'FirstName',
-                          'MiddleName',
-                          'Surname',
-                          'PatientID',
-                          'PatientVersion',
-                          'Notes',
-                          'Site',
-                          'Phase',
-                          'Field',
-                          'IsoRotValue',
-                          'LatestApprovedSurfaceDateTimeStamp',
-                          'IsIsoCenterField',
-                          'RepresentedCouchRotation',
-                          'IsoXValue',
-                          'IsoYValue',
-                          'IsoZValue',
-                          'IsApproved',
-                          'DicomRTPlanUID',
-                          'Sex',
-                          'DOB',
-                          'LatestApprovedRecordSurfaceTimestamp',
-                          'IsDynamicBeamType',
-                          'LastUsedPlotterType',
-                          'PatientTextureLuminosity'])
+    alignrt_data_tags = [
+        "Patient",
+        "GUID",
+        "Description",
+        "IsFromDicom",
+        "FirstName",
+        "MiddleName",
+        "Surname",
+        "PatientID",
+        "PatientVersion",
+        "Notes",
+        "Site",
+        "Phase",
+        "Field",
+        "IsoRotValue",
+        "LatestApprovedSurfaceDateTimeStamp",
+        "IsIsoCenterField",
+        "RepresentedCouchRotation",
+        "IsoXValue",
+        "IsoYValue",
+        "IsoZValue",
+        "IsApproved",
+        "DicomRTPlanUID",
+        "Sex",
+        "DOB",
+        "LatestApprovedRecordSurfaceTimestamp",
+        "IsDynamicBeamType",
+        "LastUsedPlotterType",
+        "PatientTextureLuminosity",
+    ]
 
     # Methods
     def __init__(self, tree=None):
@@ -121,12 +124,12 @@ class GenericAlignRTClass:
 
         """
 
-        obj_str = '**********\n'
+        obj_str = "**********\n"
         for key, value in self.details.items():
             if value is not None:
-                obj_str = obj_str + key + ': ' + str(value) + '\n'
+                obj_str = obj_str + key + ": " + str(value) + "\n"
 
-        obj_str = obj_str + '**********\n'
+        obj_str = obj_str + "**********\n"
         return obj_str
 
     def _perform_type_conversions(self):
@@ -141,67 +144,74 @@ class GenericAlignRTClass:
         """
 
         # Convert Date of birth to datetime object
-        if 'DOB' in self.details.keys():
-            self.details['DOB'] = dateutil.parser.parse(
-                self.details['DOB'], yearfirst=True)
+        if "DOB" in self.details.keys():
+            self.details["DOB"] = dateutil.parser.parse(
+                self.details["DOB"], yearfirst=True
+            )
 
         # Convert LatestApprovedSurfaceDateTimeStamp to datetime object
-        shorter_name = 'LatestApprovedSurfaceDateTimeStamp'
+        shorter_name = "LatestApprovedSurfaceDateTimeStamp"
         if shorter_name in self.details.keys():
             self.details[shorter_name] = dateutil.parser.parse(
-                self.details[shorter_name], yearfirst=True)
+                self.details[shorter_name], yearfirst=True
+            )
 
         # Convert LatestApprovedRecordSurfaceTimestamp to datetime object
-        shorter_name = 'LatestApprovedRecordSurfaceTimestamp'
+        shorter_name = "LatestApprovedRecordSurfaceTimestamp"
         if shorter_name in self.details.keys():
             self.details[shorter_name] = dateutil.parser.parse(
-                self.details[shorter_name], yearfirst=True)
+                self.details[shorter_name], yearfirst=True
+            )
 
         # Convert IsFromDicom to boolean
-        if 'IsFromDicom' in self.details.keys():
-            if self.details['IsFromDicom'] == 'true':
-                self.details['IsFromDicom'] = True
-            elif self.details['IsFromDicom'] == 'false':
-                self.details['IsFromDicom'] = False
+        if "IsFromDicom" in self.details.keys():
+            if self.details["IsFromDicom"] == "true":
+                self.details["IsFromDicom"] = True
+            elif self.details["IsFromDicom"] == "false":
+                self.details["IsFromDicom"] = False
 
         # Convert IsApproved to boolean
-        if 'IsApproved' in self.details.keys():
-            if self.details['IsApproved'] == 'true':
-                self.details['IsApproved'] = True
-            elif self.details['IsApproved'] == 'false':
-                self.details['IsApproved'] = False
+        if "IsApproved" in self.details.keys():
+            if self.details["IsApproved"] == "true":
+                self.details["IsApproved"] = True
+            elif self.details["IsApproved"] == "false":
+                self.details["IsApproved"] = False
 
         # Convert IsApproved to boolean
-        if 'IsIsoCenterField' in self.details.keys():
-            if self.details['IsIsoCenterField'] == 'true':
-                self.details['IsIsoCenterField'] = True
-            elif self.details['IsIsoCenterField'] == 'false':
-                self.details['IsIsoCenterField'] = False
+        if "IsIsoCenterField" in self.details.keys():
+            if self.details["IsIsoCenterField"] == "true":
+                self.details["IsIsoCenterField"] = True
+            elif self.details["IsIsoCenterField"] == "false":
+                self.details["IsIsoCenterField"] = False
 
         # Convert IsApproved to boolean
-        if 'IsDynamicBeamType' in self.details.keys():
-            if self.details['IsDynamicBeamType'] == 'true':
-                self.details['IsDynamicBeamType'] = True
-            elif self.details['IsDynamicBeamType'] == 'false':
-                self.details['IsDynamicBeamType'] = False
+        if "IsDynamicBeamType" in self.details.keys():
+            if self.details["IsDynamicBeamType"] == "true":
+                self.details["IsDynamicBeamType"] = True
+            elif self.details["IsDynamicBeamType"] == "false":
+                self.details["IsDynamicBeamType"] = False
 
         # Perform conversions to int64
-        if 'LastUsedPlotterType' in self.details.keys():
-            self.details['LastUsedPlotterType'] = np.int(
-                self.details['LastUsedPlotterType'])
-        if 'PatientTextureLuminosity' in self.details.keys():
-            self.details['PatientTextureLuminosity'] = np.int(
-                self.details['PatientTextureLuminosity'])
+        if "LastUsedPlotterType" in self.details.keys():
+            self.details["LastUsedPlotterType"] = np.int(
+                self.details["LastUsedPlotterType"]
+            )
+        if "PatientTextureLuminosity" in self.details.keys():
+            self.details["PatientTextureLuminosity"] = np.int(
+                self.details["PatientTextureLuminosity"]
+            )
 
         # Perform conversions to float64
-        if 'IsoRotValue' in self.details.keys():
-            self.details['IsoRotValue'] = np.float(self.details['IsoRotValue'])
-        if 'RepresentedCouchRotation' in self.details.keys():
-            self.details['RepresentedCouchRotation'] = np.float(
-                self.details['RepresentedCouchRotation'])
-        if 'IsoXValue' in self.details.keys():
-            self.details['IsoXValue'] = np.float(self.details['IsoXValue'])
-        if 'IsoYValue' in self.details.keys():
-            self.details['IsoYValue'] = np.float(self.details['IsoYValue'])
-        if 'IsoZValue' in self.details.keys():
-            self.details['IsoZValue'] = np.float(self.details['IsoZValue'])
+        if "IsoRotValue" in self.details.keys():
+            self.details["IsoRotValue"] = np.float(self.details["IsoRotValue"])
+        if "RepresentedCouchRotation" in self.details.keys():
+            self.details["RepresentedCouchRotation"] = np.float(
+                self.details["RepresentedCouchRotation"]
+            )
+        if "IsoXValue" in self.details.keys():
+            self.details["IsoXValue"] = np.float(self.details["IsoXValue"])
+        if "IsoYValue" in self.details.keys():
+            self.details["IsoYValue"] = np.float(self.details["IsoYValue"])
+        if "IsoZValue" in self.details.keys():
+            self.details["IsoZValue"] = np.float(self.details["IsoZValue"])
+

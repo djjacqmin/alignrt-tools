@@ -38,12 +38,12 @@ class Patient(GenericAlignRTClass):
     Attributes
     ----------
     alignrt_data_tags : list(str)
-        a list of data tags inherited from the superclass
+        A list of data tags inherited from the superclass
 
     Methods
     -------
     get_details_as_dataframe()
-        Returns the patient details as a pandas dataframe
+        Returns the patient details as a pandas DataFrame
     """
 
     # Methods
@@ -69,7 +69,7 @@ class Patient(GenericAlignRTClass):
         if tree is not None:
 
             # Iterate through the ElementTree to create a Site object for each site
-            for site_tree in tree.find('Sites'):
+            for site_tree in tree.find("Sites"):
                 self.sites.append(Site(site_tree))
 
         if patient_path is not None:
@@ -88,11 +88,20 @@ class Patient(GenericAlignRTClass):
 
                     # Identify the Site, Phase and Field for the surface
                     for site in self.sites:
-                        if site.details['Description'] == temp_surface.site_details['Treatment Site']:
+                        if (
+                            site.details["Description"]
+                            == temp_surface.site_details["Treatment Site"]
+                        ):
                             for phase in site.phases:
-                                if phase.details['Description'] == temp_surface.site_details['Phase']:
+                                if (
+                                    phase.details["Description"]
+                                    == temp_surface.site_details["Phase"]
+                                ):
                                     for field in phase.fields:
-                                        if field.details['Description'] == temp_surface.site_details['Field']:
+                                        if (
+                                            field.details["Description"]
+                                            == temp_surface.site_details["Field"]
+                                        ):
                                             # Append the surface to this field
                                             field.surfaces.append(temp_surface)
 
@@ -117,14 +126,15 @@ class Patient(GenericAlignRTClass):
                 df = site.get_realtimedeltas_as_dataframe()
             else:
                 df = df.append(
-                    site.get_realtimedeltas_as_dataframe(), ignore_index=True)
+                    site.get_realtimedeltas_as_dataframe(), ignore_index=True
+                )
 
         # At this point, df may still yet be None
         # if this Patient does not have real-time deltas
         if df is not None:
             # Append the field details
             for key, value in self.details.items():
-                super_key = 'Patient Details - ' + key
+                super_key = "Patient Details - " + key
                 df[super_key] = value
 
         return df
@@ -206,8 +216,7 @@ class PatientCollection:
 
             # Make sure alignrt_path_list is a list
 
-            alignrt_path_list = self._string_to_list(
-                alignrt_path_list)
+            alignrt_path_list = self._string_to_list(alignrt_path_list)
 
             # Create patient collection using the path provided
             self._create_patient_collection_from_directory(alignrt_path_list)
@@ -239,16 +248,16 @@ class PatientCollection:
             if df is None:
                 df = patient.get_details_as_dataframe()
             else:
-                df = df.append(
-                    patient.get_details_as_dataframe(), ignore_index=True)
+                df = df.append(patient.get_details_as_dataframe(), ignore_index=True)
 
         return df
 
-    def get_filtered_patient_collection(self,
-                                        patient_id_filter=[],
-                                        phase_filter=[],
-                                        include_numerical_patient_id_only=False
-                                        ):
+    def get_filtered_patient_collection(
+        self,
+        patient_id_filter=[],
+        phase_filter=[],
+        include_numerical_patient_id_only=False,
+    ):
         """
         Filters the current patient collection using the input 
         parameters and returns them in a new patient collection
@@ -282,23 +291,19 @@ class PatientCollection:
         # loop once a patient is selected.]
         for px in self.patients:
             # Perform search based on phase_filter
-            if pc._includes_patient(patient_id_filter,
-                                    px.details['PatientID']
-                                    ):
+            if pc._includes_patient(patient_id_filter, px.details["PatientID"]):
                 pc.patients.append(px)
             for sx in px.sites:
                 # Nothing yet
                 for fx in sx.phases:
                     # Perform search based on phase_filter
-                    if pc._includes_patient(phase_filter,
-                                            fx.details['Description']
-                                            ):
+                    if pc._includes_patient(phase_filter, fx.details["Description"]):
                         pc.patients.append(px)
- #                   for fl in fx.fields:
- #                      # Nothing yet
- #                       for su in fl.surfaces:
- #                           # Nothing yet
- #                           continue
+        #                   for fl in fx.fields:
+        #                      # Nothing yet
+        #                       for su in fl.surfaces:
+        #                           # Nothing yet
+        #                           continue
 
         # Clear duplicates using set()
         pc.patients = list(set(pc.patients))
@@ -307,7 +312,7 @@ class PatientCollection:
         for px in pc.patients:
             if include_numerical_patient_id_only:
                 # Remove patients who have non-digits in their Patient ID
-                if not px.details['PatientID'].isdigit():
+                if not px.details["PatientID"].isdigit():
                     pc.patients.remove(px)
 
         return pc
@@ -331,23 +336,28 @@ class PatientCollection:
             for folder in folders:
                 # Print the progress of the patient data structure creation
                 clear_output()
-                print("Processing folder {} of {} in directory {} of {}".format(
-                    count,
-                    len(folders),
-                    dir_count,
-                    len(alignrt_path_list))
+                print(
+                    "Processing folder {} of {} in directory {} of {}".format(
+                        count, len(folders), dir_count, len(alignrt_path_list)
+                    )
                 )
                 count = count + 1
 
                 # Check to see if Patient Details.vpax is in the folder
                 if (folder / "Patient Details.vpax").is_file():
                     self.patients.append(
-                        Patient(ET.parse(folder / "Patient Details.vpax").getroot(), folder))
+                        Patient(
+                            ET.parse(folder / "Patient Details.vpax").getroot(), folder
+                        )
+                    )
 
                 # Check to see if Patient_Details.vpax is in the folder
                 if (folder / "Patient_Details.vpax").is_file():
                     self.patients.append(
-                        Patient(ET.parse(folder / "Patient_Details.vpax").getroot(), folder))
+                        Patient(
+                            ET.parse(folder / "Patient_Details.vpax").getroot(), folder
+                        )
+                    )
 
             dir_count = dir_count + 1
 
