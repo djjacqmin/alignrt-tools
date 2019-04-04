@@ -88,23 +88,15 @@ class Patient(GenericAlignRTClass):
                 if (folder / "capture.obj").is_file():
                     # Create a new surface
                     temp_surface = Surface(folder)
+                    ssd = temp_surface.site_details
 
                     # Identify the Site, Phase and Field for the surface
                     for site in self.sites:
-                        if (
-                            site.details["Description"]
-                            == temp_surface.site_details["Treatment Site"]
-                        ):
+                        if site.details["Description"] == ssd["Treatment Site"]:
                             for phase in site.phases:
-                                if (
-                                    phase.details["Description"]
-                                    == temp_surface.site_details["Phase"]
-                                ):
+                                if phase.details["Description"] == ssd["Phase"]:
                                     for field in phase.fields:
-                                        if (
-                                            field.details["Description"]
-                                            == temp_surface.site_details["Field"]
-                                        ):
+                                        if field.details["Description"] == ssd["Field"]:
                                             # Append the surface to this field
                                             field.surfaces.append(temp_surface)
 
@@ -273,7 +265,7 @@ class PatientCollection:
         Parameters
         ----------
         phase_filter : str or list of str
-            a string, or list of strings, containing the text you would
+            A string, or list of strings, containing the text you would
             like to match in Phase.details['Description']. This is
             typically the name of the plan. For example,
             phase_filter=['BreR','BreL'] would include plans that have
@@ -293,10 +285,10 @@ class PatientCollection:
         phase_filter = pc._string_to_list(phase_filter)
 
         # Cycle through patients, sites, phases, fields and surfaces
-        # to perform search [This search is quite simple right now.
+        # to perform search. This search is quite simple right now.
         # A patient may get selected multiples times. For speed,
         # it would be smart to drop out of inner loops to the outer
-        # loop once a patient is selected.]
+        # loop once a patient is selected.
         for px in self.patients:
             # Perform search based on phase_filter
             if pc._includes_patient(patient_id_filter, px.details["PatientID"]):

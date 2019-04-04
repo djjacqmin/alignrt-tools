@@ -1,21 +1,4 @@
-"""
-This module defines the TreatmentCalendar, TreatmentDay and
-TreatmentSession classes.
-
-Copyright (C) 2018, Dustin Jacqmin, PhD
-
-This program is free software: you can redistribute it and/or modify it under
-the terms of the GNU General Public License as published by the Free Software
-Foundation, either version 3 of the License, or (at your option) any later
-version.
-
-This program is distributed in the hope that it will be useful, but WITHOUT ANY
-WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE. See the GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License along with
-this program. If not, see <http://www.gnu.org/licenses/>.
-"""
+"""Classes for organizing AlignRT data into a calendar of fractions"""
 
 from math import ceil
 import numpy as np
@@ -25,31 +8,33 @@ import seaborn as sns
 
 
 class TreatmentCalendar:
-    """ The TreatmentCalendar organizes a patient's treatment history
-    into a collection of individual fractions.
+    """AlignRT treatment data organized into a calendar
 
-    ...
+    The TreatmentCalendar organizes a patient's treatment history
+    into a collection of individual treatment days.
+
+    Note
+    ----
+    The get_treatment_calendar() method of the Patient class is the most
+    convenient way to obtain a TreatmentCalendar because it also
+    obtains the real-time deltas DataFrame needed to instantiate the
+    object.
+
+    Parameters
+    ----------
+     df : DataFrame
+            A pandas DataFrame containing the patient's full history of
+            real-time deltas
 
     Attributes
     ----------
-    None
-
-    Methods
-    -------
-    None
+    treatment_days : list of TreatmentDay
+        A list of TreatmentDay objects, which collectively constitute
+        the treatment calendar
 
     """
 
     def __init__(self, df):
-        """
-        Instantiates a TreatmentCalendar object using a Pandas dataframe that includes the patient's full history of real-time deltas.
-
-        Parameters
-        ----------
-        df : Pandas DataFrame
-            A DataFrame containing the real-time deltas for this patient
-        """
-
         # A TreatmentCalendar is a collection of TreatmentDay objects.
         # Let's create an empty array for the treatment days.
         self.treatment_days = []
@@ -69,33 +54,37 @@ class TreatmentCalendar:
 
 
 class TreatmentDay:
-    """ The TreatmentDay organizes a single day of real-time delta
-    data into TreatmentSessions objects. The class also contains methods
-    for analyzing the constituent data.
+    """AlignRT treatment data from one calendar day of treatment
 
-    ...
+    A TreatmentDay organizes a patient's treatment history into a
+    collection of individual treatment fractions. For most patients,
+    there is one fraction per day, so this class may seem redundant.
+    However, some patients are treated twice per day (BID), and the
+    inclusion of separate TreatmentDay and TreatmentSession objects
+    is designed to account for this scenario. At this time, this class
+    does not correctly account for BID treatments, but will be modified
+    to do so in the future.
+
+    Note
+    ----
+    The constructor for this class is called during the instantiation of
+    the TreatmentCalendar class, and will rarely be called outside of
+    this context.
+
+    Parameters
+    ----------
+     df : DataFrame
+            A pandas DataFrame containing the real-time deltas for one
+            calendar day of treatment
 
     Attributes
     ----------
-    None
-
-    Methods
-    -------
-    None
-
+    treatment_days : list of TreatmentSession
+        A list of TreatmentSession object, which collectively
+        constitute the treatment day
     """
 
     def __init__(self, df):
-        """
-        Instantiates a TreatmentDay object using a Pandas dataframe that includes the patient's real-time deltas for one day.
-
-        Parameters
-        ----------
-        df : Pandas DataFrame
-            A DataFrame containing the real-time deltas for this day of
-            treatment
-        """
-
         # A TreatmentDay is a collection of TreatmentSession objects.
         # Let's create an empty array for the treatment sessions.
         self.treatment_sessions = []
@@ -117,21 +106,29 @@ class TreatmentDay:
 
 
 class TreatmentSession:
-    """ The TreatmentSession holds a single treatment session
-    of real-time delta data, and contains methods to analyze
-    the real-time delta data in the session.
+    """AlignRT treatment data from one treatment session
 
-    ...
+    A TreatmentSession contains data for a single treatment fraction.
+
+    Note
+    ----
+    The constructor for this class is called during the instantiation of
+    the TreatmentDay class, and will rarely be called outside of this
+    context.
+
+    Parameters
+    ----------
+     df : DataFrame
+            A pandas DataFrame containing the real-time deltas for one
+            fraction of treatment
 
     Attributes
     ----------
-    None
+    treatment_time : datetime
+        The date and time when the treatment session began, which
+        corresonds to the moment when the AlignRT cameras were turned on
 
-    Methods
-    -------
-    None
-
-    """
+     """
 
     def __init__(self, df):
         """
@@ -142,6 +139,7 @@ class TreatmentSession:
         df : Pandas DataFrame
             A DataFrame containing the real-time deltas for this
             session of treatment
+
         """
 
         # Check to see if the df is None
@@ -162,35 +160,31 @@ class TreatmentSession:
             self._df = df
 
     def get_treatment_session_as_dataframe(self):
-        """
-        Returns a DataFrame containing the treatment session data
-
-        Parameters
-        ----------
-        None
+        """Get a DataFrame containing the treatment session data
 
         Returns
         -------
-        The pandas DataFrame that was used to create this treatment
-        session
+        DataFrame
+            The pandas DataFrame that was used to create this treatment
+            session
 
         """
 
         return self._df
 
     def get_translations_and_rotations_plot(self):
-        """
-        Returns matplotlib figure, axes tuple that contains a plot of
-        the real-time delta translations and rotations for this session
+        """Get a plot of tranlations and rotations
 
-        Parameters
-        ----------
-        None
+        Returns matplotlib figure, axes tuple that contains a plot of
+        the real-time delta translations and rotations for this session.
 
         Returns
         -------
-        A matplotlib figure, axes tuple that contains a plot of
-        the real-time delta translations and rotations for this session
+        fig : Figure
+            A matplotlib.pylot figure
+        axes : Axes
+            A matplotlib.pylot axes that contains plots of the real-time
+            delta translations and rotations for this session
 
         """
 
