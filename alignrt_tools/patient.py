@@ -1,21 +1,23 @@
 """
-This module defines the Patient class and PatientCollection class, which store 
-information about AlignRT patients. In addition, this class contains methods 
-for deriving information about the patient from its constituent data structures.
+This module defines the Patient class and PatientCollection class, which
+store information about AlignRT patients. In addition, this class
+contains methods for deriving information about the patient from its
+constituent data structures.
 
 Copyright (C) 2018, Dustin Jacqmin, PhD
 
-This program is free software: you can redistribute it and/or modify it under 
-the terms of the GNU General Public License as published by the Free Software 
-Foundation, either version 3 of the License, or (at your option) any later 
-version.
+This program is free software: you can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by the
+Free Software Foundation, either version 3 of the License, or (at your
+option) any later version.
 
-This program is distributed in the hope that it will be useful, but WITHOUT ANY 
-WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A 
-PARTICULAR PURPOSE. See the GNU General Public License for more details. 
+This program is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
 
-You should have received a copy of the GNU General Public License along with 
-this program. If not, see <http://www.gnu.org/licenses/>.
+You should have received a copy of the GNU General Public License along
+with this program. If not, see <http://www.gnu.org/licenses/>.
 """
 
 # Import helpful libraries
@@ -30,7 +32,7 @@ from IPython.display import clear_output
 
 
 class Patient(GenericAlignRTClass):
-    """The Patient class contains attributes and methods that pertain 
+    """The Patient class contains attributes and methods that pertain
     to an individual AlignRT patient
 
     ...
@@ -52,10 +54,10 @@ class Patient(GenericAlignRTClass):
         Parameters
         ----------
         tree : ElementTree
-            an ElementTree object created from Patient_Details.vpax, 
+            an ElementTree object created from Patient_Details.vpax,
             the root of which is an individual patient (default is None)
         patient_path : str
-            the path to the directory which contains the patient's 
+            the path to the directory which contains the patient's
             files
         """
 
@@ -68,7 +70,8 @@ class Patient(GenericAlignRTClass):
         # Create an array of sites for the patient
         if tree is not None:
 
-            # Iterate through the ElementTree to create a Site object for each site
+            # Iterate through the ElementTree to create a Site object
+            # for each site
             for site_tree in tree.find("Sites"):
                 self.sites.append(Site(site_tree))
 
@@ -149,11 +152,16 @@ class Patient(GenericAlignRTClass):
 
         Returns
         -------
-        A TreatmentCalendar object for this patient. It may be empty if there are no real-time deltas for this patient.
+        A TreatmentCalendar object for this patient. It may be empty if
+        there are no real-time deltas for this patient.
 
         """
+        df = self.get_realtimedeltas_as_dataframe()
 
-        return TreatmentCalendar(self.get_realtimedeltas_as_dataframe())
+        if df is not None:
+            return TreatmentCalendar(df)
+        else:
+            return None
 
     def __eq__(self, other):
         """
@@ -166,7 +174,7 @@ class Patient(GenericAlignRTClass):
             An object that may be a Patient object
 
         Returns
-        ------- 
+        -------
         True if the patient has the same Patient.details dictionary values,
         otherwise returns false
         """
@@ -186,7 +194,7 @@ class Patient(GenericAlignRTClass):
 
 
 class PatientCollection:
-    """The PatientCollection class contains attributes and methods that pertain to an a collection of AlignRT patients. 
+    """The PatientCollection class contains attributes and methods that pertain to an a collection of AlignRT patients.
 
     ...
 
@@ -197,7 +205,7 @@ class PatientCollection:
     Methods
     -------
     get_collection_as_dataframe()
-        Returns the patient details as a pandas dataframe for all 
+        Returns the patient details as a pandas dataframe for all
         patients in the collection
     """
 
@@ -206,8 +214,8 @@ class PatientCollection:
         Parameters
         ----------
         alignrt_path_list : str or list of str
-            a path, or a list of paths (as strings), to the AlignRT 
-            Pdata directories 
+            a path, or a list of paths (as strings), to the AlignRT
+            Pdata directories
         """
 
         self.patients = []
@@ -259,17 +267,17 @@ class PatientCollection:
         include_numerical_patient_id_only=False,
     ):
         """
-        Filters the current patient collection using the input 
+        Filters the current patient collection using the input
         parameters and returns them in a new patient collection
 
         Parameters
         ----------
         phase_filter : str or list of str
-            a string, or list of strings, containing the text you would 
-            like to match in Phase.details['Description']. This is 
-            typically the name of the plan. For example, 
+            a string, or list of strings, containing the text you would
+            like to match in Phase.details['Description']. This is
+            typically the name of the plan. For example,
             phase_filter=['BreR','BreL'] would include plans that have
-            "BreR" and "BreL" in the plan name. 
+            "BreR" and "BreL" in the plan name.
             (Default is an empty list)
         Returns
         ----------
