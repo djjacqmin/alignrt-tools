@@ -23,8 +23,8 @@ class TreatmentCalendar:
     Parameters
     ----------
      df : DataFrame
-            A pandas DataFrame containing the patient's full history of
-            real-time deltas
+        A pandas DataFrame containing the patient's full history of
+        real-time deltas
 
     Attributes
     ----------

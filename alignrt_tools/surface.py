@@ -1,21 +1,4 @@
-"""
-This module defines a Surface class. This class contains surfaces 
-created by the AlignRT software.
-
-Copyright (C) 2018, Dustin Jacqmin, PhD
-
-This program is free software: you can redistribute it and/or modify it under 
-the terms of the GNU General Public License as published by the Free Software 
-Foundation, either version 3 of the License, or (at your option) any later 
-version.
-
-This program is distributed in the hope that it will be useful, but WITHOUT ANY 
-WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A 
-PARTICULAR PURPOSE. See the GNU General Public License for more details. 
-
-You should have received a copy of the GNU General Public License along with 
-this program. If not, see <http://www.gnu.org/licenses/>.
-"""
+"""A module for working with AlignRT surface data"""
 
 # Import helpful libraries
 from pathlib import Path
@@ -31,75 +14,77 @@ class Surface:
 
     ...
 
+    Parameters
+    ----------
+    surface_path : str
+        the path to the directory which contains the surface files
+    load_rtds : bool
+        determines whether the real-time deltas are loaded into a
+        dataframe during initialization (default is False)
+
     Attributes
     ----------
-    None
+    surface_path : str
+        The path to the directory which contains the surface file
+    surface_details : dict
+        Data from the capture.ini file stored in a dictionary
+    site_details : dict
+        Data from the site.ini file stored in a dictionary
 
-    Methods
-    -------
-    get_details_as_dataframe()
-        Returns the surface details as a pandas dataframe
+    Notes
+    -----
+    The _surface_mesh attribute and _realtimedeltas attribute are set to
+    None during initialization to reduce memory overhead and loading
+    time. Please access these objects through the associated methods
+    called get_realtimedeltas_as_dataframe() and get_surface_mesh()
     """
 
-    def __init__(self, surface_path=None, load_rtds=False):
-        """
-        Parameters
-        ----------
-        surface_path : str
-            the path to the directory which contains the surface 
-            files
-        load_rtds : bool
-            determines whether the real-time deltas are loaded into a dataframe during initialization (default is False)
-        """
+    def __init__(self, surface_path, load_rtds=False):
+
         self.surface_path = surface_path
         self.surface_details = {}
         self.site_details = {}
+        self._surface_mesh = None
+        self._realtimedeltas = None
 
-        # To reduce memory overhead and loading time, we will only
-        # load a surface mesh and realtimedelta dataframe when requested
-        self.surface_mesh = None
-        self.realtimedeltas = None
+        # Create a Path object from alignrt_path
+        r = Path(surface_path)
 
-        if surface_path is not None:
+        # Read capture.ini and convert to dictionary
+        with open((r / "capture.ini"), "r", encoding="latin-1") as capt_ini:
+            for line in capt_ini:
+                pieces = line.split("=")
+                if len(pieces) > 1:
+                    if pieces[1].split("\n")[0] is not "":
+                        self.surface_details[pieces[0]] = pieces[1].split("\n")[0]
 
-            # Create a Path object from alignrt_path
-            r = Path(surface_path)
+        # Read site.ini and convert to dictionary
+        with open((r / "site.ini"), "r", encoding="latin-1") as site_ini:
+            for line in site_ini:
+                pieces = line.split("=")
+                if len(pieces) > 1:
+                    if pieces[1].split("\n")[0] is not "":
+                        self.site_details[pieces[0]] = pieces[1].split("\n")[0]
 
-            # Read capture.ini and convert to dictionary
-            with open((r / "capture.ini"), "r", encoding="latin-1") as capt_ini:
-                for line in capt_ini:
-                    pieces = line.split("=")
-                    if len(pieces) > 1:
-                        if pieces[1].split("\n")[0] is not "":
-                            self.surface_details[pieces[0]] = pieces[1].split("\n")[0]
+            # In site.ini, the Phase and Field have surrounding
+            # quotes that get included in the dictionary values.
+            # This can complicate the matching process.
+            # Let's remove them
+            self.site_details["Phase"] = self.site_details["Phase"][1:-1]
+            self.site_details["Field"] = self.site_details["Field"][1:-1]
 
-            # Read site.ini and convert to dictionary
-            with open((r / "site.ini"), "r", encoding="latin-1") as site_ini:
-                for line in site_ini:
-                    pieces = line.split("=")
-                    if len(pieces) > 1:
-                        if pieces[1].split("\n")[0] is not "":
-                            self.site_details[pieces[0]] = pieces[1].split("\n")[0]
+        if load_rtds:
+            self._load_rtds_as_dataframe()
 
-                # In site.ini, the Phase and Field have surrounding
-                # quotes that get included in the dictionary values.
-                # This can complicate the matching process.
-                # Let's remove them
-                self.site_details["Phase"] = self.site_details["Phase"][1:-1]
-                self.site_details["Field"] = self.site_details["Field"][1:-1]
+        # Add the creation date-time to the surface_details
+        self.surface_details["Created"] = datetime.strptime(r.name, "%y%m%d %H%M%S")
 
-            if load_rtds:
-                self._load_rtds_as_dataframe()
-
-            # Add the creation date-time to the surface_details
-            self.surface_details["Created"] = datetime.strptime(r.name, "%y%m%d %H%M%S")
-
-            # Create a full name for the surface based on the "Field", "Label Prefix" and time-stamp
-            self.surface_details["Full Name"] = "{} {} {}".format(
-                self.site_details["Field"],
-                self.surface_details["Label Prefix"],
-                self.surface_details["Created"],
-            )
+        # Create a full name for the surface based on the "Field", "Label Prefix" and time-stamp
+        self.surface_details["Full Name"] = "{} {} {}".format(
+            self.site_details["Field"],
+            self.surface_details["Label Prefix"],
+            self.surface_details["Created"],
+        )
 
     def get_surface_details_as_dataframe(self):
         """
@@ -162,41 +147,41 @@ class Surface:
         """
 
         # If the dataframe does not exist, create it
-        if self.realtimedeltas is None:
+        if self._realtimedeltas is None:
             self._load_rtds_as_dataframe()
 
-        # After _load_rtds_as_dataframe(), the realtimedeltas may
+        # After _load_rtds_as_dataframe(), the _realtimedeltas may
         # still be None if this surface does not have real-time deltas
-        if self.realtimedeltas is not None:
+        if self._realtimedeltas is not None:
             # Append the site details and surface details
             for key, value in self.site_details.items():
                 super_key = "site.ini details - " + key
-                self.realtimedeltas[super_key] = value
+                self._realtimedeltas[super_key] = value
             for key, value in self.surface_details.items():
                 super_key = "Surface Details - " + key
-                self.realtimedeltas[super_key] = value
+                self._realtimedeltas[super_key] = value
 
-        return self.realtimedeltas
+        return self._realtimedeltas
 
     def get_surface_mesh(self):
 
         # Take care of the case where the mesh already exists
-        if self.surface_mesh is not None:
-            return self.surface_mesh
+        if self._surface_mesh is not None:
+            return self._surface_mesh
 
         path = Path(self.surface_path)
 
         obj_path = path / "capture.obj"
-        roi_path = path / "selection.roi"
+        # roi_path = path / "selection.roi"
 
-        self.surface_mesh = Surface._obj_to_open3d(obj_path)
+        self._surface_mesh = Surface._obj_to_open3d(obj_path)
 
-        return self.surface_mesh
+        return self._surface_mesh
 
     def _load_rtds_as_dataframe(self):
 
         # Verify that the collection is empty
-        if self.realtimedeltas is None:
+        if self._realtimedeltas is None:
 
             # Set df to None
             df = None
@@ -210,11 +195,11 @@ class Surface:
             # Determine if any of the folders contain
             # RealTimeDeltas_DATE_TIME.txt files
             for folder in folders:
-                """ 
-                The name of a RealTimeDeltas folder is 
-                Monitoring_DATE_TIME. The name of the file within will 
-                be RealTimeDeltas_DATE_TIME.txt. First, let's extract 
-                the DATE_TIME string. 
+                """
+                The name of a RealTimeDeltas folder is
+                Monitoring_DATE_TIME. The name of the file within will
+                be RealTimeDeltas_DATE_TIME.txt. First, let's extract
+                the DATE_TIME string.
                 """
 
                 # Check to see if this a monitoring folder
@@ -286,7 +271,7 @@ class Surface:
                         else:
                             df = df.append(temp_df, ignore_index=True)
 
-            self.realtimedeltas = df
+            self._realtimedeltas = df
 
     @staticmethod
     def _obj_to_open3d(obj_file):
@@ -341,6 +326,8 @@ class Surface:
                     if elements[0] == "f":
                         f = [int(e.split("//")[0]) for e in elements[1:]]
                         n = np.array(f, np.float)
+                        # obj face indices start at 1, ply at 0
+                        # Using (n-1) converts between conventions
                         faces[ind_f, :] = n - 1
                         ind_f += 1
 
