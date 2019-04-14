@@ -1,6 +1,6 @@
 """ Examples demonstrating how to use alignrt_tools"""
 import time
-from open3d import *
+import open3d
 
 # Import alignrt_tools Libraries
 import alignrt_tools as art
@@ -67,5 +67,4 @@ first_px = get_first_plan(pc)
 ply = get_first_surface(first_px)
 ply.compute_vertex_normals()
 print(type(ply))
-
-draw_geometries([ply])
+open3d.draw_geometries([ply])
