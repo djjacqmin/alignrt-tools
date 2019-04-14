@@ -49,7 +49,7 @@ def get_first_plan(pc):
     for px in pc.patients:
         for sx in px.sites:
             for fx in sx.phases:
-                if "Catphan" in fx.details["Description"]:
+                if "BreR" in fx.details["Description"]:
                     return px
 
 
@@ -67,4 +67,5 @@ first_px = get_first_plan(pc)
 ply = get_first_surface(first_px)
 ply.compute_vertex_normals()
 print(type(ply))
-open3d.draw_geometries([ply])
+origin = open3d.create_mesh_coordinate_frame(size=100, origin=[0, 0, 0])
+open3d.draw_geometries([ply, origin])

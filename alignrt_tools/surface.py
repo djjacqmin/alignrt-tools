@@ -164,6 +164,8 @@ class Surface:
         return self._realtimedeltas
 
     def get_surface_mesh(self):
+        """Returns an open3d.TriangleMesh containing the
+        AlignRT-generated surface."""
 
         # Take care of the case where the mesh already exists
         if self._surface_mesh is not None:
@@ -172,9 +174,14 @@ class Surface:
         path = Path(self.surface_path)
 
         obj_path = path / "capture.obj"
-        # roi_path = path / "selection.roi"
+        roi_path = path / "selection.roi"
 
-        self._surface_mesh = Surface._obj_to_open3d(obj_path)
+        if self.surface_details["Is From Dicom"]:
+            tfm_path = path / "DICOMRTIsoShift.tfm"
+        else:
+            tfm_path = path / "IsocentreShift.tfm"
+
+        self._surface_mesh = Surface._obj_to_open3d(obj_path, roi_path, tfm_path)
 
         return self._surface_mesh
 
@@ -274,7 +281,7 @@ class Surface:
             self._realtimedeltas = df
 
     @staticmethod
-    def _obj_to_open3d(obj_file):
+    def _obj_to_open3d(obj_file, roi_file, tfm_file):
 
         # Scan file for ps, fs for array pre-allocation
         found_ps = False
@@ -348,8 +355,13 @@ class Surface:
         ply.vertex_normals = Vector3dVector(normals)
         ply.triangles = Vector3iVector(faces)
 
-        # Drop this later
-        # ply.compute_vertex_normals()
-        # draw_geometries([ply])
+        # Open the transformation matrix
+        tfm = np.loadtxt(tfm_file, dtype=float, delimiter="\t")
+
+        # Transform the mesh in place
+        ply.transform(tfm)
+
+        # Prepar normals for visualization
+        ply.compute_vertex_normals()
 
         return ply
