@@ -20,6 +20,7 @@ this program. If not, see <http://www.gnu.org/licenses/>.
 # Import helpful libraries
 from pathlib import Path
 from datetime import datetime
+from open3d import TriangleMesh, Vector3dVector, Vector3iVector
 import pandas as pd
 import numpy as np
 
@@ -177,6 +178,21 @@ class Surface:
 
         return self.realtimedeltas
 
+    def get_surface_mesh(self):
+
+        # Take care of the case where the mesh already exists
+        if self.surface_mesh is not None:
+            return self.surface_mesh
+
+        path = Path(self.surface_path)
+
+        obj_path = path / "capture.obj"
+        roi_path = path / "selection.roi"
+
+        self.surface_mesh = Surface._obj_to_open3d(obj_path)
+
+        return self.surface_mesh
+
     def _load_rtds_as_dataframe(self):
 
         # Verify that the collection is empty
@@ -271,3 +287,82 @@ class Surface:
                             df = df.append(temp_df, ignore_index=True)
 
             self.realtimedeltas = df
+
+    @staticmethod
+    def _obj_to_open3d(obj_file):
+
+        # Scan file for ps, fs for array pre-allocation
+        found_ps = False
+        found_fs = False
+        ps = 0
+        fs = 0
+
+        with open(obj_file) as obj:
+            while not (found_ps and found_fs):
+                elements = obj.readline().split()
+
+                if len(elements) > 0:
+
+                    if elements[0] == "ps":
+                        found_ps = True
+                        ps = int(elements[1])
+
+                    if elements[0] == "fs":
+                        found_fs = True
+                        fs = int(elements[1])
+
+        # Preallocate arrays
+        vertices = np.zeros((ps, 3)).astype(np.float32)
+        normals = np.zeros((ps, 3)).astype(np.float32)
+        faces = np.zeros((fs, 3)).astype(np.int32)
+
+        # indices for filling the arrays
+        ind_v = 0
+        ind_n = 0
+        ind_f = 0
+
+        # fill the arrays
+        with open(obj_file) as obj:
+            for line in obj.readlines():
+                elements = line.split()
+
+                if len(elements) > 0:
+
+                    if elements[0] == "v":
+                        n = np.array(elements[1:], np.float64)
+                        vertices[ind_v, :] = n
+                        ind_v += 1
+
+                    if elements[0] == "vn":
+                        n = np.array(elements[1:], np.float64)
+                        normals[ind_n, :] = n
+                        ind_n += 1
+
+                    if elements[0] == "f":
+                        f = [int(e.split("//")[0]) for e in elements[1:]]
+                        n = np.array(f, np.float)
+                        faces[ind_f, :] = n - 1
+                        ind_f += 1
+
+        # Verify they are full
+        assert (
+            ps == ind_v
+        ), f"The final vertex array index {ind_v-1} does not equal ps {ps}"
+        assert (
+            ps == ind_n
+        ), f"The final normal array index {ind_v-1} does not equal ps {ps}"
+        assert (
+            fs == ind_f
+        ), f"The final face array index {ind_f-1} does not equal fs {fs}"
+
+        # Pass matricies to Open3D.TriangleMesh() and visualize
+        ply = TriangleMesh()
+        ply.vertices = Vector3dVector(vertices)
+        ply.vertex_normals = Vector3dVector(normals)
+        ply.triangles = Vector3iVector(faces)
+
+        # Drop this later
+        # ply.compute_vertex_normals()
+        # draw_geometries([ply])
+
+        return ply

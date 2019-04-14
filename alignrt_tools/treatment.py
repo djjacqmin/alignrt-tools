@@ -131,16 +131,6 @@ class TreatmentSession:
      """
 
     def __init__(self, df):
-        """
-        Instantiates a TreatmentSession object using a Pandas dataframe that includes the patient's real-time deltas for one treatment session.
-
-        Parameters
-        ----------
-        df : Pandas DataFrame
-            A DataFrame containing the real-time deltas for this
-            session of treatment
-
-        """
 
         # Check to see if the df is None
         if df is not None:
