@@ -1,6 +1,7 @@
 """ Examples demonstrating how to use alignrt_tools"""
 import time
 import open3d
+import numpy as np
 
 # Import alignrt_tools Libraries
 import alignrt_tools as art
@@ -41,7 +42,7 @@ for px in pc.patients:
                 for su in fl.surfaces:
                     print("    **** {}".format(su.surface_details["Label"]))
 
-print(end - start)
+print(f"The PatientCollection for {sgrt_path} was created in {end - start} seconds.")
 
 
 def get_first_plan(pc):
@@ -66,6 +67,18 @@ first_px = get_first_plan(pc)
 
 ply = get_first_surface(first_px)
 ply.compute_vertex_normals()
-print(type(ply))
 origin = open3d.create_mesh_coordinate_frame(size=100, origin=[0, 0, 0])
-open3d.draw_geometries([ply, origin])
+# open3d.draw_geometries([ply, origin])
+
+pcd = open3d.geometry.PointCloud()
+pcd2 = open3d.geometry.PointCloud()
+pcd.points = ply.vertices
+xyz = np.asarray(pcd.points) + 10
+pcd2.points = open3d.utility.Vector3dVector(xyz)
+# open3d.draw_geometries([pcd, pcd2])
+start = time.time()
+diff = open3d.geometry.compute_point_cloud_to_point_cloud_distance(pcd2, pcd)
+end = time.time()
+
+print(f"The difference calculation was computed in {end - start} seconds.")
+print(f"The min and max differences are {min(diff)} and {max(diff)}")

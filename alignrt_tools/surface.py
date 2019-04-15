@@ -358,7 +358,7 @@ class Surface:
         # Open the transformation matrix
         tfm = np.loadtxt(tfm_file, dtype=float, delimiter="\t")
 
-        # Transform the mesh in place
+        # Apply transformation to the mesh
         ply.transform(tfm)
 
         # Prepar normals for visualization
