@@ -1,6 +1,6 @@
 """ Examples demonstrating how to use alignrt_tools"""
 import time
-import open3d
+from open3d import *
 import numpy as np
 
 # Import alignrt_tools Libraries
@@ -63,22 +63,35 @@ def get_first_surface(px):
                     return ux.get_surface_mesh()
 
 
+def mag_to_color(x):
+    if x < 10:
+        return (0, 0, 1)
+    if x < 15:
+        return (0, 1, 0)
+    else:
+        return (1, 0, 0)
+
+
 first_px = get_first_plan(pc)
 
 ply = get_first_surface(first_px)
 ply.compute_vertex_normals()
-origin = open3d.create_mesh_coordinate_frame(size=100, origin=[0, 0, 0])
+origin = create_mesh_coordinate_frame(size=100, origin=[0, 0, 0])
 # open3d.draw_geometries([ply, origin])
 
-pcd = open3d.geometry.PointCloud()
-pcd2 = open3d.geometry.PointCloud()
+pcd = PointCloud()
+pcd2 = PointCloud()
 pcd.points = ply.vertices
 xyz = np.asarray(pcd.points) + 10
-pcd2.points = open3d.utility.Vector3dVector(xyz)
+pcd2.points = Vector3dVector(xyz)
 # open3d.draw_geometries([pcd, pcd2])
 start = time.time()
-diff = open3d.geometry.compute_point_cloud_to_point_cloud_distance(pcd2, pcd)
+diff = compute_point_cloud_to_point_cloud_distance(pcd2, pcd)
 end = time.time()
 
 print(f"The difference calculation was computed in {end - start} seconds.")
 print(f"The min and max differences are {min(diff)} and {max(diff)}")
+
+ply.vertex_colors = Vector3dVector(np.array(list(map(mag_to_color, diff))))
+
+draw_geometries([ply, pcd2, origin], width=1080, height=640)
