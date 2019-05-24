@@ -15,42 +15,18 @@ start = time.time()
 pc = art.PatientCollection(sgrt_path)
 end = time.time()
 
+print(f"The PatientCollection for {sgrt_path} was created in {end - start} seconds.")
 
 # Create and display a pandas dataframe of the patient collection
 df = pc.get_collection_as_dataframe()
 
-for px in pc.patients:
-    print(
-        "{}, {}, has {} sites".format(
-            px.details["Surname"], px.details["FirstName"], len(px.sites)
-        )
-    )
-    for sx in px.sites:
-        print(" * {} has {} phases".format(sx.details["Description"], len(sx.phases)))
-        for fx in sx.phases:
-            print(
-                "  ** {} has {} fields".format(
-                    fx.details["Description"], len(fx.fields)
-                )
-            )
-            for fl in fx.fields:
-                print(
-                    "   *** {} has {} surfaces".format(
-                        fl.details["Description"], len(fl.surfaces)
-                    )
-                )
-                for su in fl.surfaces:
-                    print("    **** {}".format(su.surface_details["Label"]))
 
-print(f"The PatientCollection for {sgrt_path} was created in {end - start} seconds.")
-
-
-def get_first_plan(pc):
+def get_first_plan(pc, plan_str):
 
     for px in pc.patients:
         for sx in px.sites:
             for fx in sx.phases:
-                if "BreR" in fx.details["Description"]:
+                if plan_str in fx.details["Description"]:
                     return px
 
 
@@ -72,7 +48,7 @@ def mag_to_color(x):
         return (1, 0, 0)
 
 
-first_px = get_first_plan(pc)
+first_px = get_first_plan(pc, "BreR")
 
 ply = get_first_surface(first_px)
 ply.compute_vertex_normals()
@@ -95,3 +71,4 @@ print(f"The min and max differences are {min(diff)} and {max(diff)}")
 ply.vertex_colors = Vector3dVector(np.array(list(map(mag_to_color, diff))))
 
 draw_geometries([ply, pcd2, origin], width=1080, height=640)
+

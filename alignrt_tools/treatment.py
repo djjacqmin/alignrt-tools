@@ -5,6 +5,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import datetime
 
 
 class TreatmentCalendar:
@@ -52,6 +53,30 @@ class TreatmentCalendar:
             # Sort the days
             self.treatment_days.sort(key=lambda td: td.treatment_date)
 
+    def get_treatment_day_by_date(self, tx_date):
+        """Returns a TreatmentDay object with the same tx_date, if
+        present
+
+        Parameters
+        ----------
+        tx_date: datetime.date
+            The date of the TreatmentDay object being requested
+
+        Returns
+        -------
+        A TreatmentDay object with the requested date, or None if the
+        the date is not found
+
+        """
+        if not isinstance(tx_date, datetime.date):
+            raise TypeError("tx_date must be of type datetime.date")
+
+        for td in self.treatment_days:
+            if td.treatment_date == tx_date:
+                return td
+
+        return None
+
 
 class TreatmentDay:
     """AlignRT treatment data from one calendar day of treatment
@@ -79,7 +104,9 @@ class TreatmentDay:
 
     Attributes
     ----------
-    treatment_days : list of TreatmentSession
+    treatment_date : date
+        The date of treatment
+    treatment_sessions : list of TreatmentSession
         A list of TreatmentSession object, which collectively
         constitute the treatment day
     """
@@ -124,7 +151,7 @@ class TreatmentSession:
 
     Attributes
     ----------
-    treatment_time : datetime
+    treatment_time : datetime.datetime
         The date and time when the treatment session began, which
         corresonds to the moment when the AlignRT cameras were turned on
 
@@ -135,7 +162,7 @@ class TreatmentSession:
         # Check to see if the df is None
         if df is not None:
 
-            self.treatment_time = df["Clock Time"].min().time()
+            self.treatment_time = df["Clock Time"].min()
 
             # First, set the "Clock Time" to the index and sort by index
             df = df.set_index("Clock Time")

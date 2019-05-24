@@ -176,7 +176,7 @@ class Surface:
         obj_path = path / "capture.obj"
         roi_path = path / "selection.roi"
 
-        if self.surface_details["Is From Dicom"]:
+        if self.surface_details["Is From Dicom"] == "True":
             tfm_path = path / "DICOMRTIsoShift.tfm"
         else:
             tfm_path = path / "IsocentreShift.tfm"

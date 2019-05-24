@@ -28,7 +28,7 @@ from alignrt_tools.generic import GenericAlignRTClass
 from alignrt_tools.site import Site
 from alignrt_tools.surface import Surface
 from alignrt_tools.treatment import TreatmentCalendar
-from IPython.display import clear_output
+from tqdm.autonotebook import tqdm
 
 
 class Patient(GenericAlignRTClass):
@@ -322,7 +322,7 @@ class PatientCollection:
 
         # Iterate through the list of paths
         dir_count = 1
-        for alignrt_path in alignrt_path_list:
+        for alignrt_path in tqdm(alignrt_path_list):
 
             # Create a Path object from alignrt_path
             r = Path(alignrt_path)
@@ -330,18 +330,7 @@ class PatientCollection:
             # Get a list of the subdirectories in the path
             folders = [item for item in r.iterdir() if item.is_dir()]
 
-            # Determine which of the folders correspond to patients
-            count = 1
-
-            for folder in folders:
-                # Print the progress of the patient data structure creation
-                clear_output()
-                print(
-                    "Processing folder {} of {} in directory {} of {}".format(
-                        count, len(folders), dir_count, len(alignrt_path_list)
-                    )
-                )
-                count = count + 1
+            for folder in tqdm(folders):
 
                 # Check to see if Patient Details.vpax is in the folder
                 if (folder / "Patient Details.vpax").is_file():
