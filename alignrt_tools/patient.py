@@ -29,6 +29,11 @@ from alignrt_tools.site import Site
 from alignrt_tools.surface import Surface
 from alignrt_tools.treatment import TreatmentCalendar
 from tqdm import tqdm
+import logging
+import dateutil
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
 
 
 class Patient(GenericAlignRTClass):
@@ -362,3 +367,59 @@ class PatientCollection:
     @staticmethod
     def _includes_patient(filter_list, detail_value):
         return any(x in detail_value for x in filter_list)
+
+
+def get_patient_list(alignrt_path_list):
+    """A fast method of getting a full list of patients
+
+    PARAMETERS
+    ----------
+    alignrt_path_list : str or list of str
+        a path, or a list of paths (as strings), to the AlignRT
+        Pdata directories
+
+    RETURNS
+    -------
+    A list of MRNs
+
+    """
+
+    patient_list = []
+
+    if isinstance(alignrt_path_list, str):
+        alignrt_path_list = [alignrt_path_list]
+
+    for alignrt_path in alignrt_path_list:
+        r = Path(alignrt_path)
+        folders = [item for item in r.iterdir() if item.is_dir()]
+
+        xml_data = None
+
+        for folder in tqdm(folders):
+            if (folder / "Patient Details.vpax").is_file():
+                file_path = folder / "Patient Details.vpax"
+                logger.debug(f"{file_path.resolve()} exists")
+                xml_data = ET.parse(file_path).getroot()
+            elif (folder / "Patient_Details.vpax").is_file():
+                file_path = folder / "Patient_Details.vpax"
+                logger.debug(f"{file_path.resolve()} exists")
+                xml_data = ET.parse(file_path).getroot()
+            else:
+                logger.debug(f"{folder.resolve()} is not a patient folder")
+
+            if xml_data is not None:
+                mrn = xml_data.find("PatientID").text
+                last_name = xml_data.find("Surname").text
+                first_name = xml_data.find("FirstName").text
+                try:
+                    latest_surface = xml_data.find(
+                        "LatestApprovedRecordSurfaceTimestamp"
+                    ).text
+                    latest_surface = dateutil.parser.parse(
+                        latest_surface, yearfirst=True
+                    )
+                except:
+                    latest_surface = ""
+                patient_list.append((last_name, first_name, mrn, latest_surface))
+
+    return patient_list
