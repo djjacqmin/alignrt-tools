@@ -28,7 +28,7 @@ from alignrt_tools.generic import GenericAlignRTClass
 from alignrt_tools.site import Site
 from alignrt_tools.surface import Surface
 from alignrt_tools.treatment import TreatmentCalendar
-from tqdm.autonotebook import tqdm
+from tqdm import tqdm
 
 
 class Patient(GenericAlignRTClass):
