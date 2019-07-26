@@ -32,7 +32,7 @@ Once you have a PatientCollection, you can use Python to access the AlignRT data
 
 As you can see above there are two hierarchical representations of the data within the Patient object. The first mimics the data tree used in AlignRT (Patient > Site > Phase > Field > Surface). The real-time delta information is associated with the Surface objects. This hierarchy is created first when a Patient object is instantiated. 
 
-The second representation of the data is created by reprocessing the data in the Patient object into a calendar-like structure (TreatmentCalendar > TreatmentDay > TreatmentSession). This representation is more natural for looking what happens during the course of a single treatment fraction or over a full course of treatment. The real-time delta information is associated with the TreatmentSession objects at the bottom of the hierarchy. The TreatmentCalendar is not created when the Patient object is instantiated. I can be created using the `get_treatment_calendar()` method of the Patient class. 
+The second representation of the data is created by reprocessing the data in the Patient object into a calendar-like structure (TreatmentCalendar > TreatmentDay > TreatmentSession). This representation is more natural for looking what happens during the course of a single treatment fraction or over a full course of treatment. The real-time delta information is associated with the TreatmentSession objects at the bottom of the hierarchy. The TreatmentCalendar is not created when the Patient object is instantiated. It can be created using the `get_treatment_calendar()` method of the Patient class. 
 
 # Security Concerns
 
