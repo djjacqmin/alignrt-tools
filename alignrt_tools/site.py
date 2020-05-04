@@ -40,7 +40,7 @@ class Site(GenericAlignRTClass):
     """
 
     # Methods
-    def __init__(self, tree=None):
+    def __init__(self, tree=None, parent=None):
         """
         Parameters
         ----------
@@ -49,7 +49,7 @@ class Site(GenericAlignRTClass):
             the root of which is an individual site (default is None)
         """
 
-        super().__init__(tree)
+        super().__init__(tree=tree, parent=parent)
         self.phases = []
 
         # Create an array for the phases that belong to this site
@@ -57,7 +57,7 @@ class Site(GenericAlignRTClass):
 
             # Iterate through the ElementTree to create a Phase object for each phase
             for phase_tree in tree.find("Phases"):
-                self.phases.append(Phase(phase_tree))
+                self.phases.append(Phase(tree=phase_tree, parent=self))
 
     def get_realtimedeltas_as_dataframe(self):
         """

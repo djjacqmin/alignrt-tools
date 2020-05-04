@@ -3,7 +3,8 @@
 # Import helpful libraries
 from pathlib import Path
 from datetime import datetime
-from open3d import TriangleMesh, Vector3dVector, Vector3iVector
+from open3d.open3d.geometry import TriangleMesh
+from open3d.open3d.utility import Vector3dVector, Vector3iVector
 import pandas as pd
 import numpy as np
 
@@ -39,7 +40,7 @@ class Surface:
     called get_realtimedeltas_as_dataframe() and get_surface_mesh()
     """
 
-    def __init__(self, surface_path, load_rtds=False):
+    def __init__(self, surface_path, load_rtds=False, parent=None):
 
         self.surface_path = surface_path
         self.surface_details = {}

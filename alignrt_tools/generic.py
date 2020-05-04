@@ -76,7 +76,7 @@ class GenericAlignRTClass:
     ]
 
     # Methods
-    def __init__(self, tree=None):
+    def __init__(self, tree=None, parent=None):
         """
         Parameters
         ----------
@@ -86,6 +86,7 @@ class GenericAlignRTClass:
             or field
         """
         self.details = {}
+        self.parent = parent
 
         if tree is not None:
             # Create an object using the ElementTree provided
@@ -214,4 +215,3 @@ class GenericAlignRTClass:
             self.details["IsoYValue"] = np.float(self.details["IsoYValue"])
         if "IsoZValue" in self.details.keys():
             self.details["IsoZValue"] = np.float(self.details["IsoZValue"])
-

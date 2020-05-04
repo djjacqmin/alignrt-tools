@@ -54,20 +54,20 @@ class Patient(GenericAlignRTClass):
     """
 
     # Methods
-    def __init__(self, tree=None, patient_path=None):
+    def __init__(self, tree=None, patient_path=None, parent=None):
         """
         Parameters
         ----------
         tree : ElementTree
             an ElementTree object created from Patient_Details.vpax,
             the root of which is an individual patient (default is None)
-        patient_path : str
+        patient_path : 
             the path to the directory which contains the patient's
             files
         """
 
         # Instantiate the Patient using the generic class
-        super().__init__(tree)
+        super().__init__(tree=tree, parent=parent)
 
         self.patient_path = patient_path
         self.sites = []
@@ -78,7 +78,7 @@ class Patient(GenericAlignRTClass):
             # Iterate through the ElementTree to create a Site object
             # for each site
             for site_tree in tree.find("Sites"):
-                self.sites.append(Site(site_tree))
+                self.sites.append(Site(tree=site_tree, parent=self))
 
         if patient_path is not None:
 
@@ -103,6 +103,7 @@ class Patient(GenericAlignRTClass):
                                     for field in phase.fields:
                                         if field.details["Description"] == ssd["Field"]:
                                             # Append the surface to this field
+                                            temp_surface.parent = field
                                             field.surfaces.append(temp_surface)
 
     def get_realtimedeltas_as_dataframe(self):
@@ -341,7 +342,8 @@ class PatientCollection:
                 if (folder / "Patient Details.vpax").is_file():
                     self.patients.append(
                         Patient(
-                            ET.parse(folder / "Patient Details.vpax").getroot(), folder
+                            tree=ET.parse(folder / "Patient Details.vpax").getroot(),
+                            patient_path=folder,
                         )
                     )
 
@@ -349,7 +351,8 @@ class PatientCollection:
                 if (folder / "Patient_Details.vpax").is_file():
                     self.patients.append(
                         Patient(
-                            ET.parse(folder / "Patient_Details.vpax").getroot(), folder
+                            tree=ET.parse(folder / "Patient_Details.vpax").getroot(),
+                            patient_path=folder,
                         )
                     )
 

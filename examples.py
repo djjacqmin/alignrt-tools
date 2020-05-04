@@ -1,6 +1,8 @@
 """ Examples demonstrating how to use alignrt_tools"""
 import time
-from open3d import *
+from open3d.open3d.geometry import PointCloud, TriangleMesh
+from open3d.open3d.utility import Vector3dVector
+from open3d.open3d.visualization import draw_geometries
 import numpy as np
 
 # Import alignrt_tools Libraries
@@ -52,7 +54,7 @@ first_px = get_first_plan(pc, "BreR")
 
 ply = get_first_surface(first_px)
 ply.compute_vertex_normals()
-origin = create_mesh_coordinate_frame(size=100, origin=[0, 0, 0])
+origin = TriangleMesh.create_coordinate_frame(size=100, origin=[0, 0, 0])
 # open3d.draw_geometries([ply, origin])
 
 pcd = PointCloud()
@@ -62,7 +64,7 @@ xyz = np.asarray(pcd.points) + 10
 pcd2.points = Vector3dVector(xyz)
 # open3d.draw_geometries([pcd, pcd2])
 start = time.time()
-diff = compute_point_cloud_to_point_cloud_distance(pcd2, pcd)
+diff = pcd2.compute_point_cloud_distance(pcd)
 end = time.time()
 
 print(f"The difference calculation was computed in {end - start} seconds.")
@@ -71,4 +73,3 @@ print(f"The min and max differences are {min(diff)} and {max(diff)}")
 ply.vertex_colors = Vector3dVector(np.array(list(map(mag_to_color, diff))))
 
 draw_geometries([ply, pcd2, origin], width=1080, height=640)
-

@@ -39,7 +39,7 @@ class Phase(GenericAlignRTClass):
     """
 
     # Methods
-    def __init__(self, tree=None):
+    def __init__(self, tree=None, parent=None):
         """
         Parameters
         ----------
@@ -48,7 +48,7 @@ class Phase(GenericAlignRTClass):
             the root of which is an individual phase (default is None)
         """
 
-        super().__init__(tree)
+        super().__init__(tree=tree, parent=parent)
         self.fields = []
 
         # Create an array for the fields that belong to this phase
@@ -56,7 +56,7 @@ class Phase(GenericAlignRTClass):
 
             # Create an array of Fields using the ElementTree provided
             for field_tree in tree.find("Fields"):
-                self.fields.append(Field(field_tree))
+                self.fields.append(Field(tree=field_tree, parent=self))
 
     def get_realtimedeltas_as_dataframe(self):
         """

@@ -39,7 +39,7 @@ class Field(GenericAlignRTClass):
     """
 
     # Methods
-    def __init__(self, tree=None):
+    def __init__(self, tree=None, parent=None):
         """
         Parameters
         ----------
@@ -48,7 +48,7 @@ class Field(GenericAlignRTClass):
             the root of which is an individual field (default is None)
         """
 
-        super().__init__(tree)
+        super().__init__(tree=tree, parent=parent)
         self.surfaces = []
 
     def get_realtimedeltas_as_dataframe(self):
