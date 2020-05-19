@@ -100,7 +100,11 @@ class Patient(GenericAlignRTClass):
 
             # Determine if the folders are surfaces
             for folder in folders:
-                if (folder / "capture.obj").is_file() and (folder / "capture.ini").is_file() and (folder / "site.ini").is_file():
+                if (
+                    (folder / "capture.obj").is_file()
+                    and (folder / "capture.ini").is_file()
+                    and (folder / "site.ini").is_file()
+                ):
                     # Create a new surface
                     temp_surface = Surface(folder)
                     ssd = temp_surface.site_details
@@ -338,7 +342,7 @@ class PatientCollection:
 
         # Iterate through the list of paths
         dir_count = 1
-        for alignrt_path in tqdm(alignrt_path_list):
+        for alignrt_path in alignrt_path_list:
 
             # Create a Path object from alignrt_path
             r = Path(alignrt_path)
@@ -346,7 +350,7 @@ class PatientCollection:
             # Get a list of the subdirectories in the path
             folders = [item for item in r.iterdir() if item.is_dir()]
 
-            for folder in tqdm(folders):
+            for folder in tqdm(folders, desc="Patient Folders"):
 
                 # Check to see if Patient Details.vpax is in the folder
                 if (folder / "Patient Details.vpax").is_file():

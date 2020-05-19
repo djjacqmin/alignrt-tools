@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-import datetime
+from datetime import datetime
 
 
 class TreatmentCalendar:
@@ -43,7 +43,7 @@ class TreatmentCalendar:
         # Check to see if the df is None
         if df is not None:
             # Create a new row in the DataFrame called "Date" from "DateTime"
-            df["Date"] = df["Clock Time"].apply(pd.datetime.date)
+            df["Date"] = df["Clock Time"].apply(datetime.date)
 
             for day in df["Date"].unique():
                 # Create a TreatmentDay using the subset of the DataFrame
