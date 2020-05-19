@@ -66,6 +66,16 @@ class Patient(GenericAlignRTClass):
             files
         """
 
+        # if we have a path but not a patient, try to get a tree
+        if tree is None and (patient_path is not None):
+            # Check to see if Patient Details.vpax is in the patient_path
+            if (patient_path / "Patient Details.vpax").is_file():
+                tree = ET.parse(patient_path / "Patient Details.vpax").getroot()
+
+            # Check to see if Patient_Details.vpax is in the patient_path
+            if (patient_path / "Patient_Details.vpax").is_file():
+                tree = ET.parse(patient_path / "Patient_Details.vpax").getroot()
+
         # Instantiate the Patient using the generic class
         super().__init__(tree=tree, parent=parent)
 
@@ -90,7 +100,7 @@ class Patient(GenericAlignRTClass):
 
             # Determine if the folders are surfaces
             for folder in folders:
-                if (folder / "capture.obj").is_file():
+                if (folder / "capture.obj").is_file() and (folder / "capture.ini").is_file() and (folder / "site.ini").is_file():
                     # Create a new surface
                     temp_surface = Surface(folder)
                     ssd = temp_surface.site_details

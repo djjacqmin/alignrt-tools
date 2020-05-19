@@ -3,8 +3,12 @@
 # Import helpful libraries
 from pathlib import Path
 from datetime import datetime
-from open3d.open3d.geometry import TriangleMesh
-from open3d.open3d.utility import Vector3dVector, Vector3iVector
+
+try:
+    from open3d.open3d.geometry import TriangleMesh
+    from open3d.open3d.utility import Vector3dVector, Vector3iVector
+except:
+    print("open3d could not be opened")
 import pandas as pd
 import numpy as np
 
@@ -56,7 +60,7 @@ class Surface:
             for line in capt_ini:
                 pieces = line.split("=")
                 if len(pieces) > 1:
-                    if pieces[1].split("\n")[0] is not "":
+                    if pieces[1].split("\n")[0] != "":
                         self.surface_details[pieces[0]] = pieces[1].split("\n")[0]
 
         # Read site.ini and convert to dictionary
@@ -64,7 +68,7 @@ class Surface:
             for line in site_ini:
                 pieces = line.split("=")
                 if len(pieces) > 1:
-                    if pieces[1].split("\n")[0] is not "":
+                    if pieces[1].split("\n")[0] != "":
                         self.site_details[pieces[0]] = pieces[1].split("\n")[0]
 
             # In site.ini, the Phase and Field have surrounding
@@ -236,10 +240,10 @@ class Surface:
 
                         # Change Start Time and End Time to datetime objects
                         rtd_details["Start Time"] = datetime.strptime(
-                            rtd_details["Start Time"], "%y%m%d_%H%M%S"
+                            rtd_details["Start Time"].split(".")[0], "%y%m%d_%H%M%S"
                         )
                         rtd_details["End Time"] = datetime.strptime(
-                            rtd_details["End Time"], "%y%m%d_%H%M%S"
+                            rtd_details["End Time"].split(".")[0], "%y%m%d_%H%M%S"
                         )
 
                         # Next, open the rest of a the file as a dataframe
