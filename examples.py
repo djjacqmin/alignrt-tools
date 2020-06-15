@@ -1,16 +1,16 @@
 """ Examples demonstrating how to use alignrt_tools"""
 import time
-from open3d.open3d.geometry import PointCloud, TriangleMesh
-from open3d.open3d.utility import Vector3dVector
-from open3d.open3d.visualization import draw_geometries
+from open3d.geometry import PointCloud, TriangleMesh
+from open3d.utility import Vector3dVector
+from open3d.visualization import draw_geometries
 import numpy as np
 
 # Import alignrt_tools Libraries
 import alignrt_tools as art
 
 # Define a path containing alignrt data
-sgrt_path = "../alignrt-playground/Sample_Directory"
-sgrt_path = "Q:\RadOnc\AlignRT\PData_Legacy\Room_D"
+sgrt_path = r"../alignrt-playground/Sample_Directory"
+sgrt_path = r"Q:\RadOnc\AlignRT\PData_Legacy\Room_D"
 
 # Create a patient collection using the PatientCollection class constructor
 start = time.time()

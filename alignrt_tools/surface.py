@@ -5,8 +5,8 @@ from pathlib import Path
 from datetime import datetime
 
 try:
-    from open3d.open3d.geometry import TriangleMesh
-    from open3d.open3d.utility import Vector3dVector, Vector3iVector
+    from open3d.geometry import TriangleMesh
+    from open3d.utility import Vector3dVector, Vector3iVector
 except:
     print("open3d could not be opened")
 import pandas as pd
